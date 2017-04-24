@@ -40,5 +40,9 @@ module Guardhub
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Configuring cache store
+    REDIS_CONFIG = YAML.load(ERB.new(File.read(Rails.root.join('config/redis.yml'))).result)[Rails.env].deep_symbolize_keys
+    config.cache_store = :redis_store, REDIS_CONFIG[:cache], {expires_in: 90.minutes }
   end
 end
