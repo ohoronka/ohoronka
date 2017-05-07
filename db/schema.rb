@@ -10,16 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507092946) do
+ActiveRecord::Schema.define(version: 20170507112919) do
 
   create_table "devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "pinged_at"
+    t.bigint "object_id"
     t.string "name"
     t.integer "gpio_listen", default: 0, null: false
     t.integer "gpio_pull", default: 0, null: false
     t.integer "gpio_ok", default: 0, null: false
+    t.index ["object_id"], name: "index_devices_on_object_id"
+  end
+
+  create_table "guard_objects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "sensors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
