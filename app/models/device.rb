@@ -13,6 +13,12 @@ class Device < ApplicationRecord
 
   after_touch :update_gpio
 
+  def ping(gpio)
+    # update(pinged_at: Time.current)
+    # TODO implement alarm
+    raise 'Alarm' if ((gpio & gpio_listen) ^ gpio_ok) != 0
+  end
+
   private
 
   def update_gpio

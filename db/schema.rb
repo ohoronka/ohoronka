@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20170507092946) do
   create_table "devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "pinged_at"
     t.string "name"
     t.integer "gpio_listen", default: 0, null: false
     t.integer "gpio_pull", default: 0, null: false

@@ -16,4 +16,16 @@ RSpec.describe Device, type: :model do
       end
     end
   end
+
+  describe '#ping' do
+    let!(:sensor) { create(:sensor, device: device, gpio_listen: 0b01, gpio_ok: 0b00) }
+
+    it 'alarms' do
+      expect{device.ping(0b01)}.to raise_exception(RuntimeError)
+    end
+
+    it 'does not alarms' do
+      expect{device.ping(0b00)}.not_to raise_exception
+    end
+  end
 end
