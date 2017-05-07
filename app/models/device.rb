@@ -27,5 +27,6 @@ class Device < ApplicationRecord
     GPIO.each do |gpio|
       self.send("#{gpio}=".to_sym, sensors.map(&gpio).inject(&:|))
     end
+    save!
   end
 end
