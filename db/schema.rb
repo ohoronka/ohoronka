@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170507112919) do
     t.index ["object_id"], name: "index_devices_on_object_id"
   end
 
-  create_table "guard_objects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "guarded_objects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"

@@ -10,7 +10,7 @@
 class Device < ApplicationRecord
   GPIO = [:gpio_listen, :gpio_pull, :gpio_ok]
   has_many :sensors, inverse_of: :device, dependent: :destroy
-  belongs_to :object, class_name: 'GuardObject', foreign_key: :object_id, inverse_of: :devices
+  belongs_to :object, class_name: 'GuardedObject', foreign_key: :object_id, inverse_of: :devices
 
   after_touch :update_gpio
 
