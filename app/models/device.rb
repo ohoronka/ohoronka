@@ -8,4 +8,17 @@
 # end
 
 class Device < ApplicationRecord
+  GPIO = [:gpio_listen, :gpio_pull, :gpio_ok]
+  has_many :sensors, inverse_of: :device, dependent: :destroy
+
+  after_touch :update_gpio
+
+  private
+
+  def update_gpio
+    sensors.reload
+    GPIO.each do |gpio|
+      self.send("#{gpio}=".to_sym, sensors.map(&gpio).inject(&:|))
+    end
+  end
 end
