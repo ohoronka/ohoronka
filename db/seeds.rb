@@ -6,3 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 FactoryGirl.create(:sensor)
+FactoryGirl.create(:user, account: Account.take)
