@@ -1,4 +1,10 @@
 class GuardedObject < ApplicationRecord
+  STATUS_FLOW = {
+    idle: [:protected],
+    protected: [:idle, :alarm],
+    alarm: [:idle]
+  }
+
   has_many :devices, foreign_key: :object_id, inverse_of: :object, dependent: :destroy
   belongs_to :account, inverse_of: :objects
 
@@ -6,5 +12,9 @@ class GuardedObject < ApplicationRecord
 
   def alarm!
     alarm_status! if protected_status?
+  end
+
+  def next_status
+    STATUS_FLOW[status.to_sym].first.to_s
   end
 end
