@@ -11,7 +11,10 @@ class GuardedObject < ApplicationRecord
   enum status: [:idle, :protected, :alarm], _suffix: true
 
   def alarm!
-    alarm_status! if protected_status?
+    if protected_status?
+      alarm_status!
+      AccountChannel.broadcast_to(self.account_id, {e: :alarm, object: self.as_json})
+    end
   end
 
   def next_status

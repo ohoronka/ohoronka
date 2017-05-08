@@ -10,6 +10,10 @@ class GuardedObjectsController < ApplicationController
     render '_update_object'
   end
 
+  def update_object
+    render '_update_object'
+  end
+
   private
 
   def set_object
