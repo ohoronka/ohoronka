@@ -9,5 +9,11 @@ Rails.application.routes.draw do
       get :update_object
     end
   end
+
+  namespace :mobile do
+    get 'sign_in' => 'session#sign_in_form'
+    post 'sign_in' => 'session#sign_in'
+    get 'logout' => 'session#logout'
+  end
   mount Sidekiq::Web => '/admin/sidekiq'
 end
