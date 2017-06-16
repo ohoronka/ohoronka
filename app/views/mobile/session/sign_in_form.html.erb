@@ -1,5 +1,5 @@
 <%= form_for(@session, url: {action: :sign_in}, method: :post, as: :session) do |f| %>
-    <%= f.text_field :user %>
+    <%= f.text_field :user_name %>
     <%= f.password_field :password %>
     <%= f.submit 'Sign In' %>
 <% end %>

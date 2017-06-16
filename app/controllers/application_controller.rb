@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_user
-    @current_user ||= User.take # TODO add authorization
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 end

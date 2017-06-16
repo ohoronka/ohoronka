@@ -6,7 +6,7 @@ RSpec.describe Mobile::SessionController, type: :controller do
   context 'already signed in user' do
     it 'redirects to home' do
       get :sign_in_form, session: {user_id: user.id}
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(mobile_root_path)
     end
   end
 
@@ -19,8 +19,8 @@ RSpec.describe Mobile::SessionController, type: :controller do
 
   describe '#sign_in' do
     it 'signs user in' do
-      post :sign_in, params: {session: {user: user.email, password: 'password'}}
-      expect(response).to redirect_to(root_path)
+      post :sign_in, params: {session: {user_name: user.email, password: 'password'}}
+      expect(response).to redirect_to(mobile_root_path)
     end
 
     it 'renders errors' do

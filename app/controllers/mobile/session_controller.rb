@@ -9,7 +9,7 @@ class Mobile::SessionController < ApplicationController
 
   def sign_in
     if @user = SessionService.new(session_params).sign_in(self)
-      redirect_to root_path
+      redirect_to mobile_root_path
     else
       render action: :sign_in_form
     end
@@ -23,10 +23,10 @@ class Mobile::SessionController < ApplicationController
   private
 
   def redirect_if_signed_in
-    redirect_to root_path if current_user
+    redirect_to mobile_root_path if current_user
   end
 
   def session_params
-    params.require(:session).permit(:user, :password)
+    params.require(:session).permit(:user_name, :password)
   end
 end

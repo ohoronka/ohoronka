@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   namespace :mobile do
+    root to: 'guarded_objects#index'
+    resources :guarded_objects, only: [:index, :show]
     get 'sign_in' => 'session#sign_in_form'
     post 'sign_in' => 'session#sign_in'
     get 'logout' => 'session#logout'
