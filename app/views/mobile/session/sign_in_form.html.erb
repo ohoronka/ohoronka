@@ -1,5 +1,13 @@
-<%= form_for(@session, url: {action: :sign_in}, method: :post, as: :session) do |f| %>
-    <%= f.text_field :user_name %>
-    <%= f.password_field :password %>
-    <%= f.submit 'Sign In' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <h3 class="text-center">Sign In</h3>
+      <%= bootstrap_form_for(@session, url: {action: :sign_in}, method: :post, as: :session) do |f| %>
+          <%= f.errors_on :base %>
+          <%= f.text_field :user_name %>
+          <%= f.password_field :password %>
+          <%= f.primary 'Sign In', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>

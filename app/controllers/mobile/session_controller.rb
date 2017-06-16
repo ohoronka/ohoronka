@@ -8,7 +8,8 @@ class Mobile::SessionController < ApplicationController
   end
 
   def sign_in
-    if @user = SessionService.new(session_params).sign_in(self)
+    @session = SessionService.new(session_params)
+    if @session.sign_in(self)
       redirect_to mobile_root_path
     else
       render action: :sign_in_form
