@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170508131508) do
     t.datetime "pinged_at"
     t.bigint "object_id"
     t.string "name"
+    t.integer "status", default: 5, null: false
     t.integer "gpio_listen", default: 0, null: false
     t.integer "gpio_pull", default: 0, null: false
     t.integer "gpio_ok", default: 0, null: false
@@ -43,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170508131508) do
     t.datetime "updated_at", null: false
     t.bigint "device_id"
     t.string "name"
+    t.integer "status", default: 5, null: false
     t.integer "gpio_listen", default: 0, null: false
     t.integer "gpio_pull", default: 0, null: false
     t.integer "gpio_ok", default: 0, null: false

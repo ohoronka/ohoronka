@@ -1,4 +1,15 @@
 class GuardedObject < ApplicationRecord
+  ALL_STATUSES = {
+    idle: 0,
+    protected: 1,
+    alarm: 2,
+    ok: 3,
+    online: 4,
+    offline: 5
+  }
+
+  ALARM_STATUSES = ALL_STATUSES.slice(:alarm, :offline)
+
   STATUS_FLOW = {
     idle: [:protected],
     protected: [:idle, :alarm],
@@ -8,7 +19,7 @@ class GuardedObject < ApplicationRecord
   has_many :devices, foreign_key: :object_id, inverse_of: :object, dependent: :destroy
   belongs_to :account, inverse_of: :objects
 
-  enum status: [:idle, :protected, :alarm], _suffix: true
+  enum status: ALL_STATUSES.slice(:idle, :protected, :alarm), _suffix: true
 
   def alarm!
     if protected_status?
