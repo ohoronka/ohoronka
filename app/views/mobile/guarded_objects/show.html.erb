@@ -1,1 +1,36 @@
-<%= @object.inspect %>
+<% content_for(:title) do %>
+    <%= @object.name %>
+<% end %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+      <span class="label label-<%= @object.decorate.css_status %>"><%= @object.decorate.status %></span>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+      <%= link_to @object.decorate.next_status, {action: :set_next_status}, method: :patch, class: "btn btn-#{@object.decorate.css_next_status}" %>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <% @object.sensors.each do |sensor| %>
+    <tr>
+      <td><%= sensor.name %></td>
+      <td class="text-right">
+        <span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.decorate.status %></span>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="table">
+  <% @object.events.mobile_list.each do |event| %>
+    <tr>
+      <td><%= event.sensor.name %></td>
+      <td class="text-right">
+        <span class="label label-<%= event.decorate.sensor_css_status %>"><%= event.decorate.sensor_status %></span>
+      </td>
+    </tr>
+  <% end %>
+</table>

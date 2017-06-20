@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   namespace :mobile do
     root to: 'guarded_objects#index'
-    resources :guarded_objects, only: [:index, :show]
+    resources :guarded_objects, only: [:index, :show] do
+      member do
+        patch :set_next_status
+      end
+    end
     get 'sign_in' => 'session#sign_in_form'
     post 'sign_in' => 'session#sign_in'
     get 'logout' => 'session#logout'

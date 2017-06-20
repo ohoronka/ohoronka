@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170620125906) do
     t.datetime "pinged_at"
     t.bigint "object_id"
     t.string "name"
-    t.integer "status", default: 5, null: false
+    t.integer "status", default: 6, null: false
     t.integer "gpio_listen", default: 0, null: false
     t.integer "gpio_pull", default: 0, null: false
     t.integer "gpio_ok", default: 0, null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20170620125906) do
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.string "name"
-    t.integer "status", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.index ["account_id"], name: "index_guarded_objects_on_account_id"
   end
 
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170620125906) do
     t.datetime "updated_at", null: false
     t.bigint "device_id"
     t.string "name"
-    t.integer "status", default: 5, null: false
+    t.integer "status", default: 6, null: false
     t.integer "gpio_listen", default: 0, null: false
     t.integer "gpio_pull", default: 0, null: false
     t.integer "gpio_ok", default: 0, null: false

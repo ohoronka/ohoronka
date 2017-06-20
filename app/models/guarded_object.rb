@@ -19,6 +19,7 @@ class GuardedObject < ApplicationRecord
   }
 
   has_many :devices, foreign_key: :object_id, inverse_of: :object, dependent: :destroy
+  has_many :sensors, through: :devices
   has_many :events, foreign_key: :object_id, inverse_of: :object
   belongs_to :account, inverse_of: :objects
 

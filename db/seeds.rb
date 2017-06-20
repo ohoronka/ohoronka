@@ -5,5 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-FactoryGirl.create(:sensor)
+sensors = FactoryGirl.create_list(:sensor, 4, device: FactoryGirl.create(:device))
+sensors.each do |sensor|
+  FactoryGirl.create_list(:event, 5, sensor: sensor, object: GuardedObject.take)
+end
 FactoryGirl.create(:user, account: Account.take)

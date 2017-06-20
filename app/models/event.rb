@@ -7,6 +7,8 @@ class Event < ApplicationRecord
 
   before_create :set_values
 
+  scope :mobile_list, ->{ includes(:sensor).order(id: :desc).limit(50) }
+
   private
 
   def set_values
