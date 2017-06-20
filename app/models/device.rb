@@ -9,9 +9,18 @@ class Device < ApplicationRecord
   after_touch :update_gpio
 
   def ping!(gpio)
-    # update(pinged_at: Time.current)
-    # TODO implement alarm
+    self.pinged_at = Time.current
+    self.status = :online
+
     object.alarm! if ((gpio & gpio_listen) ^ gpio_ok) != 0
+    sensors.each {|sensor| sensor.check_gpio!(gpio)}
+    save!
+  end
+
+  def offline!
+    offline_status!
+    object.alarm!
+    sensors.update_all(status: :offline)
   end
 
   private

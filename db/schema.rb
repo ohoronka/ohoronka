@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508131508) do
+ActiveRecord::Schema.define(version: 20170620125906) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20170508131508) do
     t.integer "gpio_pull", default: 0, null: false
     t.integer "gpio_ok", default: 0, null: false
     t.index ["object_id"], name: "index_devices_on_object_id"
+  end
+
+  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "sensor_id"
+    t.bigint "object_id"
+    t.integer "status", default: 0, null: false
+    t.integer "object_status", default: 0, null: false
+    t.index ["object_id"], name: "index_events_on_object_id"
+    t.index ["sensor_id"], name: "index_events_on_sensor_id"
   end
 
   create_table "guarded_objects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
