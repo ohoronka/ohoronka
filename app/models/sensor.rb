@@ -1,8 +1,10 @@
 class Sensor < ApplicationRecord
+  STATUSES = GuardedObject::ALL_STATUSES.slice(:alarm, :ok, :offline)
+
   belongs_to :device, inverse_of: :sensors, touch: true
   has_many :events, dependent: :delete_all, inverse_of: :sensor
 
-  enum status: GuardedObject::ALL_STATUSES.slice(:alarm, :ok, :offline), _suffix: true
+  enum status: STATUSES, _suffix: true
 
   after_update :create_event
 

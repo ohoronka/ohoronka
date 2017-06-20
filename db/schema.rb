@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170620125906) do
     t.datetime "updated_at", null: false
     t.bigint "sensor_id"
     t.bigint "object_id"
-    t.integer "status", default: 0, null: false
+    t.integer "sensor_status", default: 0, null: false
     t.integer "object_status", default: 0, null: false
     t.index ["object_id"], name: "index_events_on_object_id"
     t.index ["sensor_id"], name: "index_events_on_sensor_id"

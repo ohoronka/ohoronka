@@ -12,7 +12,10 @@ class Device < ApplicationRecord
     self.pinged_at = Time.current
     self.status = :online
 
-    object.alarm! if ((gpio & gpio_listen) ^ gpio_ok) != 0
+    if ((gpio & gpio_listen) ^ gpio_ok) != 0
+      o = object
+      o.alarm!
+    end
     sensors.each {|sensor| sensor.check_gpio!(gpio)}
     save!
   end
