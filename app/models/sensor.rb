@@ -15,6 +15,6 @@ class Sensor < ApplicationRecord
   private
 
   def create_event
-    events.create(object: device.object)
+    events.create(object: device.object) if status_changed?
   end
 end

@@ -24,13 +24,6 @@
   <% end %>
 </table>
 
-<table class="table">
-  <% @object.events.mobile_list.each do |event| %>
-    <tr>
-      <td><%= event.sensor.name %></td>
-      <td class="text-right">
-        <span class="label label-<%= event.decorate.sensor_css_status %>"><%= event.decorate.sensor_status %></span>
-      </td>
-    </tr>
-  <% end %>
+<table class="table" id="events">
+  <%= render partial: 'event', collection: @object.events.mobile_list %>
 </table>

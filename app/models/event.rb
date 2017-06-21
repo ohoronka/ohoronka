@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   enum sensor_status: Sensor::STATUSES, _suffix: true
 
   before_create :set_values
+  after_create :send_notification
 
   scope :mobile_list, ->{ includes(:sensor).order(id: :desc).limit(50) }
 
@@ -15,5 +16,12 @@ class Event < ApplicationRecord
     self.object = sensor.device.object unless object
     self.sensor_status = sensor.status unless sensor_status
     self.object_status = object.status unless object_status
+  end
+
+  def send_notification
+    GuardedObjectChannel.broadcast_to(self.object_id, {
+      e: :event_added,
+      html: ApplicationController.new.render_to_string(partial: 'mobile/guarded_objects/event', object: self)
+    })
   end
 end
