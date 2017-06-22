@@ -36,7 +36,7 @@
       <span class="label label-<%= @object.decorate.css_status %>"><%= @object.decorate.status %></span>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-      <%= link_to @object.decorate.next_status, {action: :set_next_status}, method: :patch, class: "btn btn-#{@object.decorate.css_next_status}" %>
+      <%= link_to @object.decorate.next_status, {action: :set_next_status}, method: :patch, class: "btn btn-#{@object.decorate.css_next_status}", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
     </div>
   </div>
 </div>

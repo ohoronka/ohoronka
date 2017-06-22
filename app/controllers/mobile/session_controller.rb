@@ -1,7 +1,7 @@
 class Mobile::SessionController < ApplicationController
-  layout 'mobile_sign_in'
-
+  layout 'mobile'
   before_action :redirect_if_signed_in, except: [:logout]
+  skip_before_action :authorize, only: [:sign_in_form, :sign_in]
 
   def sign_in_form
     @session = SessionService.new
