@@ -13,7 +13,8 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+//= require bootstrap
+//= require cable
 
 $(function(){
     $("#menu-toggle").click(function(e) {

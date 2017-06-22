@@ -2,6 +2,34 @@
     <%= @object.name %>
 <% end %>
 
+<script>
+    (function() {
+        App.guarded_object = App.cable.subscriptions.create({
+            channel: "GuardedObjectChannel",
+            guarded_object_id: <%= @object.id %>
+        }, {
+            connected: function() {
+                console.log('connected to object', arguments);
+            },
+            disconnected: function() {
+                console.log('disconnected from object');
+            },
+            received: function(data) {
+                console.log(data);
+                this[data.e](data);
+            },
+            event_created: function(data) {
+                $('#events tbody').prepend(data.html);
+                $('#events tbody tr:last').remove();
+            },
+            sensor_updated: function(data) {
+                $('#sensor_' + data.id).replaceWith(data.html);
+            }
+        });
+
+    }).call(this);
+</script>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6">

@@ -1,6 +1,6 @@
 class GuardedObjectChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "guarded_object:#{current_user.objects.first.id}" # TODO fix this
+    stream_from "guarded_object:#{current_user.objects.find_by(id: params[:guarded_object_id]).id}"
   end
 
   def unsubscribed
