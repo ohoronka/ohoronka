@@ -7,13 +7,17 @@ module ApplicationCable
     end
 
     private
+
     def find_verified_user
-      # TODO find correct user
-      if current_user = User.first #find_by(id: cookies.signed[:user_id])
+      if current_user = User.find_by(id: session[:user_id])
         current_user
       else
         reject_unauthorized_connection
       end
+    end
+
+    def session
+      @session ||= Rails.cache.read(cookies['_session_id']).with_indifferent_access
     end
   end
 end
