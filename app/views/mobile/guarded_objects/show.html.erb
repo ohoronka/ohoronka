@@ -14,14 +14,7 @@
 </div>
 
 <table class="table">
-  <% @object.sensors.each do |sensor| %>
-    <tr>
-      <td><%= sensor.name %></td>
-      <td class="text-right">
-        <span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.decorate.status %></span>
-      </td>
-    </tr>
-  <% end %>
+  <%= render partial: 'sensor', collection: @object.sensors %>
 </table>
 
 <table class="table" id="events">

@@ -20,7 +20,7 @@ class Event < ApplicationRecord
 
   def send_notification
     GuardedObjectChannel.broadcast_to(self.object_id, {
-      e: :event_added,
+      e: :event_created,
       html: ApplicationController.new.render_to_string(partial: 'mobile/guarded_objects/event', object: self)
     })
   end

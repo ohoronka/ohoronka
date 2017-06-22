@@ -16,5 +16,10 @@ class Sensor < ApplicationRecord
 
   def create_event
     events.create(object: device.object) if status_changed?
+    GuardedObjectChannel.broadcast_to(self.device.object_id, {
+      e: :sensor_updated,
+      id: self.id,
+      html: ApplicationController.new.render_to_string(partial: 'mobile/guarded_objects/sensor', object: self)
+    })
   end
 end

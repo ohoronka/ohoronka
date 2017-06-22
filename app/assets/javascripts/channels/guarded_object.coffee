@@ -12,6 +12,9 @@ App.guarded_object = App.cable.subscriptions.create "GuardedObjectChannel",
     console.log(data)
     this[data.e](data)
 
-  event_added: (data) ->
+  event_created: (data) ->
     $('#events tbody').prepend(data.html)
     $('#events tbody tr:last').remove()
+
+  sensor_updated: (data) ->
+    $('#sensor_' + data.id).replaceWith(data.html)
