@@ -10,6 +10,17 @@ server "ec2-35-158-109-219.eu-central-1.compute.amazonaws.com", user: "bguban", 
 
 set :rvm_ruby_version, '2.4.0@ohoronka'
 
+set :nginx_config_name, "#{fetch(:application)}_#{fetch(:stage)}"
+set :nginx_flags, 'fail_timeout=0'
+set :nginx_http_flags, fetch(:nginx_flags)
+set :nginx_server_name, "#{fetch(:application)}.com"
+set :nginx_sites_available_path, '/etc/nginx/sites-available'
+set :nginx_sites_enabled_path, '/etc/nginx/sites-enabled'
+set :nginx_socket_flags, fetch(:nginx_flags)
+set :nginx_ssl_certificate, "/etc/ssl/certs/{fetch(:nginx_config_name)}.crt"
+set :nginx_ssl_certificate_key, "/etc/ssl/private/{fetch(:nginx_config_name)}.key"
+set :nginx_use_ssl, false
+
 
 # role-based syntax
 # ==================
