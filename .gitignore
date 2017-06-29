@@ -22,3 +22,4 @@
 /config/redis.yml
 /config/initializers/local.rb
 /config/cable.yml
+/config/secrets.yml
