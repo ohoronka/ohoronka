@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: guardhub_production
-  username: guardhub
+  username: ohoronka
   password: <%= ENV['GUARDHUB_DATABASE_PASSWORD'] %>
