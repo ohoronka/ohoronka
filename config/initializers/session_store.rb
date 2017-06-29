@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-Rails.application.config.session_store :redis_store, servers: Guardhub::Application::REDIS_CONFIG[:cache]
+Rails.application.config.session_store :redis_store, servers: Ohoronka::Application::REDIS_CONFIG[:cache]

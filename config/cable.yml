@@ -8,4 +8,4 @@ test:
 production:
   adapter: redis
   url: redis://localhost:6379/15
-#  channel_prefix: guardhub_production
+#  channel_prefix: ohoronka_production
