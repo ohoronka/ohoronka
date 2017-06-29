@@ -10,6 +10,9 @@ set :repo_url, "git@gitlab.com:ohoronka/ohoronka.git"
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/var/projects/ohoronka"
 
+set :rvm_type, :user
+set :bundle_path, nil
+
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
