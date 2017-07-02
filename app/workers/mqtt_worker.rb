@@ -6,8 +6,17 @@ class MqttWorker
   end
 
   def parse_message(params)
-    msg = JSON.parse(params['message'])
-    Device.find(params['topic']).ping!(msg['gpio'])
+    split_topic = params['topic'].split('/')
+    device_id = split_topic.first.to_i
+    topic = split_topic[1]
+
+    case topic
+    when 'm'
+      msg = JSON.parse(params['message'])
+      Device.find(params['topic'].split('/').first).ping!(msg['gpio'])
+    when 'rpc'
+      Rails.logger.info("RPC message received: #{params['topic']}:#{params['message']}")
+    end
   rescue JSON::ParserError => e
     # TODO notify developers
     Rails.logger.error(e.message)

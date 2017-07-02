@@ -9,7 +9,7 @@ RSpec.describe MqttWorker, type: :worker do
       it 'alarms' do
         # expect_any_instance_of(GuardedObject).to receive(:alarm!)
         expect{
-          MqttWorker.perform_async(:parse_message, topic: device.id.to_s, message: {gpio: 0b01}.to_json)
+          MqttWorker.perform_async(:parse_message, topic: "#{device.id}/m", message: {gpio: 0b01}.to_json)
           object.reload
           device.reload
           sensor.reload
