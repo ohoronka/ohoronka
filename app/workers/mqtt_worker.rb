@@ -16,6 +16,8 @@ class MqttWorker
       Device.find(params['topic'].split('/').first).ping!(msg['gpio'])
     when 'rpc'
       Rails.logger.info("RPC message received: #{params['topic']}:#{params['message']}")
+    else
+      Rails.logger.error("Unknown message received: #{params['topic']}:#{params['message']}")
     end
   rescue JSON::ParserError => e
     # TODO notify developers

@@ -1,0 +1,37 @@
+name: c_mqtt
+arch: esp8266
+version: 1.0
+skeleton_version: 2017-05-18
+sources:
+  - src
+filesystem:
+  - fs
+config_schema:
+<% mqtt_server =  Rails.env.development? ? Socket.ip_address_list.map(&:ip_address).select{|ip| ip.match('192.168') || ip.match('172.') || ip.match('10.')}.first : 'ohoronka.com' %>
+  - ["mqtt.server", "<%= mqtt_server %>:1883"]
+  - ["mqtt.enable", true]
+  - ["device.id", "1"]
+  - ["device.password", "test"]
+  - ["device.gpio_listen", "i", <%= device.gpio_listen %>, {title: "Listen GPIO ports"}]
+  - ["device.gpio_pull", "i", <%= device.gpio_pull %>, {title: "Listen GPIO ports pull"}]
+  - ["debug.stderr_topic", ""]
+  - ["debug.stdout_topic", ""]
+  - ["update.enable_post", false]
+  - ["sntp.enable", false]
+  - ["rpc.ws.enable", false]
+  - ["http.enable", false]
+libs:
+  - origin: https://github.com/mongoose-os-libs/http-server
+  - origin: https://github.com/mongoose-os-libs/ota-http-server
+  - origin: https://github.com/mongoose-os-libs/rpc-loopback
+  - origin: https://github.com/mongoose-os-libs/rpc-mqtt
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-service-gpio
+  - origin: https://github.com/mongoose-os-libs/rpc-service-i2c
+  - origin: https://github.com/mongoose-os-libs/rpc-service-ota
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/spi
+  - origin: https://github.com/mongoose-os-libs/vfs-dev-spi-flash
+build_vars:
+  SSL: mbedTLS

@@ -6,7 +6,6 @@ class ApplicationDecorator < Draper::Decorator
     'online' => 'success',
     'offline' => 'danger',
     'ok' => 'success',
-    'alarm' => 'danger'
   }
 
   # Define methods for all decorated objects.

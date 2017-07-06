@@ -26,6 +26,36 @@ class Device < ApplicationRecord
     sensors.update_all(status: :offline)
   end
 
+  def rpc_config_set
+    msg_config_set = {
+      method: 'Config.Set',
+      args: {
+        config: {
+          device: {
+            gpio_listen: self.gpio_listen,
+            gpio_pull: self.gpio_pull
+          }
+        }
+      },
+      src: :rpc_result
+    }
+
+    msg_config_save = {
+      method: 'Config.Save',
+      args: {
+        reboot: true
+      },
+      src: :rpc_result
+    }
+    # TODO make general mqtt sender or RPC model/service
+    MQTT::Client.connect('mqtt://test:test@localhost') do |c|
+      c.publish("#{self.id}/rpc", msg_config_set.to_json)
+      sleep 0.5
+      c.publish("#{self.id}/rpc", msg_config_save.to_json)
+    end
+  end
+
+
   private
 
   def update_gpio

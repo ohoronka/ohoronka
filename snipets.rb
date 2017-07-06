@@ -12,6 +12,20 @@ MQTT::Client.connect('mqtt://test:test@localhost') do |c|
   c.publish('test/rpc', msg.to_json)
 end
 
+msg = {
+  method: 'Config.Set',
+  args: {
+    config: {
+      device: {
+        gpio_listen: 0,
+        gpio_pull: 0
+      }
+    }
+  },
+  src: :rpc_result
+}
+
+
 # Subscribe example
 MQTT::Client.connect('mqtt://test:test@localhost') do |c|
   # If you pass a block to the get method, then it will loop
