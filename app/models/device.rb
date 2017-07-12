@@ -6,6 +6,8 @@ class Device < ApplicationRecord
   has_many :sensors, inverse_of: :device, dependent: :destroy
   belongs_to :object, class_name: 'GuardedObject', foreign_key: :object_id, inverse_of: :devices
 
+  validates :name, presence: true
+
   after_touch :update_gpio
 
   def ping!(gpio)

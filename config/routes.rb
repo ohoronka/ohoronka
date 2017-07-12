@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       patch :set_next_status
       get :update_object
     end
+    resources :devices, shallow: true
   end
 
   namespace :mobile do

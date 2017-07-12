@@ -3,4 +3,5 @@ class User < ApplicationRecord
 
   belongs_to :account, inverse_of: :users
   has_many :objects, through: :account
+  has_many :devices, through: :objects
 end
