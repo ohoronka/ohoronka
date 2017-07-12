@@ -11,9 +11,12 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap
- *= require simple-sidebar
  *= require rails_bootstrap_forms
  *= require_self
- */
+*/
 
-body { padding-top: 50px; }
+body { padding-top: 70px; }
+
+.tree-level-2 {
+    padding-left: 32px;
+}

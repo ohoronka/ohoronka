@@ -5,6 +5,10 @@ class GuardedObjectsController < ApplicationController
     @objects = current_user.objects
   end
 
+  def show
+    
+  end
+
   def set_next_status
     @object.update(status: @object.next_status)
     render '_update_object'

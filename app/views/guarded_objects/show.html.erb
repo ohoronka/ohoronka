@@ -1,0 +1,62 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="h3"><%= @object.name %></span>
+
+        <span class="text-muted">Status: </span>
+        <span class="label label-<%= @object.decorate.css_status %>"><%= @object.status %></span>
+
+        <%= link_to "Set #{@object.next_status}",
+          set_next_status_guarded_object_path(@object),
+          class: "btn btn-#{@object.decorate.css_next_status} pull-right",
+          remote: true,
+          method: :patch
+        %>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Sensor</th>
+        <th class="text-right">Status</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @object.sensors.each do |sensor| %>
+          <tr>
+            <td><%= sensor.name %></td>
+            <td class="text-right"><span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.status %></span></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="text-center">Events</h3>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Sensor</th>
+      <th>Time</th>
+      <th class="text-right">Event</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @object.events.mobile_list.each do |event| %>
+    <tr>
+      <td><%= event.sensor.name %></td>
+      <td><%= event.created_at %></td>
+      <td class="text-right">
+        <span class="label label-<%= event.decorate.sensor_css_status %>"><%= event.sensor_status %></span>
+      </td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+</div>

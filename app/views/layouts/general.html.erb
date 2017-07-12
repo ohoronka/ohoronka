@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ohoronka</title>
+
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+  <body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <%= content_for?(:title) ? yield(:title) : 'Ohoronka' %>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="list-group">
+          <% current_user.objects.each do |object| %>
+              <a href="<%= guarded_object_path(object) %>" class="list-group-item tree-level-1"><%= object.name %></a>
+              <a href="#" class="list-group-item tree-level-2">Devices</a>
+              <a href="#" class="list-group-item tree-level-2">Sensors</a>
+              <a href="#" class="list-group-item tree-level-2">Events</a>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <%= yield %>
+      </div>
+
+    </div>
+  </div>
+
+  </body>
+</html>
