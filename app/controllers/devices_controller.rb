@@ -37,12 +37,12 @@ class DevicesController < ApplicationController
 
   private
 
-  def object
+  helper_method def object
     @object ||= current_user.objects.find(params[:guarded_object_id])
   end
 
   def set_device
-    @device = current_user.devices.find(params[:id])
+    @device = object.devices.find(params[:id])
   end
 
   def device_params

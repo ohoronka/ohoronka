@@ -1,8 +1,10 @@
 <div class="panel panel-primary">
 
   <div class="panel-heading">
-    <h3 class="panel-title">Devices</h3>
-    <%= link_to 'Add device', {action: :new}, class: 'btn btn-success pull-right btn-sm' %>
+    Devices
+    <div class="pull-right">
+      <%= link_to 'Add device', {action: :new}, class: 'btn btn-success pull-right btn-xs' %>
+    </div>
   </div>
 
   <table class="table">
@@ -20,8 +22,8 @@
         <td><%= device.name %></td>
         <td><span class="label label-<%= device.decorate.css_status %>"><%= device.status %></span></td>
         <td class="text-right">
-          <%= link_to 'Edit', edit_device_path(device), class: 'btn btn-success btn-xs' %>
-          <%= link_to 'Destroy', device_path(device), class: 'btn btn-danger btn-xs', data: {confirm: 'Device will be comletely destroyed. Are you sure?'}, method: :delete %>
+          <%= link_to 'Edit', {action: :edit, id: device.id}, class: 'btn btn-success btn-xs' %>
+          <%= link_to 'Destroy', {action: :destroy, id: device.id}, class: 'btn btn-danger btn-xs', data: {confirm: 'Device will be comletely destroyed. Are you sure?'}, method: :delete %>
         </td>
       </tr>
     <% end %>

@@ -1,21 +1,10 @@
 <div class="panel panel-primary">
 
   <div class="panel-heading">
-    <h3 class="panel-title">Editing sensor <%= @sensor.name %></h3>
+    Editing sensor <%= @sensor.name %>
   </div>
 
   <div class="panel-body">
-    <%= bootstrap_form_for([@sensor], layout: :horizontal) do |f| %>
-        <%= f.text_field :name %>
-        <%= f.select :device_id, options_from_collection_for_select(devices, :id, :name) %>
-        <%= f.number_field :gpio_listen %>
-        <%= f.number_field :gpio_pull %>
-        <%= f.number_field :gpio_ok %>
-
-        <%= f.form_group class: 'text-right' do %>
-            <%= f.submit 'Save', class: 'btn btn-primary btn-sm' %>
-            <%= link_to 'Cancel', {action: :index, guarded_object_id: @sensor.device.object_id}, class: 'btn btn-warning btn-sm' %>
-        <% end %>
-    <% end %>
+    <%= render :partial => 'form' %>
   </div>
 </div>

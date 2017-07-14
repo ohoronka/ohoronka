@@ -1,2 +1,28 @@
-no objects
-<%# TODO create new objects %>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Guarded Objects
+    <div class="pull-right">
+      <%= link_to 'New Object', {action: :new}, class: 'btn btn-success btn-xs' %>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @objects.each do |object| %>
+      <tr>
+        <td><%= object.name %></td>
+        <td>
+          <%= link_to 'Edit', {action: :edit, id: object.id}, class: 'btn btn-success btn-sm' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

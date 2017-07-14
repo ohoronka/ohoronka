@@ -9,10 +9,14 @@ class SensorsController < ApplicationController
     @sensor = Sensor.new
   end
 
+  def select_device
+    @devices = object.devices
+  end
+
   def create
-    @sensor = Sensor.new(sensor_params)
+    @sensor = device.sensors.new(sensor_params)
     if @sensor.save
-      redirect_to action: :index, guarded_object_id: object.id
+      redirect_to action: :index
     else
       render action: :new
     end
@@ -23,8 +27,7 @@ class SensorsController < ApplicationController
   end
 
   def update
-    @sensor = Sensor.new(sensor_params)
-    if @sensor.save
+    if @sensor.update(sensor_params)
       redirect_to action: :index, guarded_object_id: object.id
     else
       render action: :edit
@@ -38,21 +41,19 @@ class SensorsController < ApplicationController
 
   private
 
-  helper_method def devices
-    @devices ||= object.devices
+  helper_method def object
+    @object ||= current_user.objects.find(params[:guarded_object_id])
   end
 
-  helper_method def object
-    @object ||= current_user.objects.find(params[:guarded_object_id] || set_sensor.device.object_id)
+  helper_method def device
+    @device ||= object.devices.find(params[:device_id])
   end
 
   def sensor_params
-    filtered_params = params.require(:sensor).permit(:name, :device_id, :gpio_listen, :gpio_ok, :gpio_pull)
-    filtered_params.delete(:device_id) unless devices.ids.include?(filtered_params[:device_id].to_i)
-    filtered_params
+    params.require(:sensor).permit(:name, :gpio_listen, :gpio_ok, :gpio_pull) # TODO handle gpio fields
   end
 
   def set_sensor
-    @sensor = current_user.sensors.find(params[:id])
+    @sensor = device.sensors.find(params[:id])
   end
 end

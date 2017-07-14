@@ -1,8 +1,10 @@
 <div class="panel panel-primary">
 
   <div class="panel-heading">
-    <h3 class="panel-title">Sensors</h3>
-    <%= link_to 'Add Sensor', {action: :new}, class: 'btn btn-success pull-right btn-sm' %>
+    Sensors
+    <div class="pull-right">
+      <%= link_to 'Add Sensor', {action: :select_device}, class: 'btn btn-success pull-right btn-xs' %>
+    </div>
   </div>
 
   <table class="table">
@@ -22,8 +24,8 @@
           <td><%= sensor.device.name %></td>
           <td><span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.status %></span></td>
           <td class="text-right">
-            <%= link_to 'Edit', edit_sensor_path(sensor), class: 'btn btn-success btn-xs' %>
-            <%= link_to 'Destroy', sensor_path(sensor), class: 'btn btn-danger btn-xs', data: {confirm: 'Record will be completely destroyed. Are you sure?'}, method: :delete %>
+            <%= link_to 'Edit', {action: :edit, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-success btn-xs' %>
+            <%= link_to 'Destroy', {action: :destroy, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-danger btn-xs', data: {confirm: 'Record will be completely destroyed. Are you sure?'}, method: :delete %>
           </td>
         </tr>
     <% end %>

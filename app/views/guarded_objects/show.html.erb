@@ -1,26 +1,19 @@
 <div class="panel panel-primary">
 
   <div class="panel-heading">
-    <div class="row">
-      <div class="col-md-10">
-        <h3 class="panel-title"><%= @object.name %></h3>
-        <span class="text-muted">Status: </span>
-        <span class="label label-<%= @object.decorate.css_status %>"><%= @object.status %></span>
-      </div>
+    <%= @object.name %>
+    <span class="text-muted">Status: </span>
+    <span class="label label-<%= @object.decorate.css_status %>"><%= @object.status %></span>
 
-      <div class="col-md-2">
-        <%= link_to "Set #{@object.next_status}",
-          set_next_status_guarded_object_path(@object),
-          class: "btn btn-#{@object.decorate.css_next_status} pull-right",
-          remote: true,
-          method: :patch
-        %>
-      </div>
+    <div class="pull-right">
+      <%= link_to 'Edit', {action: :edit, id: @object.id}, class: 'btn btn-success btn-xs' %>
+      <%= link_to "Set #{@object.next_status}",
+        set_next_status_guarded_object_path(@object),
+        class: "btn btn-xs btn-#{@object.decorate.css_next_status}",
+        remote: true,
+        method: :patch
+      %>
     </div>
-
-
-
-
   </div>
 
   <table class="table">

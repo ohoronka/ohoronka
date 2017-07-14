@@ -13,8 +13,12 @@ Rails.application.routes.draw do
       patch :set_next_status
       get :update_object
     end
-    resources :devices, shallow: true
-    resources :sensors, shallow: true
+    resources :devices do
+      resources :sensors, except: [:index]
+    end
+    resources :sensors, only: [:index] do
+      get :select_device, on: :collection
+    end
     resources :events, only: [:index]
   end
 
