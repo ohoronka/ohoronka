@@ -1,6 +1,6 @@
 class Mobile::SessionController < ApplicationController
   layout 'mobile'
-  before_action :redirect_if_signed_in, except: [:logout]
+  before_action :redirect_if_signed_in, except: [:sign_out]
   skip_before_action :authorize, only: [:sign_in_form, :sign_in]
 
   def sign_in_form
@@ -16,8 +16,8 @@ class Mobile::SessionController < ApplicationController
     end
   end
 
-  def logout
-    SessionService.new.logout(self)
+  def sign_out
+    SessionService.new.sign_out(self)
     redirect_to action: :sign_in_form
   end
 

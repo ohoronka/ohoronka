@@ -29,9 +29,9 @@ RSpec.describe Mobile::SessionController, type: :controller do
     end
   end
 
-  describe '#logout' do
-    it 'logouts the user' do
-      get :logout
+  describe '#sign_out' do
+    it 'sign_outs the user' do
+      get :sign_out
       expect(response).to redirect_to(mobile_sign_in_path)
     end
   end

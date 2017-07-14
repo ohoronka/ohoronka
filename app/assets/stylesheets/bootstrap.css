@@ -5686,22 +5686,22 @@ button.list-group-item-danger.active:focus {
 .panel-group .panel-footer + .panel-collapse .panel-body {
     border-bottom: 1px solid #dddddd;
 }
-.panel-default {
+.panel-primary {
     border-color: #dddddd;
 }
-.panel-default > .panel-heading {
+.panel-primary > .panel-heading {
     color: #333333;
     background-color: #f5f5f5;
     border-color: #dddddd;
 }
-.panel-default > .panel-heading + .panel-collapse > .panel-body {
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
     border-top-color: #dddddd;
 }
-.panel-default > .panel-heading .badge {
+.panel-primary > .panel-heading .badge {
     color: #f5f5f5;
     background-color: #333333;
 }
-.panel-default > .panel-footer + .panel-collapse > .panel-body {
+.panel-primary > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #dddddd;
 }
 .panel-primary {

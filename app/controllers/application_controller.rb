@@ -7,11 +7,15 @@ class ApplicationController < ActionController::Base
   protected
 
   def authorize
-    redirect_to mobile_sign_in_path unless current_user
+    redirect_to mobile? ? mobile_sign_in_path : sign_in_path unless current_user
   end
 
   helper_method def current_user
     @current_user ||= User.find_by(id: session[:user_id])
+  end
+
+  helper_method def current_admin
+    @current_admin ||= User.find_by(id: session[:admin_id])
   end
 
   def mobile?

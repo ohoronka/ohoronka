@@ -13,10 +13,15 @@ class SessionService
       return false
     end
     controller.session[:user_id] = user.id
+    controller.session[:admin_id] = user.id if user.admin?
     user
   end
 
-  def logout(controller)
+  def sign_out(controller)
     controller.reset_session
+  end
+
+  def self.sign_in_as(user, controller, current_admin)
+    controller.session[:user_id] = user.id if current_admin.admin?
   end
 end

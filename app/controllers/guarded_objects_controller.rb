@@ -2,7 +2,8 @@ class GuardedObjectsController < ApplicationController
   before_action :set_object, except: [:index]
 
   def index
-    @objects = current_user.objects
+    redirect_to current_user.objects.take if current_user.objects.any?
+
   end
 
   def show

@@ -10,3 +10,4 @@ sensors.each do |sensor|
   FactoryGirl.create_list(:event, 5, sensor: sensor, object: GuardedObject.take)
 end
 FactoryGirl.create(:user, account: Account.take)
+FactoryGirl.create(:user, admin: true, email: 'admin@example.com')
