@@ -12,6 +12,7 @@ set :deploy_to, "/var/projects/ohoronka"
 
 set :rvm_type, :user
 set :bundle_path, nil
+set :bundle_flags, nil
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
