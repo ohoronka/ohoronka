@@ -37,7 +37,7 @@
               <a href="<%= guarded_object_path(object) %>" class="list-group-item tree-level-1"><%= object.name %></a>
               <a href="<%= guarded_object_devices_path(object) %>" class="list-group-item tree-level-2">Devices</a>
               <a href="<%= guarded_object_sensors_path(object) %>" class="list-group-item tree-level-2">Sensors</a>
-              <a href="#" class="list-group-item tree-level-2">Events</a>
+              <a href="<%= guarded_object_events_path(object) %>" class="list-group-item tree-level-2">Events</a>
           <% end %>
         </div>
       </div>

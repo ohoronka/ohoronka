@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     resources :devices, shallow: true
     resources :sensors, shallow: true
+    resources :events, only: [:index]
   end
 
   namespace :mobile do
