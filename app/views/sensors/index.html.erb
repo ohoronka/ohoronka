@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+
+  <div class="panel-heading">
+    <h3 class="panel-title">Sensors</h3>
+    <%= link_to 'Add Sensor', {action: :new}, class: 'btn btn-success pull-right btn-sm' %>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Device</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @sensors.each do |sensor| %>
+        <tr>
+          <td><%= sensor.name %></td>
+          <td><%= sensor.device.name %></td>
+          <td><span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.status %></span></td>
+          <td class="text-right">
+            <%= link_to 'Edit', edit_sensor_path(sensor), class: 'btn btn-success btn-xs' %>
+            <%= link_to 'Destroy', sensor_path(sensor), class: 'btn btn-danger btn-xs', data: {confirm: 'Record will be completely destroyed. Are you sure?'}, method: :delete %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

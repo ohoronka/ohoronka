@@ -8,9 +8,6 @@
   <div class="panel-body">
     <%= bootstrap_form_for([:guarded_object, @device]) do |f| %>
         <%= f.text_field :name %>
-        <%= f.number_field :gpio_listen %>
-        <%= f.number_field :gpio_pull %>
-        <%= f.number_field :gpio_ok %>
         <%= f.primary 'Save' %>
     <% end %>
   </div>

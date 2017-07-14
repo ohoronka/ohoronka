@@ -46,6 +46,6 @@ class DevicesController < ApplicationController
   end
 
   def device_params
-    params.require(:device).permit(:name, :gpio_listen, :gpio_ok, :gpio_pull)
+    params.require(:device).permit(:name)
   end
 end

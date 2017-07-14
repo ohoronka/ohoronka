@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :update_object
     end
     resources :devices, shallow: true
+    resources :sensors, shallow: true
   end
 
   namespace :mobile do

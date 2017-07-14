@@ -63,7 +63,7 @@ class Device < ApplicationRecord
   def update_gpio
     sensors.reload
     GPIO.each do |gpio|
-      self.send("#{gpio}=".to_sym, sensors.map(&gpio).inject(&:|))
+      self.send("#{gpio}=".to_sym, sensors.map(&gpio).inject(&:|) || 0)
     end
     save!
   end
