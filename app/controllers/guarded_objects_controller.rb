@@ -1,5 +1,6 @@
 class GuardedObjectsController < ApplicationController
-  before_action :set_object, only: [:edit, :update, :destroy, :set_next_status, :show]
+  before_action :object, only: [:edit, :update, :destroy, :set_next_status, :show]
+  layout 'facility', except: [:index]
 
   def index
     @objects = current_user.objects
@@ -46,7 +47,7 @@ class GuardedObjectsController < ApplicationController
 
   private
 
-  def set_object
+  helper_method def object
     @object = current_user.objects.find(params[:id])
   end
 

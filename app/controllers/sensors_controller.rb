@@ -1,5 +1,6 @@
 class SensorsController < ApplicationController
   before_action :set_sensor, only: [:edit, :update, :destroy]
+  layout 'facility'
 
   def index
     @sensors = object.sensors.includes(:device)

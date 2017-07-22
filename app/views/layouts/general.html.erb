@@ -27,6 +27,10 @@
         </a>
       </div>
 
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Guarded Objects', guarded_objects_path %></li>
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <% if current_admin %>
             <li><%= link_to 'Admin Interface', admin_root_path %></li>
@@ -46,23 +50,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Sidebar</h3>
+      <% if content_for? :side_bar %>
+          <div class="col-md-3">
+            <%= yield(:side_bar) %>
           </div>
-          <div class="list-group">
-            <% current_user.objects.each do |object| %>
-                <a href="<%= guarded_object_path(object) %>" class="list-group-item tree-level-1"><%= object.name %></a>
-                <a href="<%= guarded_object_devices_path(object) %>" class="list-group-item tree-level-2">Devices</a>
-                <a href="<%= guarded_object_sensors_path(object) %>" class="list-group-item tree-level-2">Sensors</a>
-                <a href="<%= guarded_object_events_path(object) %>" class="list-group-item tree-level-2">Events</a>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <% end %>
 
-      <div class="col-md-9">
+      <div class="<%= content_for?(:side_bar) ? 'col-md-9' : 'col-md-12' %>">
         <%= yield %>
       </div>
 

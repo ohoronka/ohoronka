@@ -1,0 +1,13 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sidebar</h3>
+  </div>
+  <div class="list-group">
+    <% current_user.objects.each do |object| %>
+        <a href="<%= guarded_object_path(object) %>" class="list-group-item tree-level-1"><%= object.name %></a>
+        <a href="<%= guarded_object_devices_path(object) %>" class="list-group-item tree-level-2">Devices</a>
+        <a href="<%= guarded_object_sensors_path(object) %>" class="list-group-item tree-level-2">Sensors</a>
+        <a href="<%= guarded_object_events_path(object) %>" class="list-group-item tree-level-2">Events</a>
+    <% end %>
+  </div>
+</div>
