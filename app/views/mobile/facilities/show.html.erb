@@ -1,18 +1,18 @@
 <% content_for(:title) do %>
-    <%= @object.name %>
+    <%= @facility.name %>
 <% end %>
 
 <script>
     (function() {
-        App.guarded_object = App.cable.subscriptions.create({
-            channel: "GuardedObjectChannel",
-            guarded_object_id: <%= @object.id %>
+        App.facility = App.cable.subscriptions.create({
+            channel: "FacilityChannel",
+            facility_id: <%= @facility.id %>
         }, {
             connected: function() {
-                console.log('connected to object', arguments);
+                console.log('connected to facility', arguments);
             },
             disconnected: function() {
-                console.log('disconnected from object');
+                console.log('disconnected from facility');
             },
             received: function(data) {
                 console.log(data);
@@ -33,18 +33,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6">
-      <span class="label label-<%= @object.decorate.css_status %>"><%= @object.decorate.status %></span>
+      <span class="label label-<%= @facility.decorate.css_status %>"><%= @facility.decorate.status %></span>
     </div>
     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-      <%= link_to @object.decorate.next_status, {action: :set_next_status}, method: :patch, class: "btn btn-#{@object.decorate.css_next_status}", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
+      <%= link_to @facility.decorate.next_status, {action: :set_next_status}, method: :patch, class: "btn btn-#{@facility.decorate.css_next_status}", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Loading..."} %>
     </div>
   </div>
 </div>
 
 <table class="table">
-  <%= render partial: 'sensor', collection: @object.sensors %>
+  <%= render partial: 'sensor', collection: @facility.sensors %>
 </table>
 
 <table class="table" id="events">
-  <%= render partial: 'event', collection: @object.events.mobile_list %>
+  <%= render partial: 'event', collection: @facility.events.mobile_list %>
 </table>

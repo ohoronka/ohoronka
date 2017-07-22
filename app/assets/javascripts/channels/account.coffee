@@ -13,10 +13,10 @@ App.account = App.cable.subscriptions.create "AccountChannel",
 
   alarm: (data) ->
     $.ajax({
-      url: '/guarded_objects/' + data.object.id + '/update_object',
+      url: '/facilities/' + data.facility.id + '/update_facility',
       dataType: 'script'
     });
-    this.show_msg('Alarm', 'Alarm fired on ' + data.object.name)
+    this.show_msg('Alarm', 'Alarm fired on ' + data.facility.name)
 
   test: (data) ->
     console.log(data)

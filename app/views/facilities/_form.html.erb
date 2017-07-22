@@ -1,7 +1,7 @@
-<%= bootstrap_form_for(@object) do |f| %>
+<%= bootstrap_form_for(@facility) do |f| %>
     <%= f.text_field :name %>
     <%= f.form_group class: 'text-right' do %>
         <%= f.submit 'Save', class: 'btn btn-primary btn-sm' %>
-        <%= link_to 'Cancel', guarded_objects_path, class: 'btn btn-warning btn-sm' %>
+        <%= link_to 'Cancel', facilities_path, class: 'btn btn-warning btn-sm' %>
     <% end %>
 <% end %>

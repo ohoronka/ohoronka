@@ -1,5 +1,5 @@
 class Sensor < ApplicationRecord
-  STATUSES = GuardedObject::ALL_STATUSES.slice(:alarm, :ok, :offline)
+  STATUSES = Facility::ALL_STATUSES.slice(:alarm, :ok, :offline)
 
   belongs_to :device, inverse_of: :sensors, touch: true
   has_many :events, dependent: :delete_all, inverse_of: :sensor
@@ -15,11 +15,11 @@ class Sensor < ApplicationRecord
   private
 
   def create_event
-    events.create(object: device.object) if status_changed?
-    GuardedObjectChannel.broadcast_to(self.device.object_id, {
+    events.create(facility: device.facility) if status_changed?
+    FacilityChannel.broadcast_to(self.device.facility_id, {
       e: :sensor_updated,
       id: self.id,
-      html: ApplicationController.new.render_to_string(partial: 'mobile/guarded_objects/sensor', object: self)
+      html: ApplicationController.new.render_to_string(partial: 'mobile/facilities/sensor', object: self)
     })
   end
 end

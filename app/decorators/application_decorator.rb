@@ -8,11 +8,11 @@ class ApplicationDecorator < Draper::Decorator
     'ok' => 'success',
   }
 
-  # Define methods for all decorated objects.
+  # Define methods for all decorated facilities.
   # Helpers are accessed through `helpers` (aka `h`). For example:
   #
   #   def percent_amount
-  #     h.number_to_percentage object.amount, precision: 2
+  #     h.number_to_percentage facility.amount, precision: 2
   #   end
 
   def css_status(status = nil)

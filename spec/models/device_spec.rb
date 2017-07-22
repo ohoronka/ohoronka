@@ -21,12 +21,12 @@ RSpec.describe Device, type: :model do
     let!(:sensor) { create(:sensor, device: device, gpio_listen: 0b01, gpio_ok: 0b00) }
 
     it 'alarms' do
-      expect(device.object).to receive(:alarm!)
+      expect(device.facility).to receive(:alarm!)
       device.ping!(0b01)
     end
 
     it 'does not alarms' do
-      expect(device.object).not_to receive(:alarm!)
+      expect(device.facility).not_to receive(:alarm!)
       device.ping!(0b00)
     end
   end

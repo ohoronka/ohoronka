@@ -2,16 +2,16 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'guarded_objects#index'
+  root to: 'facilities#index'
 
   get '/sign_in' => 'sessions#new'
   post '/sign_in' => 'sessions#create'
   delete '/sign_out' => 'sessions#destroy'
 
-  resources :guarded_objects do
+  resources :facilities do
     member do
       patch :set_next_status
-      get :update_object
+      get :update_facility
     end
     resources :devices do
       resources :sensors, except: [:index]
@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   end
 
   namespace :mobile do
-    root to: 'guarded_objects#index'
-    resources :guarded_objects, only: [:index, :show] do
+    root to: 'facilities#index'
+    resources :null, only: [:index, :show] do
       member do
         patch :set_next_status
       end

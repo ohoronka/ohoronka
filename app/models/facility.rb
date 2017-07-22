@@ -1,4 +1,4 @@
-class GuardedObject < ApplicationRecord
+class Facility < ApplicationRecord
   ALL_STATUSES = {
     idle: 1,
     protected: 2,
@@ -18,17 +18,17 @@ class GuardedObject < ApplicationRecord
     alarm: [:idle]
   }
 
-  has_many :devices, foreign_key: :object_id, inverse_of: :object, dependent: :destroy
+  has_many :devices, foreign_key: :facility_id, inverse_of: :facility, dependent: :destroy
   has_many :sensors, through: :devices
-  has_many :events, foreign_key: :object_id, inverse_of: :object
-  belongs_to :account, inverse_of: :objects
+  has_many :events, foreign_key: :facility_id, inverse_of: :facility
+  belongs_to :account, inverse_of: :facilities
 
   enum status: STATUSES, _suffix: true
 
   def alarm!
     if protected_status?
       alarm_status!
-      AccountChannel.broadcast_to(self.account_id, {e: :alarm, object: self.as_json})
+      AccountChannel.broadcast_to(self.account_id, {e: :alarm, facility: self.as_json})
     end
   end
 

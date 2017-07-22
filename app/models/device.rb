@@ -1,10 +1,10 @@
 class Device < ApplicationRecord
   GPIO = [:gpio_listen, :gpio_pull, :gpio_ok]
 
-  enum status: GuardedObject::ALL_STATUSES.slice(:online, :offline), _suffix: true
+  enum status: Facility::ALL_STATUSES.slice(:online, :offline), _suffix: true
 
   has_many :sensors, inverse_of: :device, dependent: :destroy
-  belongs_to :object, class_name: 'GuardedObject', foreign_key: :object_id, inverse_of: :devices
+  belongs_to :facility, class_name: 'Facility', foreign_key: :facility_id, inverse_of: :devices
 
   validates :name, presence: true
 
@@ -15,7 +15,7 @@ class Device < ApplicationRecord
     self.status = :online
 
     if ((gpio & gpio_listen) ^ gpio_ok) != 0
-      o = object
+      o = facility
       o.alarm!
     end
     sensors.each {|sensor| sensor.check_gpio!(gpio)}
@@ -24,7 +24,7 @@ class Device < ApplicationRecord
 
   def offline!
     offline_status!
-    object.alarm!
+    facility.alarm!
     sensors.update_all(status: :offline)
   end
 

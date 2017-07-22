@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   layout 'facility'
 
   def index
-    @devices = object.devices
+    @devices = facility.devices
   end
 
   def edit
@@ -12,18 +12,18 @@ class DevicesController < ApplicationController
 
   def update
     if @device.update(device_params)
-      redirect_to action: :index, guarded_object_id: @device.object_id
+      redirect_to action: :index, facility_id: @device.facility_id
     else
       render action: :edit
     end
   end
 
   def new
-    @device = object.devices.build
+    @device = facility.devices.build
   end
 
   def create
-    @device = object.devices.new(device_params)
+    @device = facility.devices.new(device_params)
     if @device.save
       redirect_to action: :index
     else
@@ -33,17 +33,17 @@ class DevicesController < ApplicationController
 
   def destroy
     @device.destroy
-    redirect_to action: :index, guarded_object_id: @device.object_id
+    redirect_to action: :index, facility_id: @device.facility_id
   end
 
   private
 
-  helper_method def object
-    @object ||= current_user.objects.find(params[:guarded_object_id])
+  helper_method def facility
+    @facility ||= current_user.facilities.find(params[:facility_id])
   end
 
   def set_device
-    @device = object.devices.find(params[:id])
+    @device = facility.devices.find(params[:id])
   end
 
   def device_params

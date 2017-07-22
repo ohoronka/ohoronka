@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 sensors = FactoryGirl.create_list(:sensor, 4, device: FactoryGirl.create(:device))
 sensors.each do |sensor|
-  FactoryGirl.create_list(:event, 5, sensor: sensor, object: GuardedObject.take)
+  FactoryGirl.create_list(:event, 5, sensor: sensor, facility: Facility.take)
 end
 FactoryGirl.create(:user, account: Account.take)
 FactoryGirl.create(:user, admin: true, email: 'admin@example.com')

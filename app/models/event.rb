@@ -1,8 +1,8 @@
 class Event < ApplicationRecord
   belongs_to :sensor, inverse_of: :events
-  belongs_to :object, class_name: 'GuardedObject', inverse_of: :events
+  belongs_to :facility, class_name: 'Facility', inverse_of: :events
 
-  enum object_status: GuardedObject::STATUSES, _suffix: true
+  enum facility_status: Facility::STATUSES, _suffix: true
   enum sensor_status: Sensor::STATUSES, _suffix: true
 
   before_create :set_values
@@ -13,15 +13,15 @@ class Event < ApplicationRecord
   private
 
   def set_values
-    self.object = sensor.device.object unless object
+    self.facility = sensor.device.facility unless facility
     self.sensor_status = sensor.status unless sensor_status
-    self.object_status = object.status unless object_status
+    self.facility_status = facility.status unless facility_status
   end
 
   def send_notification
-    GuardedObjectChannel.broadcast_to(self.object_id, {
+    FacilityChannel.broadcast_to(self.facility_id, {
       e: :event_created,
-      html: ApplicationController.new.render_to_string(partial: 'mobile/guarded_objects/event', object: self)
+      html: ApplicationController.new.render_to_string(partial: 'mobile/facilities/event', object: self)
     })
   end
 end

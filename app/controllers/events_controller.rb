@@ -3,7 +3,13 @@ class EventsController < ApplicationController
 
   def index
     # TODO add pagination and filters
-    @events = current_user.objects.find(params[:guarded_object_id]).events.mobile_list
+    @events = current_user.facilities.find(params[:facility_id]).events.mobile_list
+  end
+
+  protected
+
+  helper_method def facility
+    @facility ||= current_user.facilities.find(params[:facility_id])
   end
 
 end

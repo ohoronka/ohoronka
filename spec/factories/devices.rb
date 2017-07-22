@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :device do
-    association :object, factory: :guarded_object
+    association :facility, factory: :facility
 
     sequence(:name) {|n| "device ##{n}"}
   end

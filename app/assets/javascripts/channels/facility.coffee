@@ -1,12 +1,12 @@
 # Logic was moved to view
-#App.guarded_object = App.cable.subscriptions.create { channel: "GuardedObjectChannel", guarded_object_id: 1 },
+#App.facility = App.cable.subscriptions.create { channel: "FacilityChannel", facility_id: 1 },
 #  connected: ->
 #    # Called when the subscription is ready for use on the server
-#    console.log('connected to object', arguments)
+#    console.log('connected to facility', arguments)
 #
 #  disconnected: ->
 #    # Called when the subscription has been terminated by the server
-#    console.log('disconnected from object')
+#    console.log('disconnected from facility')
 #
 #  received: (data) ->
 #    # Called when there's incoming data on the websocket for this channel

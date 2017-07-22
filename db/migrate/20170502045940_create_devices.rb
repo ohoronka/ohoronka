@@ -4,7 +4,7 @@ class CreateDevices < ActiveRecord::Migration[5.1]
       t.timestamps
       t.datetime :pinged_at
 
-      t.belongs_to :object
+      t.belongs_to :facility
 
       t.string :name
 

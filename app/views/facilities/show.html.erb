@@ -1,15 +1,15 @@
 <div class="panel panel-primary">
 
   <div class="panel-heading">
-    <%= @object.name %>
+    <%= @facility.name %>
     <span class="text-muted">Status: </span>
-    <span class="label label-<%= @object.decorate.css_status %>"><%= @object.status %></span>
+    <span class="label label-<%= @facility.decorate.css_status %>"><%= @facility.status %></span>
 
     <div class="pull-right">
-      <%= link_to 'Edit', {action: :edit, id: @object.id}, class: 'btn btn-success btn-xs' %>
-      <%= link_to "Set #{@object.next_status}",
-        set_next_status_guarded_object_path(@object),
-        class: "btn btn-xs btn-#{@object.decorate.css_next_status}",
+      <%= link_to 'Edit', {action: :edit, id: @facility.id}, class: 'btn btn-success btn-xs' %>
+      <%= link_to "Set #{@facility.next_status}",
+        set_next_status_facility_path(@facility),
+        class: "btn btn-xs btn-#{@facility.decorate.css_next_status}",
         remote: true,
         method: :patch
       %>
@@ -25,7 +25,7 @@
     </thead>
 
     <tbody>
-    <% @object.sensors.each do |sensor| %>
+    <% @facility.sensors.each do |sensor| %>
         <tr>
           <td><%= sensor.name %></td>
           <td class="text-right"><span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.status %></span></td>
@@ -51,7 +51,7 @@
     </thead>
 
     <tbody>
-    <% @object.events.mobile_list.each do |event| %>
+    <% @facility.events.mobile_list.each do |event| %>
         <tr>
           <td><%= event.sensor.name %></td>
           <td><%= event.created_at %></td>

@@ -1,8 +1,8 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    Guarded Objects
+    Facilities
     <div class="pull-right">
-      <%= link_to 'New Object', {action: :new}, class: 'btn btn-success btn-xs' %>
+      <%= link_to 'New Facility', {action: :new}, class: 'btn btn-success btn-xs' %>
     </div>
   </div>
 
@@ -15,11 +15,11 @@
     </thead>
 
     <tbody>
-      <% @objects.each do |object| %>
+      <% @facilities.each do |facility| %>
       <tr>
-        <td><%= object.name %></td>
+        <td><%= facility.name %></td>
         <td>
-          <%= link_to 'Edit', {action: :edit, id: object.id}, class: 'btn btn-success btn-sm' %>
+          <%= link_to 'Edit', {action: :edit, id: facility.id}, class: 'btn btn-success btn-sm' %>
         </td>
       </tr>
       <% end %>

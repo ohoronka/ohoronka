@@ -21,33 +21,33 @@ ActiveRecord::Schema.define(version: 20170620125906) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "pinged_at"
-    t.bigint "object_id"
+    t.bigint "facility_id"
     t.string "name"
     t.integer "status", default: 6, null: false
     t.integer "gpio_listen", default: 0, null: false
     t.integer "gpio_pull", default: 0, null: false
     t.integer "gpio_ok", default: 0, null: false
-    t.index ["object_id"], name: "index_devices_on_object_id"
+    t.index ["facility_id"], name: "index_devices_on_facility_id"
   end
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "sensor_id"
-    t.bigint "object_id"
+    t.bigint "facility_id"
     t.integer "sensor_status", default: 0, null: false
-    t.integer "object_status", default: 0, null: false
-    t.index ["object_id"], name: "index_events_on_object_id"
+    t.integer "facility_status", default: 0, null: false
+    t.index ["facility_id"], name: "index_events_on_facility_id"
     t.index ["sensor_id"], name: "index_events_on_sensor_id"
   end
 
-  create_table "guarded_objects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.string "name"
     t.integer "status", default: 1, null: false
-    t.index ["account_id"], name: "index_guarded_objects_on_account_id"
+    t.index ["account_id"], name: "index_facilities_on_account_id"
   end
 
   create_table "sensors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -3,7 +3,7 @@ class SensorsController < ApplicationController
   layout 'facility'
 
   def index
-    @sensors = object.sensors.includes(:device)
+    @sensors = facility.sensors.includes(:device)
   end
 
   def new
@@ -11,7 +11,8 @@ class SensorsController < ApplicationController
   end
 
   def select_device
-    @devices = object.devices
+    @devices = facility.devices
+    redirect_to action: :new, device_id: @devices.take if @devices.exists?
   end
 
   def create
@@ -29,7 +30,7 @@ class SensorsController < ApplicationController
 
   def update
     if @sensor.update(sensor_params)
-      redirect_to action: :index, guarded_object_id: object.id
+      redirect_to action: :index, facility_id: facility.id
     else
       render action: :edit
     end
@@ -37,17 +38,17 @@ class SensorsController < ApplicationController
 
   def destroy
     @sensor.destroy
-    redirect_to action: :index, guarded_object_id: @sensor.device.object_id
+    redirect_to action: :index, facility_id: @sensor.device.facility_id
   end
 
   private
 
-  helper_method def object
-    @object ||= current_user.objects.find(params[:guarded_object_id])
+  helper_method def facility
+    @facility ||= current_user.facilities.find(params[:facility_id])
   end
 
   helper_method def device
-    @device ||= object.devices.find(params[:device_id])
+    @device ||= facility.devices.find(params[:device_id])
   end
 
   def sensor_params

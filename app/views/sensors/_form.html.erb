@@ -1,4 +1,4 @@
-<%= bootstrap_form_for([object, device, @sensor], layout: :horizontal) do |f| %>
+<%= bootstrap_form_for([facility, device, @sensor], layout: :horizontal) do |f| %>
     <%= f.text_field :name %>
     <%= f.number_field :gpio_listen %>
     <%= f.number_field :gpio_pull %>

@@ -1,11 +1,11 @@
 <% content_for :side_bar do %>
     <h2>
-      <a href="<%= guarded_object_path(object) %>"><%= @object.name %></a>
+      <a href="<%= facility_path(facility) %>"><%= facility.name %></a>
     </h2>
     <div class="list-group">
-      <a href="<%= guarded_object_devices_path(object) %>" class="list-group-item tree-level-2">Devices</a>
-      <a href="<%= guarded_object_sensors_path(object) %>" class="list-group-item tree-level-2">Sensors</a>
-      <a href="<%= guarded_object_events_path(object) %>" class="list-group-item tree-level-2">Events</a>
+      <a href="<%= facility_devices_path(facility) %>" class="list-group-item tree-level-2">Devices</a>
+      <a href="<%= facility_sensors_path(facility) %>" class="list-group-item tree-level-2">Sensors</a>
+      <a href="<%= facility_events_path(facility) %>" class="list-group-item tree-level-2">Events</a>
     </div>
 <% end %>
 <%= render template: 'layouts/general' %>
