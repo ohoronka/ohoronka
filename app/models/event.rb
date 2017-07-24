@@ -1,20 +1,20 @@
 class Event < ApplicationRecord
-  belongs_to :sensor, inverse_of: :events
-  belongs_to :facility, class_name: 'Facility', inverse_of: :events
+  belongs_to :target, polymorphic: true, inverse_of: :events
+  belongs_to :facility, inverse_of: :events
 
   enum facility_status: Facility::STATUSES, _suffix: true
-  enum sensor_status: Sensor::STATUSES, _suffix: true
+  enum target_status: Sensor::STATUSES, _suffix: true
 
-  before_create :set_values
+  before_validation :set_values, on: [:create]
   after_create :send_notification
 
-  scope :mobile_list, ->{ includes(:sensor).order(id: :desc).limit(50) }
+  scope :mobile_list, ->{ includes(:target).order(id: :desc).limit(50) }
 
   private
 
   def set_values
-    self.facility = sensor.device.facility unless facility
-    self.sensor_status = sensor.status unless sensor_status
+    self.facility = target.device.facility unless facility
+    self.target_status = target.status unless target_status
     self.facility_status = facility.status unless facility_status
   end
 

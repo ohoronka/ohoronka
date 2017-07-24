@@ -2,7 +2,7 @@ class Sensor < ApplicationRecord
   STATUSES = Facility::ALL_STATUSES.slice(:alarm, :ok, :offline)
 
   belongs_to :device, inverse_of: :sensors, touch: true
-  has_many :events, dependent: :delete_all, inverse_of: :sensor
+  has_many :events, as: :target, dependent: :delete_all, inverse_of: :target
 
   enum status: STATUSES, _suffix: true
 

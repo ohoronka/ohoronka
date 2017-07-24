@@ -1,7 +1,7 @@
 <tr>
-  <td><%= event.sensor.name %></td>
+  <td><%= event.target.name %></td>
   <td class="text-muted text-right"><%= time_ago_in_words event.created_at %></td>
   <td class="text-right">
-    <span class="label label-<%= event.decorate.sensor_css_status %>"><%= event.decorate.sensor_status %></span>
+    <span class="label label-<%= event.decorate.css_target_status %>"><%= event.decorate.target_status %></span>
   </td>
 </tr>

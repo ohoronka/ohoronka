@@ -33,12 +33,13 @@ ActiveRecord::Schema.define(version: 20170620125906) do
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "sensor_id"
+    t.string "target_type"
+    t.bigint "target_id"
     t.bigint "facility_id"
-    t.integer "sensor_status", default: 0, null: false
+    t.integer "target_status", default: 0, null: false
     t.integer "facility_status", default: 0, null: false
     t.index ["facility_id"], name: "index_events_on_facility_id"
-    t.index ["sensor_id"], name: "index_events_on_sensor_id"
+    t.index ["target_type", "target_id"], name: "index_events_on_target_type_and_target_id"
   end
 
   create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -4,7 +4,7 @@ class Device < ApplicationRecord
   enum status: Facility::ALL_STATUSES.slice(:online, :offline), _suffix: true
 
   has_many :sensors, inverse_of: :device, dependent: :destroy
-  belongs_to :facility, class_name: 'Facility', foreign_key: :facility_id, inverse_of: :devices
+  belongs_to :facility, inverse_of: :devices
 
   validates :name, presence: true
 

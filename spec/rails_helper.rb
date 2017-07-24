@@ -28,6 +28,11 @@ Sidekiq::Testing.inline!
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+RSpec.shared_context 'controller session' do
+  let(:user) { create(:user, account: (Account.take || create(:account))) }
+  let(:user_session) { {user_id: user.id} }
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -63,4 +68,5 @@ RSpec.configure do |config|
   end
 
   config.include FactoryGirl::Syntax::Methods
+  config.include_context 'controller session', type: :controller
 end

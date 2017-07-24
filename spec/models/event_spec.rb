@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'has valid factory' do
+    expect{ create(:event) }.to change(Event, :count).by(1)
+  end
 end

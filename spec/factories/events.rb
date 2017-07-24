@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :event do
-    association :sensor
+    association :target, factory: :sensor
   end
 end

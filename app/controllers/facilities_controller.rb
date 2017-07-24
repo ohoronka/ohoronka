@@ -4,7 +4,7 @@ class FacilitiesController < ApplicationController
 
   def index
     @facilities = current_user.facilities
-    redirect_to @facilities.take if @facilities.any?
+    redirect_to @facilities.take if @facilities.count == 1
   end
 
   def show

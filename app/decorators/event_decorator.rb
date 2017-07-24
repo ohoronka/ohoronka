@@ -10,7 +10,7 @@ class EventDecorator < ApplicationDecorator
   #     end
   #   end
 
-  def sensor_css_status
-    css_status(object.sensor_status)
+  def css_target_status
+    css_status(object.target_status)
   end
 end
