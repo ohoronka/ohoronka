@@ -8,7 +8,7 @@ class Event < ApplicationRecord
   before_validation :set_values, on: [:create]
   after_create :send_notification
 
-  scope :mobile_list, ->{ includes(:target).order(id: :desc).limit(50) }
+  scope :dashboard_list, ->{ includes(:target).order(id: :desc).limit(50) }
 
   private
 

@@ -29,16 +29,5 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :mobile do
-    root to: 'facilities#index'
-    resources :facilities, only: [:index, :show] do
-      member do
-        patch :set_next_status
-      end
-    end
-    get 'sign_in' => 'session#sign_in_form'
-    post 'sign_in' => 'session#sign_in'
-    get 'sign_out' => 'session#sign_out'
-  end
   mount Sidekiq::Web => '/admin/sidekiq'
 end

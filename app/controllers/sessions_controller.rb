@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     @session = SessionService.new(session_params)
     if @session.sign_in(self)
-      redirect_to mobile? ? mobile_root_path : root_path
+      redirect_to root_path
     else
       render action: :new
     end
@@ -18,13 +18,13 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to mobile? ? mobile_sign_in_path : sign_in_path
+    redirect_to sign_in_path
   end
 
   private
 
   def redirect_if_signed_in
-    redirect_to mobile? ? mobile_root_path : root_path if current_user
+    redirect_to root_path if current_user
   end
 
   def session_params

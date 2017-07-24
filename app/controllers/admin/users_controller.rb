@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def login_as
     SessionService.sign_in_as(@user, self, current_admin)
-    redirect_to mobile? ? mobile_root_path : root_path
+    redirect_to root_path
   end
 
   private

@@ -51,7 +51,7 @@
     </thead>
 
     <tbody>
-    <% @facility.events.mobile_list.each do |event| %>
+    <% @facility.events.dashboard_list.each do |event| %>
         <tr>
           <td><%= event.target.name %></td>
           <td><%= event.created_at %></td>

@@ -38,7 +38,7 @@ class FacilitiesController < ApplicationController
 
   def set_next_status
     @facility.update(status: @facility.next_status)
-    render '_update_facility'
+    redirect_to action: :show
   end
 
   def update_facility

@@ -3,11 +3,12 @@ class ApplicationController < ActionController::Base
   layout 'general'
 
   before_action :authorize
+  before_action :prepare_for_mobile
 
   protected
 
   def authorize
-    redirect_to mobile? ? mobile_sign_in_path : sign_in_path unless current_user
+    redirect_to sign_in_path unless current_user
   end
 
   helper_method def current_user
@@ -19,6 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   def mobile?
-    request.user_agent =~ /Mobile|webOS/
+    @_mobile ||= request.user_agent =~ /Mobile|webOS/
+  end
+
+  def prepare_for_mobile
+    prepend_view_path Rails.root + 'app' + 'views_mobile' if mobile?
   end
 end

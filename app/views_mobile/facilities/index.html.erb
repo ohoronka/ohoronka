@@ -2,7 +2,7 @@
   <% @facilities.each do |facility| %>
       <tr>
         <td>
-          <%= link_to facility.name, mobile_facility_path(facility) %>
+          <%= link_to facility.name, facility_path(facility) %>
         </td>
       </tr>
   <% end %>
