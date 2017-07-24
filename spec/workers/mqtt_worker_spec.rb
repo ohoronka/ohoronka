@@ -19,8 +19,8 @@ RSpec.describe MqttWorker, type: :worker do
         event = sensor.events.take
         expect(event).to have_attributes({
           facility_id: facility.id,
-          sensor_id: sensor.id,
-          sensor_status: 'alarm',
+          target_id: sensor.id,
+          target_status: 'alarm',
           facility_status: 'alarm'
         })
       end
