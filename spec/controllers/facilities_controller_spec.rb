@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe FacilitiesController, type: :controller do
+  render_views
+
   let(:account) { create(:account) }
   let(:facility) { create(:facility, account: account) }
-  let(:user) { create(:user, account: account) }
 
   describe '#index' do
     context 'one facility' do
@@ -19,6 +20,16 @@ RSpec.describe FacilitiesController, type: :controller do
         get :index, session: user_session
         expect(response).to have_http_status(:ok)
       end
+    end
+  end
+
+  describe '#show' do
+    let!(:event) { create(:event) }
+    let(:facility) { event.facility}
+
+    it 'returns ok' do
+      get :show, params: {id: facility.id}, session: user_session
+      expect(response).to have_http_status(:ok)
     end
   end
 end

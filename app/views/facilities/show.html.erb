@@ -53,10 +53,10 @@
     <tbody>
     <% @facility.events.mobile_list.each do |event| %>
         <tr>
-          <td><%= event.sensor.name %></td>
+          <td><%= event.target.name %></td>
           <td><%= event.created_at %></td>
           <td class="text-right">
-            <span class="label label-<%= event.decorate.sensor_css_status %>"><%= event.sensor_status %></span>
+            <span class="label label-<%= event.decorate.css_target_status %>"><%= event.target_status %></span>
           </td>
         </tr>
     <% end %>

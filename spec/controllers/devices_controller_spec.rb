@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe DevicesController, type: :controller do
+  render_views
+
   describe '#index' do
     let(:device) { create(:device) }
 

@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   private
 
   def redirect_if_signed_in
-    redirect_to mobile? ? mobile_root_path : root_pathh if current_user
+    redirect_to mobile? ? mobile_root_path : root_path if current_user
   end
 
   def session_params

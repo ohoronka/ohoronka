@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   namespace :mobile do
     root to: 'facilities#index'
-    resources :null, only: [:index, :show] do
+    resources :facilities, only: [:index, :show] do
       member do
         patch :set_next_status
       end

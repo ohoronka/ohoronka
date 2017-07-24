@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
+  render_views
+
   describe '#index' do
-    let(:facility) { create(:facility) }
+    let(:event) { create(:event) }
+    let(:facility) { event.facility }
 
     it 'returns ok' do
       get :index, params: {facility_id: facility.id}, session: user_session
