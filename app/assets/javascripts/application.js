@@ -15,10 +15,4 @@
 //= require turbolinks
 //= require bootstrap
 //= require cable
-
-$(function(){
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-});
+//= require jsrender

@@ -26,7 +26,7 @@
 
     <tbody>
     <% @facility.sensors.each do |sensor| %>
-        <tr>
+        <tr id="sensor_<%= sensor.id %>">
           <td><%= sensor.name %></td>
           <td class="text-right"><span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.status %></span></td>
         </tr>
@@ -41,7 +41,7 @@
     <h3 class="panel-title">Events</h3>
   </div>
 
-  <table class="table">
+  <table class="table" id="events">
     <thead>
     <tr>
       <th>Sensor</th>
@@ -63,3 +63,51 @@
     </tbody>
   </table>
 </div>
+
+<script id="event_template" type="text/x-jsrender">
+  <tr>
+    <td>{{>target_name}}</td>
+    <td>{{>created_at}}</td>
+    <td class="text-right">
+      <span class="label label-{{:css_target_status}}">{{>target_status}}</span>
+    </td>
+  </tr>
+</script>
+
+<script id="sensor_template" type="text/x-jsrender">
+  <tr id="sensor_{{:id}}">
+    <td>{{>name}}</td>
+    <td class="text-right"><span class="label label-{{:css_status}}">{{>status}}</span></td>
+  </tr>
+</script>
+
+<script>
+    (function() {
+        var event_tmpl = $.templates("#event_template");
+        var sensor_tmpl = $.templates("#sensor_template");
+
+        App.facility = App.cable.subscriptions.create({
+            channel: "FacilityChannel",
+            facility_id: <%= @facility.id %>
+        }, {
+            connected: function() {
+                console.log('connected to facility', arguments);
+            },
+            disconnected: function() {
+                console.log('disconnected from facility');
+            },
+            received: function(data) {
+                console.log(data);
+                this[data.e](data);
+            },
+            event_created: function(data) {
+                $('#events tbody').prepend(event_tmpl.render(data.event));
+                $('#events tbody tr:last').remove();
+            },
+            sensor_updated: function(data) {
+                $('#sensor_' + data.sensor.id).replaceWith(sensor_tmpl.render(data.sensor));
+            }
+        });
+
+    }).call(this);
+</script>

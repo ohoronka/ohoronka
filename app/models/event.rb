@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   belongs_to :facility, inverse_of: :events
 
   enum facility_status: Facility::STATUSES, _suffix: true
-  enum target_status: Sensor::STATUSES, _suffix: true
+  enum target_status: Facility::ALL_STATUSES, _suffix: true
 
   before_validation :set_values, on: [:create]
   after_create :send_notification
@@ -21,7 +21,13 @@ class Event < ApplicationRecord
   def send_notification
     FacilityChannel.broadcast_to(self.facility_id, {
       e: :event_created,
-      html: ApplicationController.new.render_to_string(partial: 'mobile/facilities/event', object: self)
+      event: {
+        id: id,
+        target_name: target.name,
+        target_status: target_status,
+        css_target_status: decorate.css_target_status,
+        created_at: created_at,
+      }
     })
   end
 end

@@ -18,8 +18,12 @@ class Sensor < ApplicationRecord
     events.create(facility: device.facility) if saved_changes.key?(:status)
     FacilityChannel.broadcast_to(self.device.facility_id, {
       e: :sensor_updated,
-      id: self.id,
-      html: ApplicationController.new.render_to_string(partial: 'mobile/facilities/sensor', object: self)
+      sensor: {
+        id: id,
+        name: name,
+        status: status,
+        css_status: decorate.css_status
+      }
     })
   end
 end

@@ -2,34 +2,6 @@
     <%= @facility.name %>
 <% end %>
 
-<script>
-    (function() {
-        App.facility = App.cable.subscriptions.create({
-            channel: "FacilityChannel",
-            facility_id: <%= @facility.id %>
-        }, {
-            connected: function() {
-                console.log('connected to facility', arguments);
-            },
-            disconnected: function() {
-                console.log('disconnected from facility');
-            },
-            received: function(data) {
-                console.log(data);
-                this[data.e](data);
-            },
-            event_created: function(data) {
-                $('#events tbody').prepend(data.html);
-                $('#events tbody tr:last').remove();
-            },
-            sensor_updated: function(data) {
-                $('#sensor_' + data.id).replaceWith(data.html);
-            }
-        });
-
-    }).call(this);
-</script>
-
 <div class="container-fluid">
   <div class="panel panel-primary">
     <div class="panel-body">
@@ -81,9 +53,61 @@
 </div>
 
 <table class="table">
-  <%= render partial: 'sensor', collection: @facility.sensors %>
+  <tbody>
+    <%= render partial: 'sensor', collection: @facility.sensors %>
+  </tbody>
 </table>
 
 <table class="table" id="events">
-  <%= render partial: 'event', collection: @facility.events.dashboard_list %>
+  <tbody>
+    <%= render partial: 'event', collection: @facility.events.dashboard_list %>
+  </tbody>
 </table>
+
+<script id="event_template" type="text/x-jsrender">
+  <tr>
+    <td>{{>target_name}}</td>
+    <td class="text-muted text-right">{{>created_at}}</td>
+    <td class="text-right">
+      <span class="label label-{{:css_target_status}}">{{>target_status}}</span>
+    </td>
+  </tr>
+</script>
+
+<script id="sensor_template" type="text/x-jsrender">
+  <tr id="sensor_{{:id}}">
+    <td>{{>name}}</td>
+    <td class="text-right"><span class="label label-{{:css_status}}">{{>status}}</span></td>
+  </tr>
+</script>
+
+<script>
+    (function() {
+        var event_tmpl = $.templates("#event_template");
+        var sensor_tmpl = $.templates("#sensor_template");
+
+        App.facility = App.cable.subscriptions.create({
+            channel: "FacilityChannel",
+            facility_id: <%= @facility.id %>
+        }, {
+            connected: function() {
+                console.log('connected to facility', arguments);
+            },
+            disconnected: function() {
+                console.log('disconnected from facility');
+            },
+            received: function(data) {
+                console.log(data);
+                this[data.e](data);
+            },
+            event_created: function(data) {
+                $('#events tbody').prepend(event_tmpl.render(data.event));
+                $('#events tbody tr:last').remove();
+            },
+            sensor_updated: function(data) {
+                $('#sensor_' + data.sensor.id).replaceWith(sensor_tmpl.render(data.sensor));
+            }
+        });
+
+    }).call(this);
+</script>
