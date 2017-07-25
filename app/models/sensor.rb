@@ -15,15 +15,17 @@ class Sensor < ApplicationRecord
   private
 
   def create_event
-    events.create(facility: device.facility) if saved_changes.key?(:status)
-    FacilityChannel.broadcast_to(self.device.facility_id, {
-      e: :sensor_updated,
-      sensor: {
-        id: id,
-        name: name,
-        status: status,
-        css_status: decorate.css_status
-      }
-    })
+    if saved_changes.key?(:status)
+      events.create(facility: device.facility)
+      FacilityChannel.broadcast_to(self.device.facility_id, {
+        e: :sensor_updated,
+        sensor: {
+          id: id,
+          name: name,
+          status: status,
+          css_status: decorate.css_status
+        }
+      })
+    end
   end
 end
