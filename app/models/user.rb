@@ -5,4 +5,5 @@ class User < ApplicationRecord
   has_many :facilities, through: :account
   has_many :devices, through: :facilities
   has_many :sensors, through: :devices
+  has_many :channels, dependent: :destroy
 end

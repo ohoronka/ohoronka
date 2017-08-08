@@ -29,6 +29,11 @@ class Facility < ApplicationRecord
     if protected_status?
       alarm_status!
       AccountChannel.broadcast_to(self.account_id, {e: :alarm, facility: self.as_json})
+      account.users.each do |user|
+        user.channels.each do |channel|
+          channel.notify("Alarm on facility #{name}!")
+        end
+      end
     end
   end
 

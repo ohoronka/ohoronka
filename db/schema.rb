@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620125906) do
+ActiveRecord::Schema.define(version: 20170808153420) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "type"
+    t.text "settings"
+    t.index ["user_id"], name: "index_channels_on_user_id"
   end
 
   create_table "devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -74,4 +83,5 @@ ActiveRecord::Schema.define(version: 20170620125906) do
     t.index ["account_id"], name: "index_users_on_account_id"
   end
 
+  add_foreign_key "channels", "users"
 end
