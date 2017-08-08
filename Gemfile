@@ -39,6 +39,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
+  gem 'pry-rails', require: false
 end
 
 group :development do
@@ -67,3 +68,4 @@ gem 'draper'
 gem 'bootstrap_form'
 gem 'factory_girl_rails'
 gem 'hirb', require: false
+gem 'telegram-bot-ruby'
