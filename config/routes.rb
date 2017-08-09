@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
+  resources :users
+
   namespace :admin do
     root to: 'users#index'
     resources :users do

@@ -1,7 +1,7 @@
 class FacilitiesController < ApplicationController
   before_action :facility, only: [:edit, :update, :destroy, :set_next_status, :show]
-  layout 'facility', except: [:index]
-  layout 'general', only: [:index]
+  layout 'facility'# , except: [:index]
+  # layout 'general', only: [:index] # TODO: fix layouts for index and non index actions
 
   def index
     @facilities = current_user.facilities

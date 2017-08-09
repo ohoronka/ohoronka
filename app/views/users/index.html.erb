@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Users
+    <div class="pull-right">
+      <%= link_to 'New User', {action: :new}, class: 'btn btn-success btn-xs' %>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.name %>
+            <% if current_user == user %>
+                <span class="label label-success">It's you :)</span>
+            <% end %>
+          </td>
+          <td><%= user.email %></td>
+          <td class="text-right">
+            <%= link_to 'Edit', {action: :edit, id: user.id}, class: 'btn btn-success btn-xs' %>
+            <%= link_to 'Destroy', {action: :destroy, id: user.id}, class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'The user will be completely destroyed! Are you sure?'} unless current_user == user %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
