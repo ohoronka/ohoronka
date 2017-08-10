@@ -1,0 +1,11 @@
+development:
+  token: put token here
+  bot_name: ohoronka_dev_bot # make your own bot for development
+
+test:
+  token: none
+  bot_name: ohoronka_test_bot
+
+production:
+  token: put token here
+  bot_name: ohoronka_bot

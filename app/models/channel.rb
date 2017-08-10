@@ -4,16 +4,20 @@ class Channel < ApplicationRecord
   belongs_to :user
 
   class Telegram < Channel
-    attribute :chat_id
-
-    typed_store :settings, coder: JSON do |s|
-      s.integer :chat_id
-    end
+    before_create :set_auth_token
 
     def notify(msg)
-      ::Telegram::Bot::Client.run(Rails.application.secrets.telegram_token) do |bot|
-        bot.api.send_message(chat_id: chat_id, text: msg)
+      ::Telegram.bot.run do |bot|
+        bot.api.send_message(chat_id: identifier, text: msg)
       end
+    end
+
+    def url
+      "https://telegram.me/#{::Telegram::CONFIG[:bot_name]}?start=#{auth_token}"
+    end
+
+    def set_auth_token
+      self.auth_token = SecureRandom.urlsafe_base64
     end
   end
 end

@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20170808153420) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "type"
-    t.text "settings"
+    t.string "auth_token"
+    t.string "identifier"
+    t.boolean "activated", default: false
     t.index ["user_id"], name: "index_channels_on_user_id"
   end
 
