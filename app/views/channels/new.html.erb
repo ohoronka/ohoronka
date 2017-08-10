@@ -1,0 +1,15 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Creating new <%= params[:type] %>
+  </div>
+
+  <div class="panel-body">
+    <p>
+      Hey! We are starting to connect to Telegram bot to receive notifications!
+    </p>
+    <%= form_for @channel, url: {controller: :channels}, as: :channel do |f| %>
+        <%= f.hidden_field :type %>
+        <%= f.submit "Let's go!!!", class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

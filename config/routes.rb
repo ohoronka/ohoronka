@@ -22,7 +22,11 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
-  resources :users
+  resources :users do
+    resources :channels do
+      get :select_type, on: :collection
+    end
+  end
 
   namespace :admin do
     root to: 'users#index'

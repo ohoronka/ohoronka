@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:destroy, :edit, :update]
+  before_action :user, only: [:destroy, :edit, :update]
 
   def index
     @users = account.users
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @account ||= current_user.account
   end
 
-  def set_user
+  helper_method def user
     @user = account.users.find(params[:id])
   end
 
