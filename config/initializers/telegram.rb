@@ -43,4 +43,4 @@ Thread.new do
       end
     end
   end
-end if Rails.env.production? || ENV['TELEGRAM']
+end if false
