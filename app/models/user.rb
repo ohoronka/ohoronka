@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
-  belongs_to :account, inverse_of: :users
-  has_many :facilities, through: :account
+  has_many :facility_shares, inverse_of: :user, dependent: :destroy
+  has_many :facilities, through: :facility_shares
   has_many :devices, through: :facilities
   has_many :sensors, through: :devices
   has_many :channels, dependent: :destroy

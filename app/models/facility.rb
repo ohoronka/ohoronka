@@ -21,8 +21,7 @@ class Facility < ApplicationRecord
   has_many :devices, foreign_key: :facility_id, inverse_of: :facility, dependent: :destroy
   has_many :sensors, through: :devices
   has_many :events, foreign_key: :facility_id, inverse_of: :facility
-  belongs_to :account, inverse_of: :facilities
-
+  has_many :facility_shares, inverse_of: :facility
   enum status: STATUSES, _suffix: true
 
   def alarm!

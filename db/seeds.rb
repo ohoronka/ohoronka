@@ -9,5 +9,7 @@ sensors = FactoryGirl.create_list(:sensor, 4, device: FactoryGirl.create(:device
 sensors.each do |sensor|
   FactoryGirl.create_list(:event, 5, target: sensor, facility: Facility.take)
 end
-FactoryGirl.create(:user, account: Account.take)
+user = FactoryGirl.create(:user, account: Account.take)
+FactoryGirl.create(:channel, identifier: '429212655', user: user)
+
 FactoryGirl.create(:user, admin: true, email: 'admin@example.com')
