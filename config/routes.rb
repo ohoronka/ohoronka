@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
+  post '/bots/telegram/:bot_token' => 'bots#telegram'
+
   namespace :admin do
     root to: 'users#index'
     resources :users do
