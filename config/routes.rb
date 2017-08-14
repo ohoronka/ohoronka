@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
+  resources :users
+
   post '/bots/telegram/:bot_token' => 'bots#telegram'
 
   namespace :admin do

@@ -3,9 +3,13 @@
       <a href="<%= facility_path(facility) %>"><%= facility.name %></a>
     </h2>
     <div class="list-group">
-      <a href="<%= facility_devices_path(facility) %>" class="list-group-item tree-level-2">Devices</a>
-      <a href="<%= facility_sensors_path(facility) %>" class="list-group-item tree-level-2">Sensors</a>
-      <a href="<%= facility_events_path(facility) %>" class="list-group-item tree-level-2">Events</a>
+      <a href="<%= facility_devices_path(facility) %>" class="list-group-item">Devices</a>
+      <a href="<%= facility_sensors_path(facility) %>" class="list-group-item">Sensors</a>
+      <a href="<%= facility_events_path(facility) %>" class="list-group-item">Events</a>
+    </div>
+
+    <div class="list-group">
+      <a href="<%= new_facility_path %>" class="list-group-item">Add new facility</a>
     </div>
 <% end %>
 <%= render template: 'layouts/general' %>

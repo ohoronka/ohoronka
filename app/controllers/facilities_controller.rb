@@ -1,7 +1,6 @@
 class FacilitiesController < ApplicationController
   before_action :facility, only: [:edit, :update, :destroy, :set_next_status, :show]
-  layout 'facility'# , except: [:index]
-  # layout 'general', only: [:index] # TODO: fix layouts for index and non index actions
+  layout -> { params[:action].in?(['index', 'new']) ? 'general' : 'facility' }
 
   def index
     @facilities = current_user.facilities
@@ -25,11 +24,12 @@ class FacilitiesController < ApplicationController
   end
 
   def new
-    @facility = current_user.account.facilities.new
+    @facility = current_user.facilities.new
   end
 
   def create
-    @facility = current_user.account.facilities.new(facility_params)
+    @facility = current_user.facilities.new(facility_params)
+    @facility.users << current_user
     if @facility.save
       redirect_to facilities_path
     else
@@ -37,13 +37,14 @@ class FacilitiesController < ApplicationController
     end
   end
 
+  def destroy
+    @facility.destroy
+    redirect_to action: :index
+  end
+
   def set_next_status
     @facility.update(status: @facility.next_status)
     redirect_to action: :show
-  end
-
-  def update_facility
-    render '_update_facility'
   end
 
   private

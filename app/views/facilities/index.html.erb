@@ -18,8 +18,9 @@
       <% @facilities.each do |facility| %>
       <tr>
         <td><%= facility.name %></td>
-        <td>
-          <%= link_to 'Edit', {action: :edit, id: facility.id}, class: 'btn btn-success btn-sm' %>
+        <td class="text-right">
+          <%= link_to 'Edit', {action: :edit, id: facility.id}, class: 'btn btn-success btn-xs' %>
+          <%= link_to 'Destroy', {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-danger btn-xs', data: {confirm: 'Record will be remowed! Sure?'} %>
         </td>
       </tr>
       <% end %>
