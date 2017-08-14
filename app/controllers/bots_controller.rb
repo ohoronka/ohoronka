@@ -1,5 +1,15 @@
 class BotsController < ApplicationController
+  skip_before_action :authorize
+
   def telegram
-    Rails.logger.debug params.inspect
+    raise ActionController::RoutingError.new('Not Found') unless params[:bot_token] == Telegram::CONFIG[:token]
+    TelegramService.new(telegram_params).process
+    render plain: 'ok'
+  end
+
+  private
+
+  def telegram_params
+    params.permit(:update_id, message: {}, session: {})
   end
 end

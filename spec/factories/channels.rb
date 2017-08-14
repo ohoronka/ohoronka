@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :channel do
-    user nil
-    type ""
-    data "MyText"
+    association :user
+
+    factory :telegram_channel, class: Channel::Telegram
   end
 end
