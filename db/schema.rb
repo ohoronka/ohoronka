@@ -12,11 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170811043928) do
 
-  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -56,10 +51,8 @@ ActiveRecord::Schema.define(version: 20170811043928) do
   create_table "facilities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "account_id"
     t.string "name"
     t.integer "status", default: 1, null: false
-    t.index ["account_id"], name: "index_facilities_on_account_id"
   end
 
   create_table "facility_shares", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -84,14 +77,12 @@ ActiveRecord::Schema.define(version: 20170811043928) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "account_id"
     t.string "name"
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_users_on_account_id"
   end
 
   add_foreign_key "channels", "users"
