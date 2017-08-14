@@ -1,5 +1,4 @@
 class ChannelsController < ApplicationController
-  before_action :user
   before_action :channel, only: [:destroy, :show, :update]
 
   def select_type
@@ -7,15 +6,15 @@ class ChannelsController < ApplicationController
   end
 
   def index
-    @channels = user.channels
+    @channels = current_user.channels
   end
 
   def new
-    @channel = user.channels.new(type: params[:type])
+    @channel = current_user.channels.new(type: params[:type])
   end
 
   def create
-    @channel = user.channels.build(channel_params)
+    @channel = current_user.channels.build(channel_params)
     if @channel.save
       redirect_to action: :show, controller: :channels, id: @channel
     else
@@ -39,14 +38,7 @@ class ChannelsController < ApplicationController
   end
 
   def channel
-    @channel ||= user.channels.find(params[:id])
+    @channel ||= current_user.channels.find(params[:id])
   end
 
-  helper_method def user
-    @user ||= account.users.find(params[:user_id])
-  end
-
-  def account
-    @account ||= current_user.account
-  end
 end

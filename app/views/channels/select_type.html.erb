@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-      <% user.allowed_channel_types.each do |type| %>
+      <% current_user.allowed_channel_types.each do |type| %>
         <tr>
           <td><%= type %></td>
           <td class="text-right"><%= link_to 'Select', {action: :new, type: type}, class: 'btn btn-success btn-xs' %></td>

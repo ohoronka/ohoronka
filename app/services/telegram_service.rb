@@ -1,18 +1,18 @@
 class TelegramService
-  attr_accessor :data
 
-  def initialize(data)
-    @data = data
+  def process_data(data)
+    message = parse(data)
+    process(message)
   end
 
-  def message
+  def parse(data)
     @message ||= begin
       update = Telegram::Bot::Types::Update.new(data)
       bot.send(:extract_message, update)
     end
   end
 
-  def process
+  def process(message)
     case message.text
     when /\/start (\w+)/
       # start with token

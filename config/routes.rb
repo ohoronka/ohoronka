@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :channels do
+    get 'select_type', on: :collection
+  end
 
   post '/bots/telegram/:bot_token' => 'bots#telegram'
 

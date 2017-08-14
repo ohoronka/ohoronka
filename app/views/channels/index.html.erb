@@ -4,7 +4,7 @@
   <div class="panel-heading">
     Notification Channels
     <div class="pull-right">
-      <%= link_to 'Add Channel', select_type_user_channels_path(@user), class: 'btn btn-success btn-xs' if @user.allowed_channel_types.any? %>
+      <%= link_to 'Add Channel', select_type_channels_path, class: 'btn btn-success btn-xs' if current_user.allowed_channel_types.any? %>
     </div>
   </div>
 
