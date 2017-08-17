@@ -14,9 +14,9 @@ class TelegramService
 
   def process(message)
     case message.text
-    when /\/start (\w+)/
+    when /\/start (\S+)/
       # start with token
-      token = message.text.match(/\/start (\w+)/)[1]
+      token = message.text.match(/\/start (\S+)/)[1]
       channel = Channel::Telegram.find_by(auth_token: token)
       if channel
         channel.update(identifier: message.chat.id, activated: true)
