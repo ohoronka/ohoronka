@@ -36,5 +36,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/test' => 'test#index'
+
   mount Sidekiq::Web => '/admin/sidekiq'
 end

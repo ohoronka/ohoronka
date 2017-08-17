@@ -70,3 +70,4 @@ gem 'factory_girl_rails'
 gem 'hirb', require: false
 gem 'telegram-bot-ruby'
 gem 'activerecord-typedstore'
+gem 'bootstrap', '~> 4.0.0.beta'
