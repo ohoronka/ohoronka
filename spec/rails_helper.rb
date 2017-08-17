@@ -29,7 +29,7 @@ Sidekiq::Testing.inline!
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.shared_context 'controller session' do
-  let(:user) { create(:user, account: (Account.take || create(:account))) }
+  let(:user) { User.take || create(:user) }
   let(:user_session) { {user_id: user.id} }
 end
 

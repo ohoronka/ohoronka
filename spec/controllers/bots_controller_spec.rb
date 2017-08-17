@@ -10,7 +10,7 @@ RSpec.describe BotsController, type: :controller do
     it 'renders 404' do
       expect{
         post :telegram, params: params.merge(bot_token: 'wrong_token')
-      }.to raise_error
+      }.to raise_error(ActionController::RoutingError)
     end
 
     it 'activates the channel' do

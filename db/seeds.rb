@@ -5,15 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-user = FactoryGirl.create(:user)
+exit(0) if Rails.env.test?
 
+user = FactoryGirl.create(:user)
 FactoryGirl.create(:telegram_channel, identifier: (Rails.env.production? ? '429212655': '429212655'), user: user) # same id for both environments. interesting...
 
-sensors = FactoryGirl.create_list(:sensor, 4, device: FactoryGirl.create(:device))
-sensors.each do |sensor|
-  FactoryGirl.create_list(:event, 5, target: sensor, facility: Facility.take)
-end
+facility = FactoryGirl.create(:facility, user_ids: [user.id])
+device = FactoryGirl.create(:device, facility: facility)
+sensor1 = FactoryGirl.create(:sensor, device: device, gpio_listen: 16, gpio_pull: 0, gpio_ok: 16)
+sensor2 = FactoryGirl.create(:sensor, device: device, gpio_listen: 32, gpio_pull: 0, gpio_ok: 32)
 
-Facility.take.update(user_ids: [user.id])
+if Rails.env.development?
+  [sensor1, sensor2].each do |sensor|
+    FactoryGirl.create_list(:event, 5, target: sensor, facility: facility)
+  end
+end
 
 FactoryGirl.create(:user, admin: true, email: 'admin@example.com')

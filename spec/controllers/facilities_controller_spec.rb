@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe FacilitiesController, type: :controller do
   render_views
 
-  let(:account) { create(:account) }
-  let(:facility) { create(:facility, account: account) }
+  let(:facility) { create(:facility) }
 
   describe '#index' do
     context 'one facility' do
