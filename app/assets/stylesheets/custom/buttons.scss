@@ -1,0 +1,17 @@
+// map sizes
+.btn-action {
+  @extend .btn-sm;
+}
+
+.btn-list {
+  @extend .btn-sm;
+}
+
+// map action to color
+.btn-new {
+  @extend .btn-success;
+}
+
+.btn-cancel {
+  @extend .btn-light;
+}
