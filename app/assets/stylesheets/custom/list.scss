@@ -9,3 +9,11 @@
 .btn-list {
   @extend .btn-sm;
 }
+
+.links-list{
+  @extend .list-unstyled;
+  .fa {
+    margin: 8px;
+    color: #636c72 !important;
+  }
+}
