@@ -1,32 +1,25 @@
-<div class="panel panel-primary">
-
-  <div class="panel-heading">
-    Devices
-    <div class="pull-right">
-      <%= link_to 'Add device', {action: :new}, class: 'btn btn-success pull-right btn-xs' %>
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">Devices</div>
+      <div class="bl-acts">
+        <%= link_to 'Add device', {action: :new}, class: 'btn btn-new' %>
+      </div>
     </div>
+
+    <table class="list">
+      <tbody>
+      <% @devices.each do |device| %>
+          <tr>
+            <td><%= device.name %></td>
+            <td><span class="label label-<%= device.decorate.css_status %>"><%= device.status %></span></td>
+            <td class="act-col">
+              <%= link_to 'Edit', {action: :edit, id: device.id}, class: 'btn btn-edit' %>
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: device.id}, class: 'btn btn-destroy', data: {confirm: 'Device will be comletely destroyed. Are you sure?'}, method: :delete %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @devices.each do |device| %>
-      <tr>
-        <td><%= device.name %></td>
-        <td><span class="label label-<%= device.decorate.css_status %>"><%= device.status %></span></td>
-        <td class="text-right">
-          <%= link_to 'Edit', {action: :edit, id: device.id}, class: 'btn btn-success btn-xs' %>
-          <%= link_to 'Destroy', {action: :destroy, id: device.id}, class: 'btn btn-danger btn-xs', data: {confirm: 'Device will be comletely destroyed. Are you sure?'}, method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
 </div>
