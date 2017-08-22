@@ -4,6 +4,10 @@
   .act-col {
     @extend .text-right;
   }
+
+  .btn{
+    @extend .btn-sm;
+  }
 }
 
 .btn-list {

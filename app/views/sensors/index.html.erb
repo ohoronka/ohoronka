@@ -1,34 +1,26 @@
-<div class="panel panel-primary">
-
-  <div class="panel-heading">
-    Sensors
-    <div class="pull-right">
-      <%= link_to 'Add Sensor', {action: :select_device}, class: 'btn btn-success pull-right btn-xs' %>
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">Sensors</div>
+      <div class="bl-acts">
+        <%= link_to 'Add Sensor', {action: :select_device}, class: 'btn btn-new' %>
+      </div>
     </div>
+
+    <table class="list">
+      <tbody>
+      <% @sensors.each do |sensor| %>
+          <tr>
+            <td><%= sensor.name %></td>
+            <td><small class="text-muted">Device:</small> <%= sensor.device.name %></td>
+            <td><span class="badge badge-<%= sensor.status %>"><%= sensor.status %></span></td>
+            <td class="act-col">
+              <%= link_to 'Edit', {action: :edit, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-edit' %>
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-destroy', data: {confirm: 'Record will be completely destroyed. Are you sure?'}, method: :delete %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Device</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @sensors.each do |sensor| %>
-        <tr>
-          <td><%= sensor.name %></td>
-          <td><%= sensor.device.name %></td>
-          <td><span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.status %></span></td>
-          <td class="text-right">
-            <%= link_to 'Edit', {action: :edit, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-success btn-xs' %>
-            <%= link_to 'Destroy', {action: :destroy, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-danger btn-xs', data: {confirm: 'Record will be completely destroyed. Are you sure?'}, method: :delete %>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
 </div>

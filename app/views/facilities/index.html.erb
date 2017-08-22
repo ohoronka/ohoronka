@@ -14,8 +14,8 @@
           <tr>
             <td><%= link_to facility.name, {action: :show, id: facility} %></td>
             <td class="act-col">
-              <%= link_to '<i class="fa fa-cog" aria-hidden="true"></i> Edit'.html_safe, {action: :edit, id: facility.id}, class: 'btn btn-edit btn-list' %>
-              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy btn-list', data: {confirm: 'Record will be remowed! Sure?'} %>
+              <%= link_to '<i class="fa fa-cog" aria-hidden="true"></i> Edit'.html_safe, {action: :edit, id: facility.id}, class: 'btn btn-edit' %>
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy', data: {confirm: 'Record will be remowed! Sure?'} %>
             </td>
           </tr>
       <% end %>
