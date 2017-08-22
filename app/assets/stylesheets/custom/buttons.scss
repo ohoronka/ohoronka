@@ -1,4 +1,9 @@
 // map sizes
+.bl-acts{
+  .btn {
+    @extend .btn-sm;
+  }
+}
 .btn-act {
   @extend .btn-sm;
 }
@@ -21,7 +26,7 @@
 }
 
 .btn-cancel {
-  @extend .btn-outline-light;
+  @extend .btn-light;
 }
 
 .btn-idle {
@@ -30,4 +35,15 @@
 
 .btn-protected {
   @extend .btn-outline-success;
+}
+
+.btn-save{
+  @extend .btn-outline-primary;
+}
+
+.form-btns{
+  @extend .text-right;
+  .btn{
+    @extend .btn-sm
+  }
 }

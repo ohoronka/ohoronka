@@ -1,12 +1,12 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    Editing guarded facility <%= @facility.name %>
-    <div class="pull-right">
-      <%= link_to 'Destroy', {action: :destroy}, class: 'btn btn-danger btn-xs', method: :delete, data: {confirm: 'Record will be completely destroyed. Are you sure?'} %>
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">Editing <%= @facility.name %></div>
+      <div class="bl-acts">
+        <%= link_to 'Destroy', {action: :destroy}, class: 'btn btn-destroy', method: :delete, data: {confirm: 'Record will be completely destroyed. Are you sure?'} %>
+      </div>
     </div>
-  </div>
 
-  <div class="panel-body">
     <%= render :partial => 'form' %>
   </div>
 </div>
