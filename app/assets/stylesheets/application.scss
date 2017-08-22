@@ -1,7 +1,10 @@
 @import "bootstrap-variables";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 @import "custom/buttons";
+@import "custom/list";
 
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -11,4 +14,3 @@ body {
   color: #292b2c;
   /* background-color: #f5f8fa; */
 }
-

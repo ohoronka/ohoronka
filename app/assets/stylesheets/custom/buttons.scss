@@ -1,5 +1,5 @@
 // map sizes
-.btn-action {
+.btn-act {
   @extend .btn-sm;
 }
 
@@ -9,9 +9,17 @@
 
 // map action to color
 .btn-new {
-  @extend .btn-success;
+  @extend .btn-outline-primary;
+}
+
+.btn-edit {
+  @extend .btn-outline-success;
+}
+
+.btn-destroy {
+  @extend .btn-outline-danger;
 }
 
 .btn-cancel {
-  @extend .btn-light;
+  @extend .btn-outline-light;
 }

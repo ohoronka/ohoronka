@@ -69,46 +69,19 @@
             <a href="#" class="card-link">Another link</a>
           </div>
         </div>
-        <div class="card my-3">
-          <div class="card-body">
-            <h6 class="card-title">Card title</h6>
-
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-        </div>
         <%= yield(:side_bar) if content_for? :side_bar %>
+        <%= yield(:left_col) if content_for? :left_col %>
       </div>
 
-      <div class="col-md-6">
-        <div class="card my-3">
-          <%= yield %>
+      <div class="<%= content_for?(:right_col) ? 'col-md-6' : 'col-md-9' %>">
+        <%= yield %>
+      </div>
 
-          <div class="card-body">
-            <h6 class="card-title">Card title</h6>
-
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+      <% if content_for?(:right_col) %>
+          <div class="col-md-3">
+            <%= yield :right_col %>
           </div>
-        </div>
-      </div>
-
-      <div class="col-md-3">
-        <div class="card my-3">
-          <div class="card-body">
-            <h6 class="card-title">Card title</h6>
-
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 
