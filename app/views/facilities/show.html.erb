@@ -1,62 +1,49 @@
-<div class="panel panel-primary">
-
-  <div class="panel-heading">
-    <%= @facility.name %>
-    <span class="text-muted">Status: </span>
-    <span class="label label-<%= @facility.decorate.css_status %>"><%= @facility.status %></span>
-
-    <div class="pull-right">
-      <%= link_to 'Edit', {action: :edit, id: @facility.id}, class: 'btn btn-success btn-xs' %>
-      <%= link_to "Set #{@facility.next_status}",
-        set_next_status_facility_path(@facility),
-        class: "btn btn-xs btn-#{@facility.decorate.css_next_status}",
-        remote: true,
-        method: :patch
-      %>
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">
+        <%= @facility.name %>
+        <span class="badge badge-<%= @facility.status %>"><%= @facility.status %></span>
+      </div>
+      <div class="bl-acts">
+        <%= link_to "Set #{@facility.next_status}",
+          set_next_status_facility_path(@facility),
+          class: "btn btn-act btn-#{@facility.next_status}",
+          remote: true,
+          method: :patch
+        %>
+      </div>
     </div>
+
+    <table class="list">
+      <tbody>
+      <% @facility.sensors.each do |sensor| %>
+          <tr id="sensor_<%= sensor.id %>">
+            <td><%= sensor.name %></td>
+            <td class="text-right">
+              <span class="badge badge-<%= sensor.status %>"><%= sensor.status %></span>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
   </div>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Sensor</th>
-      <th class="text-right">Status</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @facility.sensors.each do |sensor| %>
-        <tr id="sensor_<%= sensor.id %>">
-          <td><%= sensor.name %></td>
-          <td class="text-right"><span class="label label-<%= sensor.decorate.css_status %>"><%= sensor.status %></span></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-
 </div>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">Events</h3>
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title">Last events</div>
   </div>
 
-  <table class="table" id="events">
-    <thead>
-    <tr>
-      <th>Sensor</th>
-      <th>Time</th>
-      <th class="text-right">Event</th>
-    </tr>
-    </thead>
-
+  <table class="list" id="events">
     <tbody>
     <% @facility.events.dashboard_list.each do |event| %>
         <tr>
           <td><%= event.target.name %></td>
           <td><%= event.created_at %></td>
           <td class="text-right">
-            <span class="label label-<%= event.decorate.css_target_status %>"><%= event.target_status %></span>
+            <span class="badge badge-<%= event.target_status %>"><%= event.target_status %></span>
           </td>
         </tr>
     <% end %>
@@ -69,7 +56,7 @@
     <td>{{>target_name}}</td>
     <td>{{>created_at}}</td>
     <td class="text-right">
-      <span class="label label-{{:css_target_status}}">{{>target_status}}</span>
+      <span class="badge badge-{{:target_status}}">{{>target_status}}</span>
     </td>
   </tr>
 </script>
@@ -77,7 +64,7 @@
 <script id="sensor_template" type="text/x-jsrender">
   <tr id="sensor_{{:id}}">
     <td>{{>name}}</td>
-    <td class="text-right"><span class="label label-{{:css_status}}">{{>status}}</span></td>
+    <td class="text-right"><span class="badge badge-{{:status}}">{{>status}}</span></td>
   </tr>
 </script>
 

@@ -1,8 +1,8 @@
-<div class="card my-3">
-  <div class="card-body">
-    <div class="d-flex w-100 justify-content-between">
-      <div class="card-title h6">Facilities</div>
-      <div class="" style="margin-top: -8px;">
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">Facilities</div>
+      <div class="bl-acts">
         <%# link_to 'New Facility', {action: :new}, class: 'btn btn-outline-primary btn-act' %>
         <%# link_to 'New Facility', {action: :new}, class: 'btn btn-outline-primary btn-act' %>
       </div>
@@ -14,8 +14,8 @@
           <tr>
             <td><%= link_to facility.name, {action: :show, id: facility} %></td>
             <td class="act-col">
-              <%= link_to '<i class="fa fa-cog" aria-hidden="true"></i> Edit'.html_safe, {action: :edit, id: facility.id}, class: 'btn btn-edit btn-sm' %>
-              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy btn-sm', data: {confirm: 'Record will be remowed! Sure?'} %>
+              <%= link_to '<i class="fa fa-cog" aria-hidden="true"></i> Edit'.html_safe, {action: :edit, id: facility.id}, class: 'btn btn-edit btn-list' %>
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy btn-list', data: {confirm: 'Record will be remowed! Sure?'} %>
             </td>
           </tr>
       <% end %>

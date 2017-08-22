@@ -1,0 +1,23 @@
+.bl {
+  @extend .card;
+  @extend .my-3;
+}
+
+.bl-body {
+  @extend .card-body;
+}
+
+.bl-title-bl {
+  @extend .d-flex;
+  @extend .w-100;
+  @extend .justify-content-between;
+}
+
+.bl-title {
+  @extend .card-title;
+  @extend .h6;
+}
+
+.bl-acts {
+  margin-top: -8px;
+}

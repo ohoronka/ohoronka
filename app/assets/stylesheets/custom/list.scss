@@ -4,12 +4,8 @@
   .act-col {
     @extend .text-right;
   }
+}
 
-  .on-demand {
-    @extend .invisible;
-  }
-
-  tr:hover .on-demand, tr:focus .on-demand {
-    @extend .visible;
-  }
+.btn-list {
+  @extend .btn-sm;
 }

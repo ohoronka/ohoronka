@@ -1,0 +1,15 @@
+.badge-alarm {
+  @extend .badge-danger;
+}
+
+.badge-protected {
+  @extend .badge-success;
+}
+
+.badge-idle {
+  @extend .badge-secondary;
+}
+
+.badge-offline {
+  @extend .badge-secondary;
+}
