@@ -1,26 +1,17 @@
-<div class="panel panel-primary">
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title">Events</div>
 
-  <div class="panel-heading">
-    <h3 class="panel-title">Events</h3>
+    <table class="list">
+      <tbody>
+      <% @events.each do |event| %>
+          <tr>
+            <td><%= event.target.name %></td>
+            <td><%= event.created_at %></td>
+            <td class="text-right"><span class="badge badge-<%= event.target_status %>"><%= event.target_status %></span></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Sensor</th>
-      <th>Created at</th>
-      <th>Status</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @events.each do |event| %>
-        <tr>
-          <td><%= event.target.name %></td>
-          <td><%= event.created_at %></td>
-          <td><span class="label label-<%= event.decorate.css_target_status %>"><%= event.target_status %></span></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
 </div>
