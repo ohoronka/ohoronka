@@ -1,11 +1,9 @@
-<%= render :partial => 'users/nav' %>
+<div class="bl">
+  <%= render :partial => 'users/nav' %>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    Configuring <%= @channel.type %>
-  </div>
+  <div class="bl-body">
+    <div class="bl-title">Configuring <%= @channel.type %></div>
 
-  <div class="panel-body">
     Follow this link to add a Telegram bot <a href="<%= @channel.url %>" target="_blank"><%= @channel.url %></a>
   </div>
 </div>

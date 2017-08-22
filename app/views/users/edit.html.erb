@@ -1,18 +1,14 @@
-<%= render :partial => 'users/nav' %>
-
-<div class="panel panel-primary">
-
-  <div class="panel-heading">Profile</div>
-
-  <div class="panel-body">
+<div class="bl">
+  <%= render :partial => 'users/nav' %>
+  <div class="bl-body">
     <%= bootstrap_form_for(@user) do |f| %>
-      <%= f.text_field :name %>
-      <%= f.email_field :email %>
-      <%= f.password_field :password %>
-      <%= f.password_field :password_confirmation %>
-      <%= f.form_group class: 'text-right' do %>
-          <%= f.submit 'Save', class: 'btn btn-primary btn-sm' %>
-      <% end %>
+        <%= f.text_field :name %>
+        <%= f.email_field :email %>
+        <%= f.password_field :password %>
+        <%= f.password_field :password_confirmation %>
+        <%= f.form_group class: 'form-btns' do %>
+            <%= f.submit 'Save', class: 'btn btn-save' %>
+        <% end %>
     <% end %>
   </div>
 </div>

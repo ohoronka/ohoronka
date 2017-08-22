@@ -28,3 +28,7 @@ body {
     @extend .invalid-feedback;
   }
 }
+
+.nav-link.active{
+  background-color: #fff !important;
+}

@@ -1,27 +1,23 @@
-<%= render :partial => 'users/nav' %>
+<div class="bl">
+  <%= render :partial => 'users/nav' %>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    Select the channel type
-    <div class="pull-right">
-      <%= link_to 'Cancel', {action: :index}, class: 'btn btn-warning btn-xs' %>
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">Select the channel type</div>
+      <div class="bl-acts">
+        <%= link_to 'Cancel', {action: :index}, class: 'btn btn-cancel' %>
+      </div>
     </div>
-  </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Channel Type</th>
-      </tr>
-    </thead>
-
-    <tbody>
+    <table class="list">
+      <tbody>
       <% current_user.allowed_channel_types.each do |type| %>
-        <tr>
-          <td><%= type %></td>
-          <td class="text-right"><%= link_to 'Select', {action: :new, type: type}, class: 'btn btn-success btn-xs' %></td>
-        </tr>
+          <tr>
+            <td><%= type %></td>
+            <td class="act-col"><%= link_to 'Select', {action: :new, type: type}, class: 'btn btn-new' %></td>
+          </tr>
       <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>

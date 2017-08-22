@@ -1,31 +1,24 @@
-<%= render :partial => 'users/nav' %>
-
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    Notification Channels
-    <div class="pull-right">
-      <%= link_to 'Add Channel', select_type_channels_path, class: 'btn btn-success btn-xs' if current_user.allowed_channel_types.any? %>
+<div class="bl">
+  <%= render :partial => 'users/nav' %>
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">Notification Channels</div>
+      <div class="bl-acts">
+        <%= link_to 'Add Channel', select_type_channels_path, class: 'btn btn-new' if current_user.allowed_channel_types.any? %>
+      </div>
     </div>
+
+    <table class="list">
+      <tbody>
+      <% current_user.channels.each do |channel| %>
+          <tr>
+            <td><%= link_to channel.type, {action: :show, id: channel} %></td>
+            <td class="act-col">
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: channel}, method: :delete, class: 'btn btn-destroy', data: {confirm: 'The record will be removed! Are you sure?'} %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Channel</th>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% current_user.channels.each do |channel| %>
-        <tr>
-          <td><%= channel.type %></td>
-          <td class="text-right">
-            <%= link_to 'Show', {action: :show, id: channel}, class: 'btn btn-success btn-xs' %>
-            <%= link_to 'Destroy', {action: :destroy, id: channel}, method: :delete, class: 'btn btn-danger btn-xs', data: {confirm: 'The record will be removed! Are you sure?'} %>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
 </div>
