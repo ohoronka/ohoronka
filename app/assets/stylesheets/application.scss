@@ -16,3 +16,15 @@ body {
   color: #292b2c;
   /* background-color: #f5f8fa; */
 }
+
+
+.has-error{
+  input{
+    @extend .is-invalid;
+  }
+
+  .help-block{
+    display: block;
+    @extend .invalid-feedback;
+  }
+}

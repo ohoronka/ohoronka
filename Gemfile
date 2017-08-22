@@ -65,7 +65,7 @@ gem 'mqtt'
 gem 'redis-rails'
 gem 'sidekiq'
 gem 'draper'
-gem 'bootstrap_form'
+gem 'bootstrap_form', '~> 2.7'
 gem 'factory_girl_rails'
 gem 'hirb', require: false
 gem 'telegram-bot-ruby'
