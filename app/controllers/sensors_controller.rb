@@ -12,7 +12,7 @@ class SensorsController < ApplicationController
 
   def select_device
     @devices = facility.devices
-    redirect_to action: :new, device_id: @devices.take if @devices.exists?
+    redirect_to action: :new, device_id: @devices.take if @devices.count == 1
   end
 
   def create

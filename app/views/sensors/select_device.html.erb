@@ -1,24 +1,20 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    Select a device to add sensor to
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title">
+      Select a device to add sensor to
+    </div>
+
+    <table class="list">
+      <tbody>
+      <% @devices.each do |device| %>
+          <tr>
+            <td><%= device.name %></td>
+            <td class="act-col">
+              <%= link_to 'Select', {action: :new, device_id: device.id }, class: 'btn btn-success btn-xs' %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Device</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @devices.each do |device| %>
-      <tr>
-        <td><%= device.name %></td>
-        <td class="text-right">
-          <%= link_to 'Select', {action: :new, device_id: device.id }, class: 'btn btn-success btn-xs' %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
 </div>
