@@ -24,3 +24,4 @@
 /config/cable.yml
 /config/secrets.yml
 /config/telegram.yml
+/public/uploads/

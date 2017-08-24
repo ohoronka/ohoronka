@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
-  resources :users
+  resources :users do
+    get 'crop_avatar', on: :member
+  end
   resources :channels do
     get 'select_type', on: :collection
   end
