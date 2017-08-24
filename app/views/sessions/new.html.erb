@@ -1,21 +1,60 @@
+<nav class="navbar navbar-dark" style="background-color: #3097D1 !important;">
+  <a class="navbar-brand" href="<%= root_path %>">
+    <img src="<%= image_path('shield.svg') %>" alt="Ohoronka" width="30" height="30" class="rounded-circle">
+  </a>
+</nav>
+
 <div class="container">
   <div class="row">
-    <div class="col"></div>
-    <div class="col">
+    <div class="col-md-7 p-3">
+
+      <h2>Connect with friends and <br> protect your assets</h2>
+      <ul class="list-unstyled">
+        <li class="my-3"><h2><i class="fa fa-bar-chart" aria-hidden="true"></i> Monitor you assets</h2></li>
+        <li><i class="fa fa-4x fa-bell-o my-3" aria-hidden="true"></i>Be notified about any alarms</li>
+        <li><i class="fa fa-4x fa-share-alt my-3" aria-hidden="true"></i>Share with your friends</li>
+      </ul>
+    </div>
+    <div class="col-md-5">
       <div class="bl">
+        <div class="card-header bg-transparent">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab" aria-controls="sign_in" aria-expanded="true">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#sign_up" role="tab" aria-controls="sign_up" aria-expanded="true">Sign Up</a>
+            </li>
+          </ul>
+        </div>
         <div class="bl-body">
-          <div class="bl-title text-center">Sign In</div>
-          <%= bootstrap_form_for(@session, url: {action: :create}, method: :post, as: :session) do |f| %>
-              <%= f.errors_on :base %>
-              <%= f.text_field :user_name %>
-              <%= f.password_field :password %>
-              <%= f.form_group class: 'act-btns' do %>
-                  <%= f.primary 'Sign In', class: 'btn btn-save btn-block' %>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="sign_in" role="tabpanel" aria-labelledby="sign_in-tab">
+              <%= bootstrap_form_for(@session, url: {action: :create}, method: :post, as: :session) do |f| %>
+                  <%= f.errors_on :base %>
+                  <%= f.text_field :user_name %>
+                  <%= f.password_field :password %>
+                  <%= f.form_group class: 'act-btns' do %>
+                      <%= f.primary 'Sign In', class: 'btn btn-save btn-block' %>
+                  <% end %>
               <% end %>
-          <% end %>
+            </div>
+
+            <div class="tab-pane fade" id="sign_up" role="tabpanel" aria-labelledby="sign_up-tab">
+              <%= bootstrap_form_for(@session, url: {action: :create}, method: :post, as: :session) do |f| %>
+                  <%= f.errors_on :base %>
+                  <%= f.text_field :user_name %>
+                  <%= f.text_field :user_name %>
+                  <%= f.text_field :user_name %>
+                  <%= f.password_field :password %>
+                  <%= f.form_group class: 'act-btns' do %>
+                      <%= f.primary 'Sign Up', class: 'btn btn-save btn-block' %>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col"></div>
   </div>
 </div>
