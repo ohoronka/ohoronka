@@ -2,10 +2,17 @@
   <%= render :partial => 'users/nav' %>
   <div class="bl-body">
     <%= bootstrap_form_for(@user) do |f| %>
-        <%= f.text_field :name %>
+        <%= f.text_field :first_name %>
+        <%= f.text_field :last_name %>
         <%= f.email_field :email %>
+
+        <%= f.text_area :about %>
+
+        <%= f.file_field :avatar, accept: 'image/*' %>
+
         <%= f.password_field :password %>
         <%= f.password_field :password_confirmation %>
+
         <%= f.form_group class: 'form-btns' do %>
             <%= f.submit 'Save', class: 'btn btn-save' %>
         <% end %>
