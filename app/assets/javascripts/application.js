@@ -17,3 +17,4 @@
 //= require cable
 //= require jsrender
 //= require bootstrap-sprockets
+//= require jquery.backstretch
