@@ -6,6 +6,10 @@
   @extend .badge-success;
 }
 
+.badge-ok {
+  @extend .badge-success;
+}
+
 .badge-idle {
   @extend .badge-secondary;
 }
