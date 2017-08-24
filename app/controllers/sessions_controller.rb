@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: [:new, :create]
   before_action :redirect_if_signed_in, except: [:destroy]
-  layout 'empty'
+  layout 'sign_up'
 
   def new
     @session = SessionService.new

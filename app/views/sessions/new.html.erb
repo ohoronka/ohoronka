@@ -1,60 +1,123 @@
-<nav class="navbar navbar-dark" style="background-color: #3097D1 !important;">
-  <a class="navbar-brand" href="<%= root_path %>">
-    <img src="<%= image_path('shield.svg') %>" alt="Ohoronka" width="30" height="30" class="rounded-circle">
-  </a>
-</nav>
+<!-- Top content -->
+<div class="top-content">
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-7 p-3">
+  <div class="inner-bg">
+    <div class="container">
 
-      <h2>Connect with friends and <br> protect your assets</h2>
-      <ul class="list-unstyled">
-        <li class="my-3"><h2><i class="fa fa-bar-chart" aria-hidden="true"></i> Monitor you assets</h2></li>
-        <li><i class="fa fa-4x fa-bell-o my-3" aria-hidden="true"></i>Be notified about any alarms</li>
-        <li><i class="fa fa-4x fa-share-alt my-3" aria-hidden="true"></i>Share with your friends</li>
-      </ul>
-    </div>
-    <div class="col-md-5">
-      <div class="bl">
-        <div class="card-header bg-transparent">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#sign_in" role="tab" aria-controls="sign_in" aria-expanded="true">Sign In</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#sign_up" role="tab" aria-controls="sign_up" aria-expanded="true">Sign Up</a>
-            </li>
-          </ul>
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-8 text">
+          <h1><strong>Ohoronka</strong> Login &amp; Register Forms</h1>
+          <div class="description">
+            <p>
+              Protect your assets
+            </p>
+          </div>
         </div>
-        <div class="bl-body">
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="sign_in" role="tabpanel" aria-labelledby="sign_in-tab">
-              <%= bootstrap_form_for(@session, url: {action: :create}, method: :post, as: :session) do |f| %>
-                  <%= f.errors_on :base %>
-                  <%= f.text_field :user_name %>
-                  <%= f.password_field :password %>
-                  <%= f.form_group class: 'act-btns' do %>
-                      <%= f.primary 'Sign In', class: 'btn btn-save btn-block' %>
-                  <% end %>
-              <% end %>
-            </div>
+        <div class="col"></div>
+      </div>
 
-            <div class="tab-pane fade" id="sign_up" role="tabpanel" aria-labelledby="sign_up-tab">
-              <%= bootstrap_form_for(@session, url: {action: :create}, method: :post, as: :session) do |f| %>
+      <div class="row">
+        <div class="col-sm-5">
+
+          <div class="form-box">
+            <div class="form-top">
+              <div class="form-top-left">
+                <h3>Login to our site</h3>
+                <p>Enter username and password to log on:</p>
+              </div>
+              <div class="form-top-right">
+                <i class="fa fa-lock"></i>
+              </div>
+            </div>
+            <div class="form-bottom">
+              <%= bootstrap_form_for(@session, url: {action: :create}, method: :post, as: :session, class: 'login-form') do |f| %>
                   <%= f.errors_on :base %>
-                  <%= f.text_field :user_name %>
-                  <%= f.text_field :user_name %>
-                  <%= f.text_field :user_name %>
-                  <%= f.password_field :password %>
-                  <%= f.form_group class: 'act-btns' do %>
-                      <%= f.primary 'Sign Up', class: 'btn btn-save btn-block' %>
-                  <% end %>
+                  <%= f.text_field :user_name, placeholder: 'Username...', hide_label: true %>
+                  <%= f.password_field :password, placeholder: 'Password...', hide_label: true %>
+                  <button type="submit" class="btn">Sign in!</button>
               <% end %>
             </div>
           </div>
+
+          <!--<div class="social-login">-->
+          <!--<h3>...or login with:</h3>-->
+          <!--<div class="social-login-buttons">-->
+          <!--<a class="btn btn-link-2" href="#">-->
+          <!--<i class="fa fa-facebook"></i> Facebook-->
+          <!--</a>-->
+          <!--<a class="btn btn-link-2" href="#">-->
+          <!--<i class="fa fa-twitter"></i> Twitter-->
+          <!--</a>-->
+          <!--<a class="btn btn-link-2" href="#">-->
+          <!--<i class="fa fa-google-plus"></i> Google Plus-->
+          <!--</a>-->
+          <!--</div>-->
+          <!--</div>-->
+
+        </div>
+
+        <div class="col-sm-1 middle-border"></div>
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-5">
+
+          <div class="form-box">
+            <div class="form-top">
+              <div class="form-top-left">
+                <h3>Sign up now</h3>
+                <p>Fill in the form below to get instant access:</p>
+              </div>
+              <div class="form-top-right">
+                <i class="fa fa-pencil"></i>
+              </div>
+            </div>
+            <div class="form-bottom">
+              <form role="form" action="" method="post" class="registration-form">
+                <div class="form-group">
+                  <label class="sr-only" for="form-first-name">First name</label>
+                  <input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="form-last-name">Last name</label>
+                  <input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="form-email">Email</label>
+                  <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="form-about-yourself">About yourself</label>
+                  <textarea name="form-about-yourself" placeholder="About yourself..."
+                            class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+                </div>
+                <button type="submit" class="btn">Sign me up!</button>
+              </form>
+            </div>
+          </div>
+
         </div>
       </div>
+
     </div>
   </div>
+
 </div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-sm-8">
+        <div class="footer-border"></div>
+        <p>Ohoronka © <%= Time.current.year %></p>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    $.backstretch("<%= image_path('sign_up_background') %>");
+</script>
