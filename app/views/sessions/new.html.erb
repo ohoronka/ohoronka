@@ -12,6 +12,7 @@
             <p>
               Protect your assets
             </p>
+            <%= image_tag('shield', style: 'height: 150px; margin-bottom: -130px;') %>
           </div>
         </div>
         <div class="col"></div>
@@ -31,7 +32,7 @@
               </div>
             </div>
             <div class="form-bottom">
-              <%= bootstrap_form_for(@session, url: {action: :create}, method: :post, as: :session, class: 'login-form') do |f| %>
+              <%= bootstrap_form_for((@session || SessionService.new), url: {action: :create}, method: :post, as: :session, class: 'login-form') do |f| %>
                   <%= f.errors_on :base %>
                   <%= f.text_field :user_name, placeholder: 'Username...', hide_label: true %>
                   <%= f.password_field :password, placeholder: 'Password...', hide_label: true %>
@@ -73,12 +74,13 @@
               </div>
             </div>
             <div class="form-bottom">
-              <%= bootstrap_form_for((@user || User.new), url: {action: :create}, method: :post, as: :session, class: 'login-form') do |f| %>
+              <%= bootstrap_form_for((@user || User.new), method: :post, class: 'login-form') do |f| %>
                   <%= f.errors_on :base %>
                   <%= f.text_field :first_name, placeholder: 'First name...', hide_label: true %>
                   <%= f.text_field :last_name, placeholder: 'Last name...', hide_label: true %>
                   <%= f.text_field :email, placeholder: 'Email...', hide_label: true %>
-                  <%= f.text_area :about, placeholder: 'About yourself...', hide_label: true %>
+                  <%= f.password_field :password, placeholder: 'New password...', hide_label: true %>
+                  <%# f.text_area :about, placeholder: 'About yourself...', hide_label: true %>
                   <button type="submit" class="btn">Sign me up!</button>
               <% end %>
             </div>

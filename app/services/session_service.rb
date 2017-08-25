@@ -12,9 +12,13 @@ class SessionService
       errors.add(:base, 'Wrong user or password')
       return false
     end
+    authorize(user, controller)
+    user
+  end
+
+  def authorize(user, controller)
     controller.session[:user_id] = user.id
     controller.session[:admin_id] = user.id if user.admin?
-    user
   end
 
   def sign_out(controller)

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :crop_avatar]
+  skip_before_action :authorize, only: [:create]
 
   def edit
 
@@ -7,6 +8,16 @@ class UsersController < ApplicationController
 
   def crop_avatar
 
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      SessionService.new.authorize(@user, self)
+      redirect_to root_path
+    else
+      render template: 'sessions/new', layout: 'sign_up'
+    end
   end
 
   def update

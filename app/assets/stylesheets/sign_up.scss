@@ -5,3 +5,14 @@
 
 @import "signup/form-elements";
 @import "signup/style";
+
+.has-error{
+  input{
+    @extend .is-invalid;
+  }
+
+  .help-block{
+    display: block;
+    @extend .invalid-feedback;
+  }
+}
