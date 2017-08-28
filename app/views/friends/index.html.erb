@@ -1,0 +1,15 @@
+<div class="bl">
+  <%= render :partial => 'bl_header' %>
+  <div class="bl-body">
+    <ul class="list-unstyled">
+      <% @friends.each do |friend| %>
+          <% content_for :actions do %>
+              <%= link_to 'Show', user_path(friend), class: 'btn btn-show' %>
+          <% end %>
+
+          <%= render :partial => 'friend', object: friend %>
+      <% end %>
+    </ul>
+
+  </div>
+</div>

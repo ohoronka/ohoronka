@@ -13,7 +13,15 @@
   @extend .btn-outline-primary;
 }
 
+.btn-show {
+  @extend .btn-outline-primary;
+}
+
 .btn-edit {
+  @extend .btn-outline-success;
+}
+
+.btn-search {
   @extend .btn-outline-success;
 }
 

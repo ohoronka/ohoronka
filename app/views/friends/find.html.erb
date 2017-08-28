@@ -1,0 +1,22 @@
+<div class="bl">
+  <%= render :partial => 'bl_header' %>
+  <div class="bl-body">
+    <%= form_tag({action: :find}, class: '', method: :get) do %>
+        <div class="input-group btn-group mb-2 mr-sm-2 mb-sm-0">
+          <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="Enter your friend's name">
+          <button type="submit" class="btn btn-edit">Search</button>
+        </div>
+    <% end %>
+
+    <ul class="list-unstyled mt-3">
+      <% @users.each do |friend| %>
+          <% content_for :actions do %>
+              <%= link_to 'Add friend', add_friend_path(friend), class: 'btn btn-new', method: :post %>
+          <% end %>
+
+          <%= render :partial => 'friend', object: friend %>
+      <% end %>
+    </ul>
+
+  </div>
+</div>

@@ -22,6 +22,17 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
+  resources :friends do
+    collection do
+      get 'find'
+      get 'requests'
+    end
+    member do
+      post 'add'
+      post 'accept'
+    end
+  end
+
   resources :users do
     get 'crop_avatar', on: :member
   end

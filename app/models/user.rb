@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :devices, through: :facilities
   has_many :sensors, through: :devices
   has_many :channels, dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friends, class_name: 'User', through: :friendships
+  has_many :friend_requests, class_name: 'Friendship', foreign_key: :friend_id
 
   validates :email, uniqueness: {case_sensitive: false}
 

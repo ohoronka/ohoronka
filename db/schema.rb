@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170824093541) do
+ActiveRecord::Schema.define(version: 20170828105423) do
 
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(version: 20170824093541) do
     t.index ["user_id"], name: "index_facility_shares_on_user_id"
   end
 
+  create_table "friendships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.integer "status", default: 0
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
   create_table "sensors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -92,4 +102,5 @@ ActiveRecord::Schema.define(version: 20170824093541) do
   add_foreign_key "channels", "users"
   add_foreign_key "facility_shares", "facilities"
   add_foreign_key "facility_shares", "users"
+  add_foreign_key "friendships", "users"
 end
