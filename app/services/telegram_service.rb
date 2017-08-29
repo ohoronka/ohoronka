@@ -20,7 +20,7 @@ class TelegramService
       channel = Channel::Telegram.find_by(auth_token: token)
       if channel
         channel.update(identifier: message.chat.id, activated: true)
-        channel.notify("Hey #{channel.user.name}! You have configured the Telegram Notification Channel")
+        channel.notify("Hey #{channel.user.decorate.full_name}! You have configured the Telegram Notification Channel")
       else
         # TODO: notify dev
         bot.api.send_message(chat_id: message.chat.id, text: "Hm... I can't connect you to any user account... Some thing went wrong...")

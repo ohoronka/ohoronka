@@ -17,7 +17,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.id %></td>
-        <td><%= user.name %></td>
+        <td><%= user.decorate.full_name %></td>
         <td><%= user.email %></td>
         <td class="text-right">
           <%= link_to 'Login as', {action: :login_as, id: user.id}, class: 'btn btn-success btn-sm', method: :patch %>
