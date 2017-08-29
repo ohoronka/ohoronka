@@ -2,9 +2,11 @@
   <%= render :partial => 'bl_header' %>
   <div class="bl-body">
     <ul class="list-unstyled">
-      <% @friends.each do |friend| %>
+      <% @friendships.each do |friendship| %>
+          <% friend = friendship.friend %>
           <% content_for :actions do %>
               <%= link_to 'Show', user_path(friend), class: 'btn btn-show' %>
+              <%= link_to 'Destroy', reject_friend_path(friendship), class: 'btn btn-destroy', method: :delete %>
           <% end %>
 
           <%= render :partial => 'friend', object: friend %>

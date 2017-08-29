@@ -1,6 +1,6 @@
 class FriendsController < ApplicationController
   def index
-    @friends = current_user.friends
+    @friendships = current_user.friendships
   end
 
   def find
@@ -25,5 +25,10 @@ class FriendsController < ApplicationController
     redirect_to action: :index
   end
 
-
+  def reject
+    @friendship = current_user.friendships.find(params[:id])
+    @friendship.pair&.rejected_status!
+    @friendship.destroy
+    redirect_to action: :index
+  end
 end

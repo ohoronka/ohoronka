@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     member do
       post 'add'
       post 'accept'
+      delete 'reject'
     end
   end
 
