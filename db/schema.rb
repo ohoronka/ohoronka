@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20170828105423) do
     t.bigint "friend_id"
     t.integer "status", default: 0
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 

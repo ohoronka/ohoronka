@@ -7,5 +7,7 @@ class CreateFriendShips < ActiveRecord::Migration[5.1]
       t.belongs_to :friend
       t.integer :status, default: 0
     end
+
+    add_index :friendships, [:user_id, :friend_id], unique: true
   end
 end

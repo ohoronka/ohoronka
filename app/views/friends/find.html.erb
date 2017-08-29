@@ -9,9 +9,10 @@
     <% end %>
 
     <ul class="list-unstyled mt-3">
+      <% friend_ids = current_user.friends.ids %>
       <% @users.each do |friend| %>
           <% content_for :actions do %>
-              <%= link_to 'Add friend', add_friend_path(friend), class: 'btn btn-new', method: :post %>
+              <%= link_to 'Add friend', add_friend_path(friend), class: 'btn btn-new', method: :post unless friend.id.in?(friend_ids) %>
           <% end %>
 
           <%= render :partial => 'friend', object: friend %>
