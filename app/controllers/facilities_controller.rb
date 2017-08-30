@@ -1,10 +1,13 @@
 class FacilitiesController < ApplicationController
   before_action :facility, only: [:edit, :update, :destroy, :set_next_status, :show]
-  layout -> { params[:action].in?(['index', 'new']) ? 'general' : 'facility' }
+  layout -> { params[:action].in?(['index', 'shared', 'new']) ? 'general' : 'facility' }
 
   def index
-    @facilities = current_user.facilities
-    redirect_to @facilities.take if @facilities.count == 1
+    @facilities = current_user.facilities.owned
+  end
+
+  def shared
+    @facilities = current_user.facilities.shared
   end
 
   def show

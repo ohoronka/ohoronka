@@ -13,6 +13,14 @@ Rails.application.routes.draw do
       patch :set_next_status
       get :update_facility
     end
+    collection do
+      get 'shared'
+    end
+    resources :shares, controller: :facility_shares do
+      collection do
+        get 'share_with_friend'
+      end
+    end
     resources :devices do
       resources :sensors, except: [:index]
     end

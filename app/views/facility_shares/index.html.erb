@@ -1,0 +1,34 @@
+<div class="bl">
+  <%= render :partial => 'header' %>
+
+  <div class="bl-body">
+    <div class="bl-title-bl">
+      <div class="bl-title">Facility shares</div>
+    </div>
+
+    <ul class="list-unstyled">
+      <% @shares.each do |share| %>
+          <% user = share.user %>
+          <li class="media my-1">
+            <img class="d-flex align-self-center mr-3 rounded-circle img-thumbnail" src="<%= user.decorate.avatar_url %>" alt="avatar" style="height: 64px; width: 64px">
+            <div class="media-body">
+              <div class="row mt-4">
+                <div class="col">
+                  <h6 class="mt-0 mb-1"><%= user.decorate.full_name %></h6>
+                </div>
+                <div class="col text-muted"><%= share.role %></div>
+
+                <div class="col bl-acts text-right">
+                  <% if current_user.id == user.id %>
+                      <span class="badge badge-success">It's you</span>
+                  <% else %>
+                      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: 'The recored will be removed. Are you sure?'} %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

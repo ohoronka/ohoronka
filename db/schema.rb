@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828105423) do
+ActiveRecord::Schema.define(version: 20170830094853) do
 
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -60,7 +60,9 @@ ActiveRecord::Schema.define(version: 20170828105423) do
     t.bigint "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
     t.index ["facility_id"], name: "index_facility_shares_on_facility_id"
+    t.index ["user_id", "facility_id"], name: "index_facility_shares_on_user_id_and_facility_id", unique: true
     t.index ["user_id"], name: "index_facility_shares_on_user_id"
   end
 

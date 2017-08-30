@@ -1,0 +1,12 @@
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title">Sharing with <%= @share.user.decorate.full_name %></div>
+    <%= bootstrap_form_for(@share) do |f| %>
+        <%= f.hidden_field :user_id %>
+        <%= f.select :role, FacilityShare::ROLES.keys %>
+        <%= f.form_group class: 'form-acts' do %>
+          <%= f.submit 'Save', class: 'btn btn-save' %>
+        <% end %>
+    <% end %>
+  </div>
+</div>

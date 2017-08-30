@@ -1,0 +1,19 @@
+<div class="bl">
+  <%= render :partial => 'header' %>
+
+  <div class="bl-body">
+    <ul class="list-unstyled">
+      <% shared_with_ids = facility.users.ids %>
+      <% @friends.each do |friend| %>
+          <% content_for :actions do %>
+              <% if shared_with_ids.include?(friend.id) %>
+                <span class="badge badge-success">Already shared</span>
+              <% else %>
+                  <%= link_to 'Share', {action: :new, friend_id: friend}, class: 'btn btn-new' %>
+              <% end %>
+          <% end %>
+          <%= render :partial => 'friends/friend', object: friend %>
+      <% end %>
+    </ul>
+  </div>
+</div>

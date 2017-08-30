@@ -1,13 +1,6 @@
 <div class="bl">
+  <%= render :partial => 'header' %>
   <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-title">Facilities</div>
-      <div class="bl-acts">
-        <%# link_to 'New Facility', {action: :new}, class: 'btn btn-outline-primary btn-act' %>
-        <%# link_to 'New Facility', {action: :new}, class: 'btn btn-outline-primary btn-act' %>
-      </div>
-    </div>
-
     <table class="list">
       <tbody>
       <% @facilities.each do |facility| %>
