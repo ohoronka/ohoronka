@@ -39,7 +39,7 @@ class DevicesController < ApplicationController
   private
 
   helper_method def facility
-    @facility ||= current_user.facilities.find(params[:facility_id])
+    @facility ||= current_user.facilities.owned.find(params[:facility_id])
   end
 
   def set_device

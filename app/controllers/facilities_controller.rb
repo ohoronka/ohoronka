@@ -53,7 +53,7 @@ class FacilitiesController < ApplicationController
   private
 
   helper_method def facility
-    @facility = current_user.facilities.find(params[:id])
+    @facility = current_user.facilities.owned.find(params[:id])
   end
 
   def facility_params
