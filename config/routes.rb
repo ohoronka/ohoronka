@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'shared'
     end
-    resources :shares, controller: :facility_shares do
+    resources :facility_shares do
       collection do
         get 'share_with_friend'
       end

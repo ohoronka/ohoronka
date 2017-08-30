@@ -16,12 +16,16 @@
                 <div class="col">
                   <h6 class="mt-0 mb-1"><%= user.decorate.full_name %></h6>
                 </div>
-                <div class="col text-muted"><%= share.role %></div>
-
-                <div class="col bl-acts text-right">
+                <div class="col text-muted">
+                  <%= share.role %>
                   <% if current_user.id == user.id %>
                       <span class="badge badge-success">It's you</span>
-                  <% else %>
+                <% end %>
+                </div>
+
+                <div class="col bl-acts text-right">
+                  <%= link_to 'Edit', {action: :edit, id: share}, class: 'btn btn-edit' %>
+                  <% if current_user.id != user.id %>
                       <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: 'The recored will be removed. Are you sure?'} %>
                   <% end %>
                 </div>
