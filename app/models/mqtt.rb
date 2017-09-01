@@ -1,4 +1,18 @@
 module Mqtt
+  CONFIG = YAML.load(ERB.new(File.read(Rails.root.join('config/mqtt.yml'))).result)[Rails.env].deep_symbolize_keys
+
+  def self.user_name
+    CONFIG[:user_name]
+  end
+
+  def self.password
+    CONFIG[:password]
+  end
+
+  def self.host
+    CONFIG[:host]
+  end
+
   def self.table_name_prefix
     'mqtt_'
   end

@@ -1,0 +1,14 @@
+development:
+  user_name: mqtt_listener
+  password: password
+  host: localhost
+
+test:
+  user_name: mqtt_listener
+  password: password
+  host: localhost
+
+production:
+  user_name: mqtt_listener
+  password: password
+  host: localhost

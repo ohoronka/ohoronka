@@ -5,7 +5,7 @@ begin
     f.write Process.pid
   end
 
-  MQTT::Client.connect('mqtt://test:test@localhost') do |c|
+  MQTT::Client.connect("mqtt://#{Mqtt.user_name}:#{Mqtt.password}@#{Mqtt.host}") do |c|
     c.get('#') do |topic,message|
       # puts "#{topic}: #{message}"
       MqttWorker.perform_async(:parse_message, topic: topic, message: message)

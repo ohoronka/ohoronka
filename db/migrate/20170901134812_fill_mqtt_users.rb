@@ -4,8 +4,8 @@ class FillMqttUsers < ActiveRecord::Migration[5.1]
       device.send(:set_mqtt_user) unless device.mqtt_user.present?
     end
 
-    unless Mqtt::User.find_by(user_name: 'mqtt_listener')
-      listener = Mqtt::User.create(user_name: 'mqtt_listener')
+    unless Mqtt::User.find_by(user_name: Mqtt.user_name)
+      listener = Mqtt::User.create(user_name: Mqtt.user_name, password: Mqtt.password)
       listener.acls.destroy_all
       listener.acls.create(topic: '#', rw: :full)
     end
