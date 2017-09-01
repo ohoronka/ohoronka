@@ -36,8 +36,14 @@ class Device < ApplicationRecord
       args: {
         config: {
           device: {
+            id: self.id.to_s,
             gpio_listen: self.gpio_listen,
             gpio_pull: self.gpio_pull
+          },
+          mqtt: {
+            client_id: self.id.to_s,
+            user: self.mqtt_user.user_name,
+            pass: self.mqtt_user.password
           }
         }
       },
@@ -52,7 +58,7 @@ class Device < ApplicationRecord
       src: :rpc_result
     }
     # TODO make general mqtt sender or RPC model/service
-    MQTT::Client.connect('mqtt://test:test@localhost') do |c|
+    Mqtt.as_admin do |c|
       c.publish("#{self.id}/rpc", msg_config_set.to_json)
       sleep 0.5
       c.publish("#{self.id}/rpc", msg_config_save.to_json)

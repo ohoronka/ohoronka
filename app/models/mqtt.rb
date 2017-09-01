@@ -17,6 +17,9 @@ module Mqtt
     'mqtt_'
   end
 
+  def self.as_admin(&block)
+    MQTT::Client.connect("mqtt://#{Mqtt.user_name}:#{Mqtt.password}@#{Mqtt.host}", &block)
+  end
 
   # def password_hash(password, salt: nil, iterations: 901)
   #   salt ||= SecureRandom.base64(12)
