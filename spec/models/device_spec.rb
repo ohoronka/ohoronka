@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Device, type: :model do
   let(:device) { create(:device) }
 
+  it 'creates device' do
+    create(:device)
+  end
+
   describe '#update_gpio' do
     before do
       [0b01, 0b10].each do |gpio|

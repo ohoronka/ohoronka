@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830094853) do
+ActiveRecord::Schema.define(version: 20170901134812) do
 
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -77,6 +77,28 @@ ActiveRecord::Schema.define(version: 20170830094853) do
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
+  create_table "mqtt_acls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "mqtt_user_id"
+    t.string "user_name"
+    t.string "topic"
+    t.integer "rw", default: 0
+    t.index ["mqtt_user_id"], name: "index_mqtt_acls_on_mqtt_user_id"
+    t.index ["user_name", "topic"], name: "index_mqtt_acls_on_user_name_and_topic", unique: true
+  end
+
+  create_table "mqtt_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "device_id"
+    t.string "user_name"
+    t.string "password"
+    t.string "password_hash"
+    t.index ["device_id"], name: "index_mqtt_users_on_device_id"
+    t.index ["user_name"], name: "index_mqtt_users_on_user_name", unique: true
+  end
+
   create_table "sensors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -106,4 +128,5 @@ ActiveRecord::Schema.define(version: 20170830094853) do
   add_foreign_key "facility_shares", "facilities"
   add_foreign_key "facility_shares", "users"
   add_foreign_key "friendships", "users"
+  add_foreign_key "mqtt_acls", "mqtt_users"
 end

@@ -5,10 +5,12 @@ class Device < ApplicationRecord
 
   has_many :sensors, inverse_of: :device, dependent: :destroy
   belongs_to :facility, inverse_of: :devices
+  has_one :mqtt_user, :class_name => 'Mqtt::User', dependent: :destroy
 
   validates :name, presence: true
 
   after_touch :update_gpio
+  after_create :set_mqtt_user
 
   def ping!(gpio)
     self.pinged_at = Time.current
@@ -57,21 +59,6 @@ class Device < ApplicationRecord
     end
   end
 
-  # def password_hash(password, salt: nil, iterations: 901)
-  #   salt ||= SecureRandom.base64(12)
-  #   password_hash = Base64.encode64(PBKDF2.new(password: password, salt: salt, iterations: iterations).bin_string)[0..31]
-  #   "PBKDF2$sha256$#{iterations}$#{salt}$#{password_hash}"
-  # end
-
-  def password_hash(password, salt: nil, iterations: 901)
-    salt ||= SecureRandom.base64(12)
-
-    hash = OpenSSL::PKCS5.pbkdf2_hmac(password, salt, iterations, 24, OpenSSL::Digest::SHA256.new)
-    encoded_hash = Base64.strict_encode64(hash)
-
-    "PBKDF2$sha256$#{iterations}$#{salt}$#{encoded_hash}"
-  end
-
   private
 
   def update_gpio
@@ -80,5 +67,9 @@ class Device < ApplicationRecord
       self.send("#{gpio}=".to_sym, sensors.map(&gpio).inject(&:|) || 0)
     end
     save!
+  end
+
+  def set_mqtt_user
+    self.create_mqtt_user(user_name: self.id)
   end
 end
