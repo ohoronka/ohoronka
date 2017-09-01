@@ -30,4 +30,10 @@ RSpec.describe Device, type: :model do
       device.ping!(0b00)
     end
   end
+
+  describe '#password_hash' do
+    it 'generates hash' do
+      expect(Device.new.password_hash('password', salt: 'cTiaovSH5BgWlU7m')).to eq('PBKDF2$sha256$901$cTiaovSH5BgWlU7m$Iq1z7pg0sl92aGhLI6cMyv3+0iPcRNro')
+    end
+  end
 end

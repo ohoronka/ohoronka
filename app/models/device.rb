@@ -57,6 +57,11 @@ class Device < ApplicationRecord
     end
   end
 
+  def password_hash(password, salt: nil, iterations: 901)
+    salt ||= SecureRandom.base64(12)
+    password_hash = Base64.encode64(PBKDF2.new(password: password, salt: salt, iterations: iterations).bin_string)[0..31]
+    "PBKDF2$sha256$#{iterations}$#{salt}$#{password_hash}"
+  end
 
   private
 

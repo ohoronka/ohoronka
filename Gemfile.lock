@@ -1,4 +1,10 @@
 GIT
+  remote: git@github.com:emerose/pbkdf2-ruby.git
+  revision: f9a337e3559de7e61792f2c761a91ea57d53e095
+  specs:
+    pbkdf2 (0.2.2)
+
+GIT
   remote: https://github.com/seuros/capistrano-puma.git
   revision: 00708fa18a029cb34f46aef60f920106c0c00107
   specs:
@@ -321,6 +327,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mqtt
   mysql2 (>= 0.3.18, < 0.5)
+  pbkdf2!
   pry-rails
   puma (~> 3.7)
   rails (~> 5.1.0.rc2)
