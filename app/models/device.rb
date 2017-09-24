@@ -65,6 +65,24 @@ class Device < ApplicationRecord
     end
   end
 
+  def rpc(method, params)
+    body = {
+      method: method,
+      args: params,
+      src: :rpc_result
+    }
+    Mqtt.as_admin do |c|
+      c.publish("#{self.id}/rpc", body.to_json)
+    end
+  end
+
+  def check_alarm(device_alarm)
+    device_alarm = device_alarm != 0
+    if device_alarm != facility.alarm_status?
+      self.rpc('alarm', {enabled: (facility.alarm_status? ? 1 : 0)})
+    end
+  end
+
   private
 
   def update_gpio

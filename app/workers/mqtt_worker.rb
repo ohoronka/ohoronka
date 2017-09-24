@@ -13,7 +13,10 @@ class MqttWorker
     case topic
     when 'm'
       msg = JSON.parse(params['message'])
-      Device.find(params['topic'].split('/').first).ping!(msg['gpio'])
+      device = Device.find(device_id)
+      device.ping!(msg['gpio'])
+      # TODO: move implementation to device model
+      device.check_alarm(msg['alarm'])
     when 'rpc'
       Rails.logger.info("RPC message received: #{params['topic']}:#{params['message']}")
     else
