@@ -18,3 +18,8 @@
 //= require jsrender
 //= require bootstrap-sprockets
 //= require jquery.backstretch
+
+
+var flash = function (message) {
+    $('#flash').prepend('<div class="alert alert-dark alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span> </button>' + message + '</div>');
+};
