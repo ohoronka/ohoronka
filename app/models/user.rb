@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friends, class_name: 'User', through: :friendships
   has_many :friend_requests, class_name: 'Friendship', foreign_key: :friend_id
+  has_many :notifications, dependent: :destroy, inverse_of: :user
 
   validates :email, uniqueness: {case_sensitive: false}
 
