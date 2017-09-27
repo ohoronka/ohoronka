@@ -5,6 +5,7 @@ class FacilitiesController < ApplicationController
   def index
     @facilities = current_user.facilities.owned
     current_user.notifications.facility_share.unread.update_all(unread: false)
+    redirect_to @facilities.to_a.first if (@facilities.to_a.count == 1) && (request.fullpath == '/')
   end
 
   def shared

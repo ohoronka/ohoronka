@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     @current_admin ||= User.find_by(id: session[:admin_id])
   end
 
-  def mobile?
+  helper_method def mobile?
     @_mobile ||= request.user_agent =~ /Mobile|webOS/
   end
 

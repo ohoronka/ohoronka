@@ -6,6 +6,8 @@
 @import "signup/form-elements";
 @import "signup/style";
 
+@import "mobile";
+
 .has-error{
   input{
     @extend .is-invalid;

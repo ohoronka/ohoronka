@@ -1,0 +1,9 @@
+@include media-breakpoint-down(sm) {
+  .inner-bg {
+    padding-top: 0px;
+  }
+
+  .form-box.sign-in {
+    margin-top: -54px;
+  }
+}
