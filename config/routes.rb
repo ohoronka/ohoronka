@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/sign_in' => 'sessions#new'
   post '/sign_in' => 'sessions#create'
   delete '/sign_out' => 'sessions#destroy'
-
+  post 'change_version' => 'sessions#change_version'
   resources :facilities do
     member do
       patch :set_next_status

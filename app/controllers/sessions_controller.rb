@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authorize, only: [:new, :create]
-  before_action :redirect_if_signed_in, except: [:destroy]
+  before_action :redirect_if_signed_in, except: [:destroy, :change_version]
   layout 'sign_up'
 
   def new
@@ -19,6 +19,15 @@ class SessionsController < ApplicationController
   def destroy
     SessionService.new.sign_out(self)
     redirect_to sign_in_path
+  end
+
+  def change_version
+    if mobile?
+      session[:full_version] = true
+    else
+      session[:full_version] = false
+    end
+    redirect_back(fallback_location: root_path)
   end
 
   private

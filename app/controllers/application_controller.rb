@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method def mobile?
-    @_mobile ||= request.user_agent =~ /Mobile|webOS/
+    @_mobile ||= !session[:full_version] && (request.user_agent =~ /Mobile|webOS/)
   end
 
   def prepare_for_mobile
