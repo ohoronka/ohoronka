@@ -103,8 +103,9 @@ ActiveRecord::Schema.define(version: 20170925153212) do
     t.bigint "user_id"
     t.string "target_type"
     t.bigint "target_id"
-    t.string "message"
-    t.integer "status", default: 0
+    t.integer "event", default: 0
+    t.boolean "unread", default: true
+    t.string "params"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["target_type", "target_id"], name: "index_notifications_on_target_type_and_target_id"

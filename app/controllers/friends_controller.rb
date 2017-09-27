@@ -1,6 +1,7 @@
 class FriendsController < ApplicationController
   def index
     @friendships = current_user.friendships
+    current_user.notifications.accepted_friendship.unread.update_all(unread: false)
   end
 
   def find
@@ -10,18 +11,21 @@ class FriendsController < ApplicationController
 
   def requests
     @requests = current_user.friend_requests.pending_status.includes(:user)
+    current_user.notifications.friendship_request.unread.update_all(unread: false)
   end
 
   def accept
     @request = current_user.friend_requests.find(params[:id])
     @request.accepted_status!
     current_user.friendships.create(friend: @request.user, status: :accepted)
+    @request.user.notifications.create(event: :accepted_friendship, target: @request)
     redirect_to action: :index
   end
 
   def add
     @friend = User.where.not(id: current_user.id).find(params[:id])
-    current_user.friendships.create(friend: @friend)
+    @request = current_user.friendships.create(friend: @friend)
+    @friend.notifications.create(event: :friendship_request, target: @request)
     redirect_to action: :index
   end
 

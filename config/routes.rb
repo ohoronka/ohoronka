@@ -42,6 +42,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :notifications
+
   resources :users do
     get 'crop_avatar', on: :member
   end

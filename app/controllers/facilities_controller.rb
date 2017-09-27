@@ -4,10 +4,12 @@ class FacilitiesController < ApplicationController
 
   def index
     @facilities = current_user.facilities.owned
+    current_user.notifications.facility_share.unread.update_all(unread: false)
   end
 
   def shared
     @facilities = current_user.facilities.shared
+    current_user.notifications.facility_share.unread.update_all(unread: false)
   end
 
   def show

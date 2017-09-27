@@ -48,6 +48,6 @@ class Facility < ApplicationRecord
   def disable_devices_alarm
     devices.each do |device|
       device.rpc('alarm', {enabled: (alarm_status? ? 1 : 0)})
-    end if saved_changes['status'].include?('alarm')
+    end if saved_changes['status']&.include?('alarm')
   end
 end

@@ -31,6 +31,7 @@ class FacilitySharesController < ApplicationController
     @friend = current_user.friends.find(share_params[:user_id])
     @share = facility.shares.new(user: @friend, role: share_params[:role])
     if @share.save
+      @friend.notifications.create(event: :facility_share, target: @share, params: {initiator: current_user.id})
       redirect_to action: :index
     else
       render :new

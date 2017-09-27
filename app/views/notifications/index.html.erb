@@ -1,0 +1,23 @@
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title">Notifications</div>
+
+    <table class="list">
+      <tbody>
+        <% @notifications.each do |notification| %>
+          <tr>
+            <td>
+              <%= notification.decorate.message %>
+              <% if notification.unread? %>
+                  <span class="badge badge-primary">New</span>
+              <% end %>
+            </td>
+            <td class="act-col">
+              <%= link_to 'Go', notification.decorate.url, class: 'btn btn-success' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
