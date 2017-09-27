@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925153212) do
+ActiveRecord::Schema.define(version: 20170927134637) do
 
   create_table "channels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(version: 20170925153212) do
     t.text "about"
     t.string "avatar"
     t.string "background"
+    t.string "auth_token"
+    t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
   end
 
   add_foreign_key "channels", "users"

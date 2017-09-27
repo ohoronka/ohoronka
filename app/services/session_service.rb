@@ -17,11 +17,13 @@ class SessionService
   end
 
   def authorize(user, controller)
+    controller.send(:cookies).permanent[:auth_token] = user.auth_token
     controller.session[:user_id] = user.id
     controller.session[:admin_id] = user.id if user.admin?
   end
 
   def sign_out(controller)
+    controller.send(:cookies).delete(:auth_token)
     controller.reset_session
   end
 

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
+  before_create  :generate_auth_token
 
   has_many :facility_shares, inverse_of: :user, dependent: :destroy
   has_many :facilities, through: :facility_shares
@@ -22,5 +23,9 @@ class User < ApplicationRecord
 
   def crop_avatar
     avatar.recreate_versions! if crop_x.present?
+  end
+
+  def generate_auth_token
+    self.auth_token = SecureRandom.urlsafe_base64
   end
 end

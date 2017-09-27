@@ -12,7 +12,13 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    if session[:user_id].blank?
+      @current_user = User.find_by(auth_token: cookies[:auth_token])
+      SessionService.new.authorize(@current_user, self) if @current_user
+      @current_user
+    else
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
   end
 
   helper_method def current_admin

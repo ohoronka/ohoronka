@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    SessionService.new.sign_out(self)
     redirect_to sign_in_path
   end
 
