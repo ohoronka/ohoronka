@@ -1,0 +1,30 @@
+#development:
+#  address: smtp.gmail.com
+#  port: 587
+#  user_name: user@gmail.com
+#  password: password
+#  authentication: plain
+#  enable_starttls_auto: true
+#  from: user@gmail.com
+
+development:
+  address: smtp.example.com
+  port: 587
+  user_name: user_name
+  password: password
+  authentication: plain
+  enable_starttls_auto: true
+  from: user@example.com
+
+test:
+  address: mail.example.com
+  from: user@example.com
+
+production:
+  address: smtp.example.com
+  port: 587
+  user_name: user_name
+  password: password
+  authentication: plain
+  enable_starttls_auto: true
+  from: noreply@ohoronka.com
