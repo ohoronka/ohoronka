@@ -52,7 +52,9 @@ class SensorsController < ApplicationController
   end
 
   def sensor_params
-    params.require(:sensor).permit(:name, :gpio_listen, :gpio_ok, :gpio_pull) # TODO handle gpio fields
+    p = params.require(:sensor).permit(:name, :gpio_listen, :gpio_ok, :gpio_pull)
+    p[:gpio_ok] = p[:gpio_listen] if p[:gpio_listen]
+    p
   end
 
   def set_sensor
