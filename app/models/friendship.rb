@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: friendships
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#  friend_id  :integer
+#  status     :integer          default("pending")
+#
+
 class Friendship < ApplicationRecord
   STATUSES = {
     pending: 0,

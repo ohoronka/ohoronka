@@ -57,6 +57,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.2'
   gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-sidekiq'
+  gem 'annotate', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

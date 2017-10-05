@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: mqtt_users
+#
+#  id            :integer          not null, primary key
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  device_id     :integer
+#  user_name     :string(255)
+#  password      :string(255)
+#  password_hash :string(255)
+#
+
 class Mqtt::User < ApplicationRecord
   belongs_to :device, inverse_of: :mqtt_user, optional: true
   has_many :acls, :class_name => 'Mqtt::Acl', inverse_of: :mqtt_user, dependent: :destroy, foreign_key: :mqtt_user_id

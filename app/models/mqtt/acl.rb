@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: mqtt_acls
+#
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  mqtt_user_id :integer
+#  user_name    :string(255)
+#  topic        :string(255)
+#  rw           :integer          default("none")
+#
+
 class Mqtt::Acl < ApplicationRecord
   RW = {
     none: 0,
