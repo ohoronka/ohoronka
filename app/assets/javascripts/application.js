@@ -26,5 +26,6 @@ var flash = function (message) {
 };
 
 jQuery(document).ready(function() {
-    jQuery("time.timeago").timeago();
+    jQuery(".js-timeago").timeago();
+    setInterval(function(){jQuery(".js-timeago").timeago();}, 7000);
 });

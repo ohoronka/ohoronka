@@ -41,7 +41,7 @@
     <% @facility.events.dashboard_list.each do |event| %>
         <tr>
           <td><%= event.target.name %></td>
-          <td><time class="timeago" datetime="<%= event.created_at.to_s(:iso8601) %>"><%= event.created_at %></time></td>
+          <td><time class="js-timeago" datetime="<%= event.created_at.to_s(:iso8601) %>"><%= event.created_at %></time></td>
           <td class="text-right">
             <span class="badge badge-<%= event.target_status %>"><%= event.target_status %></span>
           </td>
@@ -54,7 +54,7 @@
 <script id="event_template" type="text/x-jsrender">
   <tr id="event_{{:id}}">
     <td>{{>target_name}}</td>
-    <td><time class="timeago" datetime="{{>created_at}}">{{>created_at}}</time></td>
+    <td><time class="js-timeago" datetime="{{>created_at}}">{{>created_at}}</time></td>
     <td class="text-right">
       <span class="badge badge-{{:target_status}}">{{>target_status}}</span>
     </td>
@@ -89,7 +89,7 @@
             },
             event_created: function(data) {
                 $('#events tbody').prepend(event_tmpl.render(data.event));
-                $("#event_" + data.event.id + ' time.timeago').timeago();
+                $("#event_" + data.event.id + ' .js-timeago').timeago();
                 $('#events tbody tr:last').remove();
             },
             sensor_updated: function(data) {
