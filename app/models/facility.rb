@@ -46,7 +46,7 @@ class Facility < ApplicationRecord
       alarm_status!
       users.each do |user|
         user.channels.each do |channel|
-          channel.notify("Alarm on facility #{name}!")
+          channel.notify_facility_alrm(self)
         end
       end
     end
@@ -54,6 +54,10 @@ class Facility < ApplicationRecord
 
   def next_status
     STATUS_FLOW[status.to_sym].first.to_s
+  end
+
+  def disable_alarm
+    idle_status! if alarm_status?
   end
 
   def disable_devices_alarm

@@ -21,6 +21,18 @@ class Channel::Telegram < Channel
     end
   end
 
+  def notify_facility_alrm(facility)
+    ::Telegram.bot.run do |bot|
+      kb = [
+        ::Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Disable', callback_data: {method: :disable_alarm, facility_id: facility.id}.to_json),
+        ::Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Details', url: facility_url(facility))
+      ]
+      puts facility_url(facility)
+      markup = ::Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
+      bot.api.send_message(chat_id: identifier, text: "Alarm at #{facility.name}", reply_markup: markup)
+    end
+  end
+
   def url
     "https://telegram.me/#{::Telegram::CONFIG[:bot_name]}?start=#{auth_token}"
   end

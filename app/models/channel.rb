@@ -11,7 +11,6 @@
 #  identifier :string(255)
 #  activated  :boolean          default(FALSE)
 #
-
 class Channel < ApplicationRecord
   belongs_to :user
 end
