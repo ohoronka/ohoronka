@@ -26,3 +26,4 @@
 /config/telegram.yml
 /public/uploads/
 /config/mqtt.yml
+/config/smtp.yml

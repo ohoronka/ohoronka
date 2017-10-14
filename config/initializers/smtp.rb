@@ -1,0 +1,1 @@
+ActionMailer::Base.smtp_settings = Rails.application.config_for('smtp').deep_symbolize_keys
