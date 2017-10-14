@@ -10,4 +10,8 @@ class FacilityDecorator < ApplicationDecorator
   #       facility.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
+  def next_status
+    human_enum_name(:next_status, object.next_status)
+  end
 end

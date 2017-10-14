@@ -1,0 +1,43 @@
+uk:
+  activerecord:
+    models:
+      user:
+        one: Користувач
+        other: Користувачі
+      facilities:
+        one: Об'єкт
+        other: Об'єкти
+    attributes:
+      user:
+        id: '#'
+        first_name: Ім'я
+        last_name: Прізвище
+        email: Email
+        password_digest: Пароль
+        admin: Адміністратор
+        created_at: Створений
+        updated_at: Змінений
+        about: Опис
+        avatar: Аватар
+        background: Фон
+      facility:
+        next_statuses:
+          idle: Зняти
+          protected: Захистити
+          alarm: Тривога
+        name: Назва
+        status: Статус
+  all_statuses:
+    idle: Знято
+    protected: Захищено
+    alarm: Тривога
+    ok: OK
+    online: На зв'язку
+    offline: Нема зв'язку
+
+
+  admin:
+    users:
+      index:
+        loing_as: "Увійти як"
+  last_events: "Останні події"

@@ -1,14 +1,14 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Users</h3>
+    <h3 class="panel-title"><%= User.model_name.human(count: 2) %></h3>
   </div>
 
   <table class="table">
     <thead>
     <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Email</th>
+      <th><%= User.human_attribute_name(:id) %></th>
+      <th><%= User.human_attribute_name(:full_name) %></th>
+      <th><%= User.human_attribute_name(:email) %></th>
       <th></th>
     </tr>
     </thead>
@@ -20,7 +20,7 @@
         <td><%= user.decorate.full_name %></td>
         <td><%= user.email %></td>
         <td class="text-right">
-          <%= link_to 'Login as', {action: :login_as, id: user.id}, class: 'btn btn-success btn-sm', method: :patch %>
+          <%= link_to t('.loing_as'), {action: :login_as, id: user.id}, class: 'btn btn-success btn-sm', method: :patch %>
         </td>
       </tr>
     <% end %>

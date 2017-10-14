@@ -49,5 +49,7 @@ module Ohoronka
     # def read_config(name, env: Rails.env)
     #   YAML.load(ERB.new(File.read(Rails.root.join("config/#{name}.yml"))).result)[env].deep_symbolize_keys
     # end
+
+    config.i18n.default_locale = :uk
   end
 end

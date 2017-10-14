@@ -22,4 +22,12 @@ class ApplicationDecorator < Draper::Decorator
   def css_next_status
     CSS_STATUSES[object.next_status]
   end
+
+  def status
+    human_enum_name(:status, object.status)
+  end
+
+  def human_enum_name(enum_name, enum_value)
+    I18n.t("all_statuses.#{enum_value}")
+  end
 end

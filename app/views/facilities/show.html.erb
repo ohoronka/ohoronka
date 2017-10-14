@@ -3,10 +3,10 @@
     <div class="bl-title-bl">
       <div class="bl-title">
         <%= @facility.name %>
-        <span class="badge badge-<%= @facility.status %>"><%= @facility.status %></span>
+        <span class="badge badge-<%= @facility.status %>"><%= @facility.decorate.status %></span>
       </div>
       <div class="bl-acts">
-        <%= link_to "Set #{@facility.next_status}",
+        <%= link_to @facility.decorate.next_status,
           set_next_status_facility_path(@facility),
           class: "btn btn-act btn-#{@facility.next_status}",
           remote: true,
@@ -21,7 +21,7 @@
           <tr id="sensor_<%= sensor.id %>">
             <td><%= sensor.name %></td>
             <td class="text-right">
-              <span class="badge badge-<%= sensor.status %>"><%= sensor.status %></span>
+              <span class="badge badge-<%= sensor.status %>"><%= sensor.decorate.status %></span>
             </td>
           </tr>
       <% end %>
@@ -33,7 +33,7 @@
 
 <div class="bl">
   <div class="bl-body">
-    <div class="bl-title">Last events</div>
+    <div class="bl-title"><%= t('last_events') %></div>
   </div>
 
   <table class="list" id="events">
@@ -41,9 +41,9 @@
     <% @facility.events.dashboard_list.each do |event| %>
         <tr>
           <td><%= event.target.name %></td>
-          <td><time class="js-timeago" datetime="<%= event.created_at.to_s(:iso8601) %>"><%= event.created_at %></time></td>
+          <td><time class="js-timeago" datetime="<%= event.created_at.to_s(:iso8601) %>"><%= l event.created_at %></time></td>
           <td class="text-right">
-            <span class="badge badge-<%= event.target_status %>"><%= event.target_status %></span>
+            <span class="badge badge-<%= event.target_status %>"><%= event.decorate.target_status %></span>
           </td>
         </tr>
     <% end %>
