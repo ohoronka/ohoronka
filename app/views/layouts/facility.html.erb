@@ -3,10 +3,10 @@
       <div class="bl-body">
         <div class="bl-title-bl">
           <div class="bl-title">
-            Navigation
+            <%= t '.navigation' %>
           </div>
           <div class="bl-acts">
-            <%= link_to 'New Facility', new_facility_path, class: 'btn btn-new btn-act card-link' %>
+            <%= link_to t('facility.new'), new_facility_path, class: 'btn btn-new btn-act card-link' %>
 
           </div>
         </div>
@@ -14,23 +14,23 @@
         <ul class="links-list">
           <li>
             <i class="fa fa-home" aria-hidden="true"></i>
-            <%= link_to facility.name, facility_path(facility) %>
+            <%= link_to t('.dashboard'), facility_path(facility) %>
           </li>
           <li>
             <i class="fa fa-calculator" aria-hidden="true"></i>
-            <%= link_to 'Devices', facility_devices_path(facility) %>
+            <%= link_to Device.model_name.human(count: 2), facility_devices_path(facility) %>
           </li>
           <li>
             <i class="fa fa-eye" aria-hidden="true"></i>
-            <%= link_to 'Sensors', facility_sensors_path(facility) %>
+            <%= link_to Sensor.model_name.human(count: 2), facility_sensors_path(facility) %>
           </li>
           <li>
             <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            <%= link_to 'Events', facility_events_path(facility) %>
+            <%= link_to Event.model_name.human(count: 2), facility_events_path(facility) %>
           </li>
           <li>
             <i class="fa fa-share-alt" aria-hidden="true"></i>
-            <%= link_to 'Shares', facility_facility_shares_path(facility) %>
+            <%= link_to FacilityShare.model_name.human(count: 2), facility_facility_shares_path(facility) %>
           </li>
         </ul>
       </div>

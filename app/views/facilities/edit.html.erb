@@ -1,9 +1,9 @@
 <div class="bl">
   <div class="bl-body">
     <div class="bl-title-bl">
-      <div class="bl-title">Editing <%= @facility.name %></div>
+      <div class="bl-title"><%= t('actions.edit') %> <%= @facility.name %></div>
       <div class="bl-acts">
-        <%= link_to 'Destroy', {action: :destroy}, class: 'btn btn-destroy', method: :delete, data: {confirm: 'Record will be completely destroyed. Are you sure?'} %>
+        <%= link_to t('actions.destroy_with_icon_html'), {action: :destroy}, class: 'btn btn-destroy', method: :delete, data: {confirm: t('confirm.destroy')} %>
       </div>
     </div>
 

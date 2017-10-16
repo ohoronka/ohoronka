@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Ohoronka</title>
+  <title>OHORONKA</title>
 
   <%= csrf_meta_tags %>
 
@@ -33,9 +33,10 @@
             <img src="<%= current_user.decorate.avatar_url %>" alt="Me" class="rounded-circle" style="width: 40px; height: 40px;">
           </button>
           <div class="dropdown-menu dropdown-menu-right" style="right: 0px; left: auto;" aria-labelledby="profile-menu-button">
-            <%= link_to 'Full version', change_version_path, class: 'dropdown-item', method: :post %>
+            <%= link_to t('.full_version'), change_version_path, class: 'dropdown-item', method: :post %>
+            <%= link_to t('.channels'), channels_path, class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Sign Out', sign_out_path, method: :delete, class: 'dropdown-item' %>
+            <%= link_to t('.sign_out'), sign_out_path, method: :delete, class: 'dropdown-item' %>
           </div>
         </div>
       </div>
@@ -46,10 +47,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <%= link_to 'Facilities', facilities_path, class: 'nav-link' %>
+            <%= link_to Facility.model_name.human(count: 2), facilities_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Friends', friends_path, class: 'nav-link' %>
+            <%= link_to t('.friends'), friends_path, class: 'nav-link' %>
           </li>
         </ul>
 
@@ -68,10 +69,10 @@
                 <img src="<%= current_user.decorate.avatar_url %>" alt="Me" class="rounded-circle" style="width: 40px; height: 40px;">
               </button>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-menu-button">
-                <%= link_to 'Mobile version', change_version_path, class: 'dropdown-item', method: :post if session[:full_version] %>
-                <%= link_to 'Profile', edit_user_path(current_user), class: 'dropdown-item' %>
+                <%= link_to t('.mobile_version'), change_version_path, class: 'dropdown-item', method: :post if session[:full_version] %>
+                <%= link_to t('.profile'), edit_user_path(current_user), class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
-                <%= link_to 'Sign Out', sign_out_path, method: :delete, class: 'dropdown-item' %>
+                <%= link_to t('.sign_out'), sign_out_path, method: :delete, class: 'dropdown-item' %>
               </div>
             </div>
           </li>

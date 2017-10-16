@@ -4,9 +4,21 @@ uk:
       user:
         one: Користувач
         other: Користувачі
-      facilities:
+      facility:
         one: Об'єкт
         other: Об'єкти
+      device:
+        one: Пристрій
+        other: Пристрої
+      sensor:
+        one: Датчик
+        other: Датчики
+      event:
+        one: Подія
+        other: Події
+      facility_share:
+        one: Доступ
+        other: Доступи
     attributes:
       user:
         id: '#'
@@ -34,10 +46,37 @@ uk:
     ok: OK
     online: На зв'язку
     offline: Нема зв'язку
+  layouts:
+    general:
+      full_version: Повна версія
+      channels: Повідомлення
+      sign_out: Вихід
+      friends: "Друзі"
+      mobile_version: "Мобідльна версія"
+      profile: "Профіль"
+    facility:
+      navigation: Навігація
+      dashboard: Головна
 
+  actions:
+    new: Додати
+    edit: Редагувати
+    edit_with_icon_html: '<i class="fa fa-cog" aria-hidden="true"></i> Редагувати'
+    destroy: Видалити
+    destroy_icon_html: '<i class="fa fa-trash-o" aria-hidden="true"></i>'
+    destroy_with_icon_html: '<i class="fa fa-trash-o" aria-hidden="true"></i> Видалити'
+    save: "Зберегти"
+    cancel: "Відміна"
+
+  facility:
+    new: Новий об'єкт
+    mine: "Мої об'єкти"
+    shared_with_me: "Розшарені зі мною"
 
   admin:
     users:
       index:
         loing_as: "Увійти як"
   last_events: "Останні події"
+  confirm:
+    destroy: "Запис буде остаточно відалено. Ви впевнені?"

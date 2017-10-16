@@ -7,15 +7,15 @@
           <tr>
             <td><%= link_to facility.name, {action: :show, id: facility} %></td>
             <td class="act-col">
-              <%= link_to '<i class="fa fa-cog" aria-hidden="true"></i> Edit'.html_safe, {action: :edit, id: facility.id}, class: 'btn btn-edit' %>
-              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy', data: {confirm: 'Record will be remowed! Sure?'} %>
+              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: facility.id}, class: 'btn btn-edit' %>
+              <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
             </td>
           </tr>
       <% end %>
       </tbody>
     </table>
 
-    <%= link_to 'New Facility', {action: :new}, class: 'btn btn-new btn-act card-link' %>
+    <%= link_to t('facility.new'), {action: :new}, class: 'btn btn-new btn-act card-link' %>
   </div>
 
 </div>

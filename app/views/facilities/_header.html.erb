@@ -1,10 +1,10 @@
 <div class="card-header">
   <ul class="nav nav-tabs card-header-tabs">
     <li class="nav-item">
-      <a class="nav-link <%= 'active' if params[:action] == 'index' %>" href="<%= facilities_path %>">My Facilities</a>
+      <a class="nav-link <%= 'active' if params[:action] == 'index' %>" href="<%= facilities_path %>"><%= t('facility.mine') %></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <%= 'active' if params[:action] == 'shared' %>" href="<%= shared_facilities_path %>">Shared With Me</a>
+      <a class="nav-link <%= 'active' if params[:action] == 'shared' %>" href="<%= shared_facilities_path %>"><%= t('facility.shared_with_me') %></a>
     </li>
   </ul>
 </div>
