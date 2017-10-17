@@ -5,7 +5,14 @@ class ApplicationController < ActionController::Base
   before_action :authorize
   before_action :prepare_for_mobile
 
+  around_action :with_timezone
+
   protected
+
+  def with_timezone
+    timezone = Time.find_zone(cookies[:timezone])
+    Time.use_zone(timezone) { yield }
+  end
 
   def authorize
     redirect_to sign_in_path unless current_user

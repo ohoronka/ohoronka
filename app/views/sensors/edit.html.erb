@@ -1,7 +1,7 @@
 <div class="bl">
   <div class="bl-body">
     <div class="bl-title">
-      Editing sensor <%= @sensor.name %>
+      <%= Sensor.model_name.human %> <%= @sensor.name %>
     </div>
 
     <%= render :partial => 'form' %>

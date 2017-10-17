@@ -14,7 +14,7 @@
           <tr>
             <td><%= link_to channel.type, {action: :show, id: channel} %></td>
             <td class="act-col">
-              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: channel}, method: :delete, class: 'btn btn-destroy', data: {confirm: 'The record will be removed! Are you sure?'} %>
+              <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: channel}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
             </td>
           </tr>
       <% end %>

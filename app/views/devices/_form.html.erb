@@ -1,7 +1,7 @@
 <%= bootstrap_form_for([facility, @device]) do |f| %>
     <%= f.text_field :name %>
     <%= f.form_group class: 'form-btns' do %>
-        <%= f.submit 'Save', class: 'btn btn-save' %>
-        <%= link_to 'Cancel', {action: :index}, class: 'btn btn-cancel' %>
+        <%= f.submit t('actions.save'), class: 'btn btn-save' %>
+        <%= link_to t('actions.cancel'), {action: :index}, class: 'btn btn-cancel' %>
     <% end %>
 <% end %>

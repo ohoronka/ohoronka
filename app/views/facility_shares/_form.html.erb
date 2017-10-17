@@ -2,6 +2,6 @@
     <%= f.hidden_field :user_id %>
     <%= f.select :role, FacilityShare::ROLES.keys %>
     <%= f.form_group class: 'form-acts' do %>
-        <%= f.submit 'Save', class: 'btn btn-save' %>
+        <%= f.submit t('actions.save'), class: 'btn btn-save' %>
     <% end %>
 <% end %>

@@ -1,14 +1,14 @@
 <div class="bl">
   <div class="bl-body">
-    <div class="bl-title">Events</div>
+    <div class="bl-title"><%= Event.model_name.human(count: 2) %></div>
 
     <table class="list">
       <tbody>
       <% @events.each do |event| %>
           <tr>
             <td><%= event.target.name %></td>
-            <td><%= event.created_at %></td>
-            <td class="text-right"><span class="badge badge-<%= event.target_status %>"><%= event.target_status %></span></td>
+            <td><%= l(event.created_at, format: :short) %></td>
+            <td class="text-right"><span class="badge badge-<%= event.target_status %>"><%= event.decorate.target_status %></span></td>
           </tr>
       <% end %>
       </tbody>

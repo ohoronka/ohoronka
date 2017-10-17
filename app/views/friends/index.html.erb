@@ -5,7 +5,7 @@
       <% @friendships.each do |friendship| %>
           <% friend = friendship.friend %>
           <% content_for :actions do %>
-              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, reject_friend_path(friendship), class: 'btn btn-destroy', method: :delete %>
+              <%= link_to t('actions.destroy_icon_html'), reject_friend_path(friendship), class: 'btn btn-destroy', method: :delete %>
           <% end %>
 
           <%= render :partial => 'friend', object: friend %>

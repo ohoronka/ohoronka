@@ -39,6 +39,12 @@ uk:
           alarm: Тривога
         name: Назва
         status: Статус
+      device:
+        name: Назва
+        status: Статус
+      sensor:
+        name: Назва
+        gpio_listen: Порт
   all_statuses:
     idle: Знято
     protected: Захищено
@@ -67,6 +73,7 @@ uk:
     destroy_with_icon_html: '<i class="fa fa-trash-o" aria-hidden="true"></i> Видалити'
     save: "Зберегти"
     cancel: "Відміна"
+    select: "Вибрати"
 
   facility:
     new: Новий об'єкт
@@ -80,3 +87,20 @@ uk:
   last_events: "Останні події"
   confirm:
     destroy: "Запис буде остаточно відалено. Ви впевнені?"
+  device:
+    new: "Додати девайс"
+  sensor:
+    new: "Додати сенсор"
+    select_device: "Оберіть пристрій до якого треба додаті сенсор"
+  sessions:
+    new:
+      login_and_register_forms: "Вхід & Реєстрація"
+      slogan: "Захисти своє майно"
+      login: "Увійти до сайту"
+      enter_email_and_password: "Введіть свій E-mail і пароль"
+      email: "E-mail"
+      password: "Пароль"
+      sign_in: "Увійти"
+      sign_up_form: "Реєстрація"
+      fill_in_registration_form: "Заповніть форму щоб зареєструватися"
+      register: "Зареєструватися"

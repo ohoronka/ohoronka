@@ -1,9 +1,9 @@
 <div class="bl">
   <div class="bl-body">
     <div class="bl-title-bl">
-      <div class="bl-title">Sensors</div>
+      <div class="bl-title"><%= Sensor.model_name.human(count: 2) %></div>
       <div class="bl-acts">
-        <%= link_to 'Add Sensor', {action: :select_device}, class: 'btn btn-new' %>
+        <%= link_to t('sensor.new'), {action: :select_device}, class: 'btn btn-new' %>
       </div>
     </div>
 
@@ -15,8 +15,8 @@
             <td><small class="text-muted">Device:</small> <%= sensor.device.name %></td>
             <td><span class="badge badge-<%= sensor.status %>"><%= sensor.status %></span></td>
             <td class="act-col">
-              <%= link_to 'Edit', {action: :edit, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-edit' %>
-              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-destroy', data: {confirm: 'Record will be completely destroyed. Are you sure?'}, method: :delete %>
+              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-edit' %>
+              <%= link_to t('actions.destroy_icon_html'), {action: :destroy, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
             </td>
           </tr>
       <% end %>

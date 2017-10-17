@@ -24,9 +24,9 @@
                 </div>
 
                 <div class="col bl-acts text-right">
-                  <%= link_to 'Edit', {action: :edit, id: share}, class: 'btn btn-edit' %>
+                  <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: share}, class: 'btn btn-edit' %>
                   <% if current_user.id != user.id %>
-                      <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: 'The recored will be removed. Are you sure?'} %>
+                      <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
                   <% end %>
                 </div>
               </div>

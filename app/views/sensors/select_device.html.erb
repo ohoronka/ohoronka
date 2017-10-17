@@ -1,7 +1,7 @@
 <div class="bl">
   <div class="bl-body">
     <div class="bl-title">
-      Select a device to add sensor to
+      <%= t('sensor.select_device') %>
     </div>
 
     <table class="list">
@@ -10,7 +10,7 @@
           <tr>
             <td><%= device.name %></td>
             <td class="act-col">
-              <%= link_to 'Select', {action: :new, device_id: device.id }, class: 'btn btn-success btn-xs' %>
+              <%= link_to t('actions.select'), {action: :new, device_id: device.id }, class: 'btn btn-success btn-xs' %>
             </td>
           </tr>
       <% end %>

@@ -19,6 +19,8 @@
 //= require bootstrap-sprockets
 //= require jquery.backstretch
 //= require jquery.timeago
+//= require jstz
+//= require js.cookie
 
 
 var flash = function (message) {
@@ -28,4 +30,7 @@ var flash = function (message) {
 $( document ).on('turbolinks:load', function() {
     jQuery(".js-timeago").timeago();
     setInterval(function(){jQuery(".js-timeago").timeago();}, 7000);
+
+    var tz = jstz.determine();
+    Cookies.set('timezone', tz.name());
 });

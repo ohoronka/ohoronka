@@ -23,8 +23,12 @@ class ApplicationDecorator < Draper::Decorator
     CSS_STATUSES[object.next_status]
   end
 
-  def status
-    human_enum_name(:status, object.status)
+  def status(field: :status)
+    human_enum_name(:status, object.send(field))
+  end
+
+  def status_badge(field: :status)
+    "<span class=\"badge badge-#{object.send(field)}\">#{status(field: field)}</span>".html_safe
   end
 
   def human_enum_name(enum_name, enum_value)

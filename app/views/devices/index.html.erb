@@ -1,9 +1,9 @@
 <div class="bl">
   <div class="bl-body">
     <div class="bl-title-bl">
-      <div class="bl-title">Devices</div>
+      <div class="bl-title"><%= Device.model_name.human(count: 2) %></div>
       <div class="bl-acts">
-        <%= link_to 'Add device', {action: :new}, class: 'btn btn-new' %>
+        <%= link_to t('device.new'), {action: :new}, class: 'btn btn-new' %>
       </div>
     </div>
 
@@ -12,10 +12,10 @@
       <% @devices.each do |device| %>
           <tr>
             <td><%= device.name %></td>
-            <td><span class="label label-<%= device.decorate.css_status %>"><%= device.status %></span></td>
+            <td><%= device.decorate.status_badge %></td>
             <td class="act-col">
-              <%= link_to 'Edit', {action: :edit, id: device.id}, class: 'btn btn-edit' %>
-              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: device.id}, class: 'btn btn-destroy', data: {confirm: 'Device will be comletely destroyed. Are you sure?'}, method: :delete %>
+              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: device.id}, class: 'btn btn-edit' %>
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: device.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
             </td>
           </tr>
       <% end %>

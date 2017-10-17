@@ -17,3 +17,7 @@
 .badge-offline {
   @extend .badge-secondary;
 }
+
+.badge-online {
+  @extend .badge-success;
+}

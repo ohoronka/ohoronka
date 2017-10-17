@@ -7,10 +7,10 @@
       <div class="row">
         <div class="col"></div>
         <div class="col-sm-8 text">
-          <h1><strong>Ohoronka</strong> Login &amp; Register Forms</h1>
+          <h1><strong>Ohoronka</strong> <%= t('.login_and_register_forms') %></h1>
           <div class="description">
             <p>
-              Protect your assets
+              <%= t('.slogan') %>
             </p>
             <%= image_tag('shield.svg', style: 'height: 150px; margin-bottom: -130px;') %>
           </div>
@@ -24,8 +24,8 @@
           <div class="form-box sign-in">
             <div class="form-top">
               <div class="form-top-left">
-                <h3>Login to our site</h3>
-                <p>Enter username and password to log on:</p>
+                <h3><%= t('.login') %></h3>
+                <p><%= t('.enter_email_and_password') %></p>
               </div>
               <div class="form-top-right">
                 <i class="fa fa-lock"></i>
@@ -34,9 +34,9 @@
             <div class="form-bottom">
               <%= bootstrap_form_for((@session || SessionService.new), url: {action: :create}, method: :post, as: :session, class: 'login-form') do |f| %>
                   <%= f.errors_on :base %>
-                  <%= f.text_field :user_name, placeholder: 'Username...', hide_label: true %>
-                  <%= f.password_field :password, placeholder: 'Password...', hide_label: true %>
-                  <button type="submit" class="btn">Sign in!</button>
+                  <%= f.text_field :user_name, placeholder: t('.email'), hide_label: true %>
+                  <%= f.password_field :password, placeholder: t('.password'), hide_label: true %>
+                  <button type="submit" class="btn"><%= t('.sign_in') %></button>
               <% end %>
             </div>
           </div>
@@ -66,8 +66,8 @@
           <div class="form-box">
             <div class="form-top">
               <div class="form-top-left">
-                <h3>Sign up now</h3>
-                <p>Fill in the form below to get instant access:</p>
+                <h3><%= t('.sign_up_form') %></h3>
+                <p><%= t('.fill_in_registration_form') %>:</p>
               </div>
               <div class="form-top-right">
                 <i class="fa fa-pencil"></i>
@@ -76,12 +76,12 @@
             <div class="form-bottom">
               <%= bootstrap_form_for((@user || User.new), method: :post, class: 'login-form') do |f| %>
                   <%= f.errors_on :base %>
-                  <%= f.text_field :first_name, placeholder: 'First name...', hide_label: true %>
-                  <%= f.text_field :last_name, placeholder: 'Last name...', hide_label: true %>
-                  <%= f.text_field :email, placeholder: 'Email...', hide_label: true %>
-                  <%= f.password_field :password, placeholder: 'New password...', hide_label: true %>
+                  <%= f.text_field :first_name, placeholder: User.human_attribute_name(:first_name), hide_label: true %>
+                  <%= f.text_field :last_name, placeholder: User.human_attribute_name(:last_name), hide_label: true %>
+                  <%= f.text_field :email, placeholder: User.human_attribute_name(:email), hide_label: true %>
+                  <%= f.password_field :password, placeholder: User.human_attribute_name(:password), hide_label: true %>
                   <%# f.text_area :about, placeholder: 'About yourself...', hide_label: true %>
-                  <button type="submit" class="btn">Sign me up!</button>
+                  <button type="submit" class="btn"><%= t('.register') %></button>
               <% end %>
             </div>
           </div>
