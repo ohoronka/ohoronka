@@ -147,9 +147,15 @@ uk:
   user:
     profile: "Профіль"
   channel:
-    add: "Додати новій карал"
+    add: "Додати новій канал"
     select_type: "Оберіть канал"
     new: "Новий %{type} канал"
     Telegram:
       text_html: "Привіт. Ви готові до підключення Telegram?"
-      follow_link_html: "Перейдіть по лінкє щоб підключити Telegram"
+      follow_link_html: "Перейдіть по лінкє щоб підключити Telegram і натисни start"
+      was_configured: "Телеграм настроєно"
+      not_so_smart: "Привіт, %{name}. Я не такий розумний щоб відповісти на твой питання. Спробуй звернутися до підтримки."
+  msg:
+    wrong_email_or_password: "Невірний email чи пароль"
+    alarm_was_disabled: "Тривога відключена"
+    error: "Хм... Щось пішло не так. Спробуйте пізніше або зверніться до підтримки"
