@@ -36,7 +36,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: {case_sensitive: false}
 
   def allowed_channel_types
-    Channel.descendants.map(&:name) - channels.pluck(:type)
+    Channel::SUB_CLASSES - channels.all.map(&:class)
   end
 
   def crop_avatar

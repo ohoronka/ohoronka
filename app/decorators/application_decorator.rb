@@ -24,14 +24,14 @@ class ApplicationDecorator < Draper::Decorator
   end
 
   def status(field: :status)
-    human_enum_name(:status, object.send(field))
+    human_enum(:status)
   end
 
   def status_badge(field: :status)
     "<span class=\"badge badge-#{object.send(field)}\">#{status(field: field)}</span>".html_safe
   end
 
-  def human_enum_name(enum_name, enum_value)
-    I18n.t("all_statuses.#{enum_value}")
+  def human_enum(field = :status)
+    I18n.t("enum.#{field}.#{object.send(field)}")
   end
 end

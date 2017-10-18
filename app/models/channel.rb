@@ -13,6 +13,8 @@
 #
 class Channel < ApplicationRecord
   belongs_to :user
+
+  SUB_CLASSES = [Telegram]
 end
 
 require (Rails.root + 'app/models/channel/telegram')

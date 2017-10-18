@@ -11,21 +11,29 @@ uk:
         one: Пристрій
         other: Пристрої
       sensor:
-        one: Датчик
-        other: Датчики
+        one: Сенсор
+        other: Сенсори
       event:
         one: Подія
         other: Події
       facility_share:
         one: Доступ
         other: Доступи
+      notification:
+        one: Повідомлення
+        other: Повідомлення
+      channel:
+        one: Канал сповіщення
+        other: Канали сповіщення
+      channel/telegram: Telegram
     attributes:
       user:
         id: '#'
         first_name: Ім'я
         last_name: Прізвище
         email: Email
-        password_digest: Пароль
+        password: Пароль
+        password_confirmation: Пароль ще раз
         admin: Адміністратор
         created_at: Створений
         updated_at: Змінений
@@ -33,10 +41,6 @@ uk:
         avatar: Аватар
         background: Фон
       facility:
-        next_statuses:
-          idle: Зняти
-          protected: Захистити
-          alarm: Тривога
         name: Назва
         status: Статус
       device:
@@ -45,13 +49,28 @@ uk:
       sensor:
         name: Назва
         gpio_listen: Порт
-  all_statuses:
-    idle: Знято
-    protected: Захищено
-    alarm: Тривога
-    ok: OK
-    online: На зв'язку
-    offline: Нема зв'язку
+  enum:
+    status:
+      idle: Знято
+      protected: Захищено
+      alarm: Тривога
+      ok: OK
+      online: На зв'язку
+      offline: Нема зв'язку
+    target_status:
+      idle: Знято
+      protected: Захищено
+      alarm: Тривога
+      ok: OK
+      online: На зв'язку
+      offline: Нема зв'язку
+    next_status:
+      idle: Зняти
+      protected: Захистити
+      alarm: Тривога
+    role:
+      owner: Власник
+      guard: Охоронник
   layouts:
     general:
       full_version: Повна версія
@@ -74,6 +93,9 @@ uk:
     save: "Зберегти"
     cancel: "Відміна"
     select: "Вибрати"
+    share: "Розшарити"
+    search: "Шукати"
+    continue: "Продовжити"
 
   facility:
     new: Новий об'єкт
@@ -104,3 +126,30 @@ uk:
       sign_up_form: "Реєстрація"
       fill_in_registration_form: "Заповніть форму щоб зареєструватися"
       register: "Зареєструватися"
+  facility_share:
+    share_with: "Розшарити з другом"
+    already_shared: "Вже розшарено"
+  its_you: "це ви"
+  friend:
+    my_friends: "Мої друзі"
+    find_new: "Пошук друзів"
+    requests: "Запрошення"
+    enter_your_friends_name: "Введіть ім'я друга"
+    send_request: "Відправити запит"
+    accept: "Дружити"
+  notification:
+    new: "Нове"
+    go: "Перейти"
+    messages:
+      friend_ship_request: "%{name} хоче дружити з Вами"
+    accepted_friendship: "%{name} підтвердив/ла дружбу з Вами"
+    facility_share: "%{name} розшарив/ла з Вами об'єкт"
+  user:
+    profile: "Профіль"
+  channel:
+    add: "Додати новій карал"
+    select_type: "Оберіть канал"
+    new: "Новий %{type} канал"
+    Telegram:
+      text_html: "Привіт. Ви готові до підключення Telegram?"
+      follow_link_html: "Перейдіть по лінкє щоб підключити Telegram"

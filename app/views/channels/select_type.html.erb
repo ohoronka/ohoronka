@@ -3,7 +3,7 @@
 
   <div class="bl-body">
     <div class="bl-title-bl">
-      <div class="bl-title">Select the channel type</div>
+      <div class="bl-title"><%= t('channel.select_type') %></div>
       <div class="bl-acts">
         <%= link_to t('actions.cancel'), {action: :index}, class: 'btn btn-cancel' %>
       </div>
@@ -14,7 +14,7 @@
       <% current_user.allowed_channel_types.each do |type| %>
           <tr>
             <td><%= type %></td>
-            <td class="act-col"><%= link_to 'Select', {action: :new, type: type}, class: 'btn btn-new' %></td>
+            <td class="act-col"><%= link_to t('actions.select'), {action: :new, type: type}, class: 'btn btn-new' %></td>
           </tr>
       <% end %>
       </tbody>

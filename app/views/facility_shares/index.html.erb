@@ -2,10 +2,6 @@
   <%= render :partial => 'header' %>
 
   <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-title">Facility shares</div>
-    </div>
-
     <ul class="list-unstyled">
       <% @shares.each do |share| %>
           <% user = share.user %>
@@ -17,10 +13,10 @@
                   <h6 class="mt-0 mb-1"><%= user.decorate.full_name %></h6>
                 </div>
                 <div class="col text-muted">
-                  <%= share.role %>
+                  <%= share.decorate.human_enum(:role) %>
                   <% if current_user.id == user.id %>
-                      <span class="badge badge-success">It's you</span>
-                <% end %>
+                      <span class="badge badge-success"><%= t('its_you') %></span>
+                  <% end %>
                 </div>
 
                 <div class="col bl-acts text-right">

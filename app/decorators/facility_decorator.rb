@@ -12,6 +12,6 @@ class FacilityDecorator < ApplicationDecorator
   #   end
 
   def next_status
-    human_enum_name(:next_status, object.next_status)
+    human_enum(:next_status)
   end
 end

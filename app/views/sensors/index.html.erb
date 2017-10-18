@@ -12,7 +12,7 @@
       <% @sensors.each do |sensor| %>
           <tr>
             <td><%= sensor.name %></td>
-            <td><small class="text-muted">Device:</small> <%= sensor.device.name %></td>
+            <td><small class="text-muted"><%= Device.model_name.human %>: </small> <%= sensor.device.name %></td>
             <td><span class="badge badge-<%= sensor.status %>"><%= sensor.status %></span></td>
             <td class="act-col">
               <%= link_to t('actions.edit_with_icon_html'), {action: :edit, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-edit' %>

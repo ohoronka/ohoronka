@@ -7,9 +7,9 @@
       <% @friends.each do |friend| %>
           <% content_for :actions do %>
               <% if shared_with_ids.include?(friend.id) %>
-                <span class="badge badge-success">Already shared</span>
+                <span class="badge badge-success"><%= t('facility_share.already_shared') %></span>
               <% else %>
-                  <%= link_to 'Share', {action: :new, friend_id: friend}, class: 'btn btn-new' %>
+                  <%= link_to t('actions.share'), {action: :new, friend_id: friend}, class: 'btn btn-new' %>
               <% end %>
           <% end %>
           <%= render :partial => 'friends/friend', object: friend %>

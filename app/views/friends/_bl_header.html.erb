@@ -1,13 +1,13 @@
 <div class="card-header">
   <ul class="nav nav-tabs card-header-tabs">
     <li class="nav-item">
-      <a class="nav-link <%= 'active' if params[:action] == 'index' %>" href="<%= friends_path %>">My friends</a>
+      <a class="nav-link <%= 'active' if params[:action] == 'index' %>" href="<%= friends_path %>"><%= t('friend.my_friends') %></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <%= 'active' if params[:action] == 'find' %>" href="<%= find_friends_path %>">Find new friends</a>
+      <a class="nav-link <%= 'active' if params[:action] == 'find' %>" href="<%= find_friends_path %>"><%= t('friend.find_new') %></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link <%= 'active' if params[:action] == 'requests' %>" href="<%= requests_friends_path %>">Friend requests</a>
+      <a class="nav-link <%= 'active' if params[:action] == 'requests' %>" href="<%= requests_friends_path %>"><%= t('friend.requests') %></a>
     </li>
   </ul>
 </div>

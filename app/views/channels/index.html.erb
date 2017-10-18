@@ -2,9 +2,8 @@
   <%= render :partial => 'users/nav' %>
   <div class="bl-body">
     <div class="bl-title-bl">
-      <div class="bl-title">Notification Channels</div>
       <div class="bl-acts">
-        <%= link_to 'Add Channel', select_type_channels_path, class: 'btn btn-new' if current_user.allowed_channel_types.any? %>
+        <%= link_to t('channel.add'), select_type_channels_path, class: 'btn btn-new' if current_user.allowed_channel_types.any? %>
       </div>
     </div>
 
@@ -12,7 +11,7 @@
       <tbody>
       <% current_user.channels.each do |channel| %>
           <tr>
-            <td><%= link_to channel.type, {action: :show, id: channel} %></td>
+            <td><%= link_to channel.class.model_name.human, {action: :show, id: channel} %></td>
             <td class="act-col">
               <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: channel}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
             </td>

@@ -15,6 +15,6 @@ class EventDecorator < ApplicationDecorator
   end
 
   def target_status
-    human_enum_name(:target_status, object.target_status)
+    human_enum(:target_status)
   end
 end

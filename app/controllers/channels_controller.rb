@@ -10,7 +10,7 @@ class ChannelsController < ApplicationController
   end
 
   def new
-    @channel = current_user.channels.new(type: params[:type])
+    @channel = current_user.channels.new(type: "Channel::#{params[:type]}")
   end
 
   def create

@@ -2,8 +2,8 @@
   <%= render :partial => 'users/nav' %>
 
   <div class="bl-body">
-    <div class="bl-title">Configuring <%= @channel.type %></div>
+    <div class="bl-title"><%= t('channel.new', type: params[:type]) %></div>
 
-    Follow this link to add a Telegram bot <a href="<%= @channel.url %>" target="_blank"><%= @channel.url %></a>
+    <%= t('channel.Telegram.follow_link_html') %> <a href="<%= @channel.url %>" target="_blank"><%= @channel.url %></a>
   </div>
 </div>
