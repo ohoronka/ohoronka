@@ -21,6 +21,7 @@ class FacilitySharesController < ApplicationController
 
   def update
     if @share.update(edit_share_params)
+      flash[:notice] = t('msg.updated')
       redirect_to action: :index
     else
       render :edit
@@ -32,6 +33,7 @@ class FacilitySharesController < ApplicationController
     @share = facility.shares.new(user: @friend, role: share_params[:role])
     if @share.save
       @friend.notifications.create(event: :facility_share, target: @share, params: {initiator: current_user.id})
+      flash[:notice] = t('msg.created')
       redirect_to action: :index
     else
       render :new
@@ -40,6 +42,7 @@ class FacilitySharesController < ApplicationController
 
   def destroy
     facility.shares.find(params[:id]).destroy
+    flash[:notice] = t('msg.destroyed')
     redirect_to action: :index
   end
 

@@ -12,6 +12,7 @@ class DevicesController < ApplicationController
 
   def update
     if @device.update(device_params)
+      flash[:notice] = t('msg.updated')
       redirect_to action: :index, facility_id: @device.facility_id
     else
       render action: :edit
@@ -25,6 +26,7 @@ class DevicesController < ApplicationController
   def create
     @device = facility.devices.new(device_params)
     if @device.save
+      flash[:notice] = t('msg.created')
       redirect_to action: :index
     else
       render action: :new
@@ -33,6 +35,7 @@ class DevicesController < ApplicationController
 
   def destroy
     @device.destroy
+    flash[:notice] = t('msg.destroyed')
     redirect_to action: :index, facility_id: @device.facility_id
   end
 

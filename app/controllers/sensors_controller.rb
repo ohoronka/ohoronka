@@ -38,6 +38,7 @@ class SensorsController < ApplicationController
 
   def destroy
     @sensor.destroy
+    flash[:notice] = t('msg.destroyed')
     redirect_to action: :index, facility_id: @sensor.device.facility_id
   end
 

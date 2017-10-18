@@ -16,6 +16,7 @@ class ChannelsController < ApplicationController
   def create
     @channel = current_user.channels.build(channel_params)
     if @channel.save
+      flash[:notice] = t('msg.created')
       redirect_to action: :show, controller: :channels, id: @channel
     else
       render :new
@@ -28,6 +29,7 @@ class ChannelsController < ApplicationController
 
   def destroy
     @channel.destroy
+    flash[:notice] = t('msg.destroyed')
     redirect_to action: :index
   end
 

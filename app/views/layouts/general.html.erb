@@ -18,6 +18,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
+<%= flash[:notice] %>
 
 <nav class="navbar <%= 'navbar-expand-sm' unless mobile? %> navbar-dark" style="background-color: #3097D1 !important;">
   <a class="navbar-brand" href="<%= root_path %>">
@@ -128,9 +129,9 @@
         flash('<%= j flash[:notice] %>')
     </script>
 <% end %>
-<% if flash[:error] %>
+<% if flash[:alert] %>
     <script type="text/javascript" charset="utf-8">
-        flash('<%= j flash[:error] %>')
+        flash('<%= j flash[:alert] %>')
     </script>
 <% end %>
 </body>

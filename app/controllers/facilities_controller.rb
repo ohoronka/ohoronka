@@ -23,6 +23,7 @@ class FacilitiesController < ApplicationController
 
   def update
     if @facility.update(facility_params)
+      flash[:notice] = t('msg.updated')
       redirect_to action: :index
     else
       render action: :edit
@@ -37,6 +38,7 @@ class FacilitiesController < ApplicationController
     @facility = current_user.facilities.new(facility_params)
     @facility.users << current_user
     if @facility.save
+      flash[:notice] = t('msg.created')
       redirect_to facilities_path
     else
       render action: :new
@@ -45,6 +47,7 @@ class FacilitiesController < ApplicationController
 
   def destroy
     @facility.destroy
+    flash[:notice] = t('msg.destroyed')
     redirect_to action: :index
   end
 
