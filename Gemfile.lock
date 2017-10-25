@@ -75,6 +75,7 @@ GEM
       popper_js (~> 1.11.1)
       sass (>= 3.4.19)
     bootstrap_form (2.7.0)
+    bugsnag (5.4.1)
     builder (3.2.3)
     byebug (9.0.6)
     capistrano (3.8.2)
@@ -314,6 +315,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap (~> 4.0.0.beta)
   bootstrap_form (~> 2.7)
+  bugsnag
   byebug
   capistrano (~> 3.6)
   capistrano-bundler (~> 1.2)
