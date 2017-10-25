@@ -10,15 +10,6 @@
 #
 
 class Facility < ApplicationRecord
-  ALL_STATUSES = {
-    idle: 1,
-    protected: 2,
-    alarm: 3,
-    ok: 4,
-    online: 5,
-    offline: 6
-  }
-
   STATUSES = ALL_STATUSES.slice(:idle, :protected, :alarm)
 
   ALARM_STATUSES = ALL_STATUSES.slice(:alarm, :offline)
@@ -40,13 +31,14 @@ class Facility < ApplicationRecord
   scope :owned, -> { where(facility_shares: {role: FacilityShare::ROLES[:owner]}) }
 
   after_save :disable_devices_alarm
+  after_update :create_event
 
   def alarm!
     if protected_status?
       alarm_status!
       users.each do |user|
         user.channels.each do |channel|
-          channel.notify_facility_alrm(self)
+          channel.notify_facility_alarm(self)
         end
       end
     end
@@ -64,5 +56,19 @@ class Facility < ApplicationRecord
     devices.each do |device|
       device.rpc('alarm', {enabled: (alarm_status? ? 1 : 0)})
     end if saved_changes['status']&.include?('alarm')
+  end
+
+  private
+
+  def create_event
+    def create_event
+      return unless saved_changes.key?(:status)
+      events.create(facility: self, target: self)
+      notify_web
+    end
+  end
+
+  def notify_web
+    # TODO implement
   end
 end

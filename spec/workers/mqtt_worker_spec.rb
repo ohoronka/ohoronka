@@ -1,29 +1,15 @@
 require 'rails_helper'
 RSpec.describe MqttWorker, type: :worker do
-  describe '#parse_message' do
-    context 'ping' do
-      let(:facility) { create(:facility, status: :protected)}
-      let(:device) { create(:device, facility: facility, status: :online) }
-      let!(:sensor) { create(:sensor, device: device, gpio_listen: 0b01, gpio_ok: 0b00, status: :ok) }
 
-      it 'alarms' do
-        # expect_any_instance_of(Facility).to receive(:alarm!)
-        expect{
-          MqttWorker.perform_async(:parse_message, topic: "#{device.id}/m", message: {gpio: 0b01}.to_json)
-          facility.reload
-          device.reload
-          sensor.reload
-        }.to change(facility, :status).from('protected').to('alarm').
-          and change(sensor, :status).from('ok').to('alarm').
-          and change(Event, :count).from(0).to(1)
-        event = sensor.events.take
-        expect(event).to have_attributes({
-          facility_id: facility.id,
-          target_id: sensor.id,
-          target_status: 'alarm',
-          facility_status: 'alarm'
-        })
-      end
+  describe '#parse_message' do
+    let(:sensor) { create(:sensor) }
+    let(:device) { sensor.device }
+    let(:alarm_service) { device.alarm_service }
+    let(:msg) { {'gpio' => Sensor::PORT_GPIO[1]} }
+
+    it 'runs AlarmService' do
+      expect_any_instance_of(AlarmService).to receive(:handle_device_message).with(msg)
+      MqttWorker.perform_async(:parse_message, topic: "#{device.id}/m", message: msg.to_json)
     end
   end
 end

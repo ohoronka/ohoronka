@@ -14,7 +14,8 @@
 #
 
 class Sensor < ApplicationRecord
-  STATUSES = Facility::ALL_STATUSES.slice(:alarm, :ok, :offline)
+  STATUSES = ALL_STATUSES.slice(:alarm, :ok, :offline)
+  PORT_GPIO = {1 => 16, 2 => 32, 3 => 4096, 4 => 8192}
 
   belongs_to :device, inverse_of: :sensors, touch: true
   has_many :events, as: :target, dependent: :delete_all, inverse_of: :target
@@ -23,24 +24,32 @@ class Sensor < ApplicationRecord
 
   after_update :create_event
 
-  def check_gpio!(gpio)
-    ((gpio & gpio_listen) ^ gpio_ok) != 0 ? alarm_status! : ok_status!
+  def gpio_ok?(gpio)
+    ((gpio & gpio_listen) ^ gpio_ok) == 0
+  end
+
+  def gpio_alarm?(gpio)
+    !gpio_ok?(gpio)
   end
 
   private
 
   def create_event
-    if saved_changes.key?(:status)
-      events.create(facility: device.facility)
-      FacilityChannel.broadcast_to(self.device.facility_id, {
-        e: :sensor_updated,
-        sensor: {
-          id: id,
-          name: name,
-          status: status,
-          css_status: decorate.css_status
-        }
-      })
-    end
+    return unless saved_changes.key?(:status) && self.device.facility.status.in?(['alarm', 'protected'])
+    events.create(facility: device.facility)
+    notify_web
+  end
+
+  def notify_web
+    # TODO fix internationalization
+    FacilityChannel.broadcast_to(self.device.facility_id, {
+      e: :sensor_updated,
+      sensor: {
+        id: id,
+        name: name,
+        status: status,
+        css_status: decorate.css_status
+      }
+    })
   end
 end

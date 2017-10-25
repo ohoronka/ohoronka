@@ -155,6 +155,7 @@ uk:
       follow_link_html: "Перейдіть по лінкє щоб підключити Telegram і натисни start"
       was_configured: "Телеграм настроєно"
       not_so_smart: "Привіт, %{name}. Я не такий розумний щоб відповісти на твой питання. Спробуй звернутися до підтримки."
+      alarm: "Тривога на об'єкті %{facility}"
   msg:
     wrong_email_or_password: "Невірний email чи пароль"
     alarm_was_disabled: "Тривога відключена"

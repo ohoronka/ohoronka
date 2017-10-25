@@ -1,6 +1,6 @@
 <%= bootstrap_form_for([facility, device, @sensor]) do |f| %>
     <%= f.text_field :name %>
-    <%= f.select :gpio_listen, {'Port 1' => 16, 'Port 2' => 32, 'Port 3' => 4096, 'Port 4' => 8192} %>
+    <%= f.select :gpio_listen, options_for_select(Sensor::PORT_GPIO, disabled: device.sensors.pluck(:gpio_listen), selected: @sensor.gpio_listen) %>
     <%# f.number_field :gpio_pull %>
     <%# f.number_field :gpio_ok %>
 

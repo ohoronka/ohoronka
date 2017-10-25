@@ -17,22 +17,15 @@ class Event < ApplicationRecord
   belongs_to :facility, inverse_of: :events
 
   enum facility_status: Facility::STATUSES, _suffix: true
-  enum target_status: Facility::ALL_STATUSES, _suffix: true
+  enum target_status: ALL_STATUSES, _suffix: true
 
   before_validation :set_values, on: [:create]
-  after_create :send_notification
+  after_create :notify_web
 
   scope :dashboard_list, ->{ includes(:target).order(id: :desc).limit(50) }
 
-  private
-
-  def set_values
-    self.facility = target.device.facility unless facility
-    self.target_status = target.status unless target_status
-    self.facility_status = facility.status unless facility_status
-  end
-
-  def send_notification
+  def notify_web
+    # TODO fix internationalization
     FacilityChannel.broadcast_to(self.facility_id, {
       e: :event_created,
       event: {
@@ -43,5 +36,13 @@ class Event < ApplicationRecord
         created_at: created_at,
       }
     })
+  end
+
+  private
+
+  def set_values
+    self.facility = target.device.facility unless facility
+    self.target_status = target.status unless target_status
+    self.facility_status = facility.status unless facility_status
   end
 end

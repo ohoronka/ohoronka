@@ -16,5 +16,15 @@
 require 'rails_helper'
 
 RSpec.describe Sensor, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#gpio_ok?' do
+    let(:sensor) { build(:sensor) }
+
+    it 'returns true' do
+      expect(sensor.gpio_ok?(Sensor::PORT_GPIO[1])).to be_truthy
+    end
+
+    it 'returns false' do
+      expect(sensor.gpio_ok?(0)).to be_falsey
+    end
+  end
 end

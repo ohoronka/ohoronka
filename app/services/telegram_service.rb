@@ -42,7 +42,7 @@ class TelegramService
         if channel
           channel.notify("Hey #{channel.user.name}! How is it going?")
         else
-          bot.api.send_message(chat_id: message.chat.id, text: "Hey guy! I've no idea who you are. Please sign up to http://ohoronka.com")
+          bot.api.send_message(chat_id: message.chat.id, text: "Hey guy! I've no idea who you are. Please sign up to https://ohoronka.com")
         end
       when '/stop'
         bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}")
@@ -51,7 +51,7 @@ class TelegramService
         if channel
           channel.notify(I18n.t('channel.Telegram.not_so_smart', name: channel.user.decorate.full_name))
         else
-          bot.api.send_message(chat_id: message.chat.id, text: "Hey guy! I've no idea who you are. Please sign up to httpі://ohoronka.com")
+          bot.api.send_message(chat_id: message.chat.id, text: "Hey guy! I've no idea who you are. Please sign up to https://ohoronka.com")
         end
       end
     end

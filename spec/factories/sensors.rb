@@ -18,5 +18,7 @@ FactoryGirl.define do
     association :device
 
     sequence(:name) {|n| "Sensor ##{n}"}
+    gpio_listen Sensor::PORT_GPIO[1]
+    gpio_ok Sensor::PORT_GPIO[1]
   end
 end

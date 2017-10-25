@@ -17,7 +17,7 @@
 class Device < ApplicationRecord
   GPIO = [:gpio_listen, :gpio_pull, :gpio_ok]
 
-  enum status: Facility::ALL_STATUSES.slice(:online, :offline), _suffix: true
+  enum status: ALL_STATUSES.slice(:online, :offline), _suffix: true
 
   has_many :sensors, inverse_of: :device, dependent: :destroy
   belongs_to :facility, inverse_of: :devices
@@ -27,24 +27,6 @@ class Device < ApplicationRecord
 
   after_touch :update_gpio
   after_create :set_mqtt_user
-
-  def ping!(gpio)
-    self.pinged_at = Time.current
-    self.status = :online
-
-    if ((gpio & gpio_listen) ^ gpio_ok) != 0
-      o = facility
-      o.alarm!
-    end
-    sensors.each {|sensor| sensor.check_gpio!(gpio)}
-    save!
-  end
-
-  def offline!
-    offline_status!
-    facility.alarm!
-    sensors.update_all(status: :offline)
-  end
 
   def rpc_config_set
     msg_config_set = {
@@ -92,11 +74,13 @@ class Device < ApplicationRecord
     end
   end
 
-  def check_alarm(device_alarm)
-    device_alarm = device_alarm != 0
-    if device_alarm != facility.alarm_status?
-      self.rpc('alarm', {enabled: (facility.alarm_status? ? 1 : 0)})
-    end
+  # it sets alarm sound on device
+  def set_alarm(alarm = facility.alarm_status?)
+    self.rpc('alarm', {enabled: (alarm ? 1 : 0)})
+  end
+
+  def alarm_service
+    @alarm_service ||= AlarmService.new(device: self, facility: facility)
   end
 
   private

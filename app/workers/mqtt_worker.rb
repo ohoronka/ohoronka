@@ -14,22 +14,20 @@ class MqttWorker
     when 'm'
       msg = JSON.parse(params['message'])
       device = Device.find(device_id)
-      device.ping!(msg['gpio'])
-      # TODO: move implementation to device model
-      device.check_alarm(msg['alarm'])
+      device.alarm_service.handle_device_message(msg)
     when 'rpc'
-      Rails.logger.info("RPC message received: #{params['topic']}:#{params['message']}")
+      Rails.logger.info("RPC message received: #{params.to_json}")
     else
-      Rails.logger.error("Unknown message received: #{params['topic']}:#{params['message']}")
+      Rails.logger.error("Unknown message received: #{params.to_json}")
     end
   rescue JSON::ParserError => e
     # TODO notify developers
     Rails.logger.error(e.message)
-    Rails.logger.error("ParseError: #{params['topic']} # #{params['message']}")
+    Rails.logger.error("ParseError: #{params.to_json}")
   end
 
   def check_offline_devices(_params)
-    Device.where(status: :online).where('pinged_at < ?', 30.seconds.ago).each &:offline!
+    AlarmService.check_offline_devices
     MqttWorker.perform_in(30.seconds, :check_offline_devices, {}) unless Rails.env.test?
   end
 end
