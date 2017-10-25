@@ -1,29 +1,29 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%= User.model_name.human(count: 2) %></h3>
-  </div>
+<div class="bl">
+  <div class="bl-body">
+    <div class="bl-title"><%= User.model_name.human(count: 2) %></div>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th><%= User.human_attribute_name(:id) %></th>
-      <th><%= User.human_attribute_name(:full_name) %></th>
-      <th><%= User.human_attribute_name(:email) %></th>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @users.each do |user| %>
+    <table class="table">
+      <thead>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= user.decorate.full_name %></td>
-        <td><%= user.email %></td>
-        <td class="text-right">
-          <%= link_to t('.loing_as'), {action: :login_as, id: user.id}, class: 'btn btn-success btn-sm', method: :patch %>
-        </td>
+        <th><%= User.human_attribute_name(:id) %></th>
+        <th><%= User.human_attribute_name(:full_name) %></th>
+        <th><%= User.human_attribute_name(:email) %></th>
+        <th></th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.decorate.full_name %></td>
+          <td><%= user.email %></td>
+          <td class="text-right">
+            <%= link_to t('.loing_as'), {action: :login_as, id: user.id}, class: 'btn btn-success btn-sm', method: :patch %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

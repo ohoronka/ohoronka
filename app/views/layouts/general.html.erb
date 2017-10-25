@@ -56,6 +56,11 @@
         </ul>
 
         <ul class="navbar-nav">
+          <% if current_admin %>
+          <li class="nav-item mx-2">
+            <%= link_to 'Адмінка', admin_root_path, class: 'btn btn-danger' %>
+          </li>
+          <% end %>
           <li class="nav-item mx-2">
             <a href="<%= notifications_path %>" class="btn btn-primary bg-transparent">
               <i class="fa fa-bell-o" aria-hidden="true"></i>
