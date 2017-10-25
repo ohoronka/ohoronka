@@ -30,7 +30,6 @@ class Facility < ApplicationRecord
   scope :shared, -> { where.not(facility_shares: {role: FacilityShare::ROLES[:owner]}) }
   scope :owned, -> { where(facility_shares: {role: FacilityShare::ROLES[:owner]}) }
 
-  after_save :disable_devices_alarm
   after_update :create_event
 
   def alarm!
@@ -48,14 +47,8 @@ class Facility < ApplicationRecord
     STATUS_FLOW[status.to_sym].first.to_s
   end
 
-  def disable_alarm
-    idle_status! if alarm_status?
-  end
-
-  def disable_devices_alarm
-    devices.each do |device|
-      device.rpc('alarm', {enabled: (alarm_status? ? 1 : 0)})
-    end if saved_changes['status']&.include?('alarm')
+  def alarm_service
+    @alarm_service ||= AlarmService.new(facility: self)
   end
 
   private

@@ -24,12 +24,20 @@ class Channel::Telegram < Channel
   def notify_facility_alarm(facility)
     ::Telegram.bot.run do |bot|
       kb = [
-        ::Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Disable', callback_data: {method: :disable_alarm, facility_id: facility.id}.to_json),
-        ::Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Details', url: facility_url(facility))
+        [
+          ::Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Disable', callback_data: {method: :disable_alarm, facility_id: facility.id}.to_json),
+          ::Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Details', url: facility_url(facility))
+        ]
       ]
       puts facility_url(facility)
       markup = ::Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
       bot.api.send_message(chat_id: identifier, text: I18n.t('channel.Telegram.alarm', facility: facility.name), reply_markup: markup)
+    end
+  end
+
+  def notify_disabled_alarm(facility:)
+    ::Telegram.bot.run do |bot|
+      bot.api.send_message(chat_id: identifier, text: I18n.t('channel.Telegram.alarm_was_disabled', facility: facility.name))
     end
   end
 

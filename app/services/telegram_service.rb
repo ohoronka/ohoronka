@@ -20,8 +20,8 @@ class TelegramService
       case params[:method]
       when 'disable_alarm'
         channel = ::Channel::Telegram.find_by(identifier: message.from.id)
-        channel.user.facilities.find(params[:facility_id]).disable_alarm
-        channel.notify(I18n.t('msg.alarm_was_disabled'))
+        facility = channel.user.facilities.find(params[:facility_id])
+        facility.alarm_service.disable_alarm(user: channel.user)
       end
     when Telegram::Bot::Types::Message
       case message.text

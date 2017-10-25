@@ -25,8 +25,17 @@ class AlarmService
       facility.alarm_status!
       facility.users.each do |user|
         user.channels.each do |channel|
-          channel.notify_facility_alarm(self)
+          channel.notify_facility_alarm(facility)
         end
+      end
+    end
+  end
+
+  def disable_alarm(user:)
+    facility.idle_status!
+    facility.users.each do |user|
+      user.channels.each do |channel|
+        channel.notify_disabled_alarm(facility: facility)
       end
     end
   end
