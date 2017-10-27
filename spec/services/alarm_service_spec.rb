@@ -9,7 +9,7 @@ RSpec.describe AlarmService do
 
   describe '#handle_device_message' do
     context 'facility is in idle state' do
-      before { facility.update_attribute(:status, :protected) }
+      before { facility.update_attribute(:status, :idle) }
 
       it 'just changes the sensor status' do
         expect(sensor.alarm_status?).to be_falsey
@@ -26,7 +26,7 @@ RSpec.describe AlarmService do
     end
 
     context 'facility is protected' do
-      before { facility.protected_status! }
+      before { facility.update_attribute(:status, :protected) }
 
       it 'fires alarm' do
         alarm_service.handle_device_message(alarm_msg)
@@ -41,7 +41,7 @@ RSpec.describe AlarmService do
     end
 
     context 'facility is alarmed' do
-      before { facility.alarm_status! }
+      before { facility.update_attribute(:status, :alarm) }
 
       it 'just writes extra logs' do
         alarm_service.handle_device_message(alarm_msg)

@@ -18,6 +18,7 @@ class AlarmService
 
     device_alarm_status = (msg['alarm'] != 0) # 1: alarm; 0: normal; like in c++
     device.set_alarm if device_alarm_status != facility.alarm_status?
+    device.save
   end
 
   def fire_alarm
