@@ -27,3 +27,4 @@
 /public/uploads/
 /config/mqtt.yml
 /config/smtp.yml
+/config/aws.yml

@@ -48,6 +48,8 @@ module Ohoronka
     REDIS_CONFIG = config_for('redis').deep_symbolize_keys # YAML.load(ERB.new(File.read(Rails.root.join('config/redis.yml'))).result)[Rails.env].deep_symbolize_keys
     config.cache_store = :redis_store, REDIS_CONFIG[:cache], {expires_in: 90.minutes }
 
+    ::AWS_CONFIG = config_for('aws').deep_symbolize_keys
+
     # def read_config(name, env: Rails.env)
     #   YAML.load(ERB.new(File.read(Rails.root.join("config/#{name}.yml"))).result)[env].deep_symbolize_keys
     # end

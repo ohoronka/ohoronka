@@ -96,6 +96,7 @@ uk:
     share: "Розшарити"
     search: "Шукати"
     continue: "Продовжити"
+    crop: "Обрізати"
 
   facility:
     new: Новий об'єкт
@@ -163,3 +164,6 @@ uk:
     created: "Запис створено"
     destroyed: "Запис видалено"
     updated: "Запис оновлено"
+  users:
+    crop_avatar:
+      crop_image_to_feet: "Обріжте зайве"

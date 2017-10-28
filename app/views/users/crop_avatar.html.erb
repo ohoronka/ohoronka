@@ -4,7 +4,7 @@
 
 <div class="bl">
   <div class="bl-body">
-    <div class="bl-title">Crop image to feet avatar field</div>
+    <div class="bl-title"><%= t('.crop_image_to_feet') %></div>
 
     <div style="margin-bottom: 8px;">
       <img id="avatar" src="<%= @user.avatar.url(:large) %>" style="max-width: 100%;">
@@ -15,7 +15,7 @@
             <%= f.hidden_field "crop_#{attribute}" %>
         <% end %>
         <%= f.form_group class: 'act-btns' do %>
-            <%= f.submit 'Crop', class: 'btn btn-block btn-save' %>
+            <%= f.submit t('actions.crop'), class: 'btn btn-block btn-save' %>
         <% end %>
     <% end %>
 
@@ -24,19 +24,13 @@
 
 <script type="text/javascript" charset="utf-8">
     $('#avatar').cropper({
+        checkCrossOrigin: false,
         aspectRatio: 1 / 1,
         crop: function(e) {
             $('#user_crop_x').val(e.x);
             $('#user_crop_y').val(e.y);
             $('#user_crop_w').val(e.width);
             $('#user_crop_h').val(e.height);
-//            console.log(e.x);
-//            console.log(e.y);
-//            console.log(e.width);
-//            console.log(e.height);
-//            console.log(e.rotate);
-//            console.log(e.scaleX);
-//            console.log(e.scaleY);
         }
     });
 </script>

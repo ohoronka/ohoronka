@@ -77,3 +77,4 @@ gem 'font-awesome-sass'
 gem 'carrierwave', '~> 1.0'
 gem 'rmagick'
 gem 'bugsnag'
+gem "fog"
