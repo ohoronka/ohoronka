@@ -9,8 +9,8 @@
         <%= link_to @facility.decorate.next_status,
           set_next_status_facility_path(@facility),
           class: "btn btn-act btn-#{@facility.next_status}",
-          remote: true,
-          method: :patch
+          method: :patch,
+          data: { disable_with: t('actions.loading_html')}
         %>
       </div>
     </div>
