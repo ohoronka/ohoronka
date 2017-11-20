@@ -25,14 +25,13 @@ class Event < ApplicationRecord
   scope :dashboard_list, ->{ includes(:target).order(id: :desc).limit(50) }
 
   def notify_web
-    # TODO fix internationalization
     FacilityChannel.broadcast_to(self.facility_id, {
       e: :event_created,
       event: {
         id: id,
         target_name: target.name,
         target_status: target_status,
-        css_target_status: decorate.css_target_status,
+        t_target_status: decorate.target_status,
         created_at: created_at,
       }
     })

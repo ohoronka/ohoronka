@@ -56,7 +56,7 @@
     <td>{{>target_name}}</td>
     <td><time class="js-timeago" datetime="{{>created_at}}">{{>created_at}}</time></td>
     <td class="text-right">
-      <span class="badge badge-{{:target_status}}">{{>target_status}}</span>
+      <span class="badge badge-{{:target_status}}">{{>t_target_status}}</span>
     </td>
   </tr>
 </script>
@@ -64,7 +64,7 @@
 <script id="sensor_template" type="text/x-jsrender">
   <tr id="sensor_{{:id}}">
     <td>{{>name}}</td>
-    <td class="text-right"><span class="badge badge-{{:status}}">{{>status}}</span></td>
+    <td class="text-right"><span class="badge badge-{{:status}}">{{>t_status}}</span></td>
   </tr>
 </script>
 

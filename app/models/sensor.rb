@@ -23,6 +23,7 @@ class Sensor < ApplicationRecord
   enum status: STATUSES, _suffix: true
 
   after_update :create_event
+  after_update :notify_web
 
   def gpio_ok?(gpio)
     ((gpio & gpio_listen) ^ gpio_ok) == 0
@@ -37,17 +38,16 @@ class Sensor < ApplicationRecord
   def create_event
     return unless saved_changes.key?(:status) && self.device.facility.status.in?(['alarm', 'protected'])
     events.create(facility: device.facility)
-    notify_web
   end
 
   def notify_web
-    # TODO fix internationalization
     FacilityChannel.broadcast_to(self.device.facility_id, {
       e: :sensor_updated,
       sensor: {
         id: id,
         name: name,
         status: status,
+        t_status: decorate.status,
         css_status: decorate.css_status
       }
     })

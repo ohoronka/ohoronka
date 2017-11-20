@@ -10,6 +10,7 @@ class EventDecorator < ApplicationDecorator
   #     end
   #   end
 
+  # TODO depricated
   def css_target_status
     css_status(object.target_status)
   end
