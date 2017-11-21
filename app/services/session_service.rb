@@ -9,7 +9,7 @@ class SessionService
   def sign_in(controller)
     return false unless valid?
     unless user =  User.find_by(email: user_name)&.authenticate(password)
-      errors.add(:base, t('msg.wrong_email_or_password'))
+      errors.add(:base, I18n.t('msg.wrong_email_or_password'))
       return false
     end
     authorize(user, controller)
