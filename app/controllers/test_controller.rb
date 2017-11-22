@@ -1,5 +1,5 @@
 class TestController < ApplicationController
-  layout 'sign_up'
+  layout 'empty'
 
   def index
 
