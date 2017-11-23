@@ -9,7 +9,7 @@
 
     <table class="list">
       <tbody>
-      <% current_user.channels.each do |channel| %>
+      <% @channels.each do |channel| %>
           <tr>
             <td><%= link_to channel.class.model_name.human, {action: :show, id: channel} %></td>
             <td class="act-col">
@@ -19,5 +19,7 @@
       <% end %>
       </tbody>
     </table>
+
+    <%= paginate @channels, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

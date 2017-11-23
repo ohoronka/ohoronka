@@ -6,7 +6,7 @@ class ChannelsController < ApplicationController
   end
 
   def index
-    @channels = current_user.channels
+    @channels = current_user.channels.page(params[:page])
   end
 
   def new

@@ -33,3 +33,8 @@ body {
 .nav-link.active{
   background-color: #fff !important;
 }
+
+.pagination {
+  @extend .pagination-sm;
+  @extend .justify-content-end;
+}

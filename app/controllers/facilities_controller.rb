@@ -3,7 +3,7 @@ class FacilitiesController < ApplicationController
   layout -> { params[:action].in?(['index', 'shared', 'new']) ? 'general' : 'facility' }
 
   def index
-    @facilities = current_user.facilities.owned
+    @facilities = current_user.facilities.owned.page(params[:page])
     current_user.notifications.facility_share.unread.update_all(unread: false)
     redirect_to @facilities.to_a.first if (@facilities.to_a.count == 1) && (request.fullpath == '/')
   end

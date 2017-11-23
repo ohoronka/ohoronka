@@ -3,7 +3,7 @@ class SensorsController < ApplicationController
   layout 'facility'
 
   def index
-    @sensors = facility.sensors.includes(:device)
+    @sensors = facility.sensors.includes(:device).page(params[:page])
   end
 
   def new

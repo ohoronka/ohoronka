@@ -3,7 +3,7 @@ class FacilitySharesController < ApplicationController
   before_action :share, only: [:edit, :update]
 
   def index
-    @shares = facility.shares.includes(:user)
+    @shares = facility.shares.includes(:user).page(params[:page])
   end
 
   def share_with_friend

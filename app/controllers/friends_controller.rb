@@ -1,12 +1,12 @@
 class FriendsController < ApplicationController
   def index
-    @friendships = current_user.friendships
+    @friendships = current_user.friendships.page(params[:page])
     current_user.notifications.accepted_friendship.unread.update_all(unread: false)
   end
 
   def find
     # TODO: improve search criteria. Move to service class
-    @users = User.where.not(id: current_user.id).where('users.first_name like ? or users.last_name like ?', "#{params[:q]}%", "#{params[:q]}%")
+    @users = User.where.not(id: current_user.id).where('users.first_name like ? or users.last_name like ?', "#{params[:q]}%", "#{params[:q]}%").page(params[:page])
   end
 
   def requests

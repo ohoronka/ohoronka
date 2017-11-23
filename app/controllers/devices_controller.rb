@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   layout 'facility'
 
   def index
-    @devices = facility.devices
+    @devices = facility.devices.page(params[:page])
   end
 
   def edit

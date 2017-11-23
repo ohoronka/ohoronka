@@ -2,8 +2,7 @@ class EventsController < ApplicationController
   layout 'facility'
 
   def index
-    # TODO add pagination and filters
-    @events = current_user.facilities.find(params[:facility_id]).events.dashboard_list
+    @events = current_user.facilities.find(params[:facility_id]).events.page(params[:page])
   end
 
   protected
