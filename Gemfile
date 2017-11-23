@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'pry-rails', require: false
   gem 'letter_opener', require: false
+  gem 'capybara'
 end
 
 group :development do
@@ -77,4 +78,4 @@ gem 'font-awesome-sass'
 gem 'carrierwave', '~> 1.0'
 gem 'rmagick'
 gem 'bugsnag'
-gem "fog"
+gem 'fog'
