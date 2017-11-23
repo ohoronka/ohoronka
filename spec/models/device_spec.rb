@@ -37,23 +37,10 @@ RSpec.describe Device, type: :model do
     end
   end
 
-  describe '#ping!' do
-    let!(:sensor) { create(:sensor, device: device, gpio_listen: 0b01, gpio_ok: 0b00) }
-
-    it 'alarms' do
-      expect(device.facility).to receive(:alarm!)
-      device.ping!(0b01)
-    end
-
-    it 'does not alarms' do
-      expect(device.facility).not_to receive(:alarm!)
-      device.ping!(0b00)
-    end
-  end
-
-  describe '#password_hash' do
-    it 'generates hash' do
-      expect(Device.new.password_hash('password', salt: 'cTiaovSH5BgWlU7m')).to eq('PBKDF2$sha256$901$cTiaovSH5BgWlU7m$Iq1z7pg0sl92aGhLI6cMyv3+0iPcRNro')
-    end
-  end
+  # TODO: moved to MQTT module
+  # describe '#password_hash' do
+  #   it 'generates hash' do
+  #     expect(Device.new.password_hash('password', salt: 'cTiaovSH5BgWlU7m')).to eq('PBKDF2$sha256$901$cTiaovSH5BgWlU7m$Iq1z7pg0sl92aGhLI6cMyv3+0iPcRNro')
+  #   end
+  # end
 end

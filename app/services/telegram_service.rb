@@ -34,7 +34,7 @@ class TelegramService
           channel.notify(I18n.t('channel.Telegram.was_configured'))
         else
           # TODO: notify dev
-          bot.api.send_message(chat_id: message.chat.id, text: t('msg.error'))
+          bot.api.send_message(chat_id: message.chat.id, text: I18n.t('msg.error'))
         end
       when '/start'
         # start without token

@@ -45,3 +45,19 @@ require 'capistrano/sidekiq/monit'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
+
+namespace :deploy do
+  desc "Runs test before deploying, can't deploy unless they pass"
+  task :run_tests do
+    run_locally do
+      test_log = "log/capistrano.test.log"
+      info "--> Running tests locally, please wait ..."
+      unless system('bundle exec rspec')
+        warn "--> Tests: failed"
+        exit
+      end
+      info "--> All tests passed"
+    end
+  end
+  before :deploy, "deploy:run_tests"
+end
