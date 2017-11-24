@@ -71,3 +71,12 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include_context 'controller session', type: :controller
 end
+
+def login_as(login, password)
+  visit '/'
+  within('#new_session') do
+    fill_in 'session_user_name', with: login
+    fill_in 'session_password', with: password
+    click_on 'Увійти'
+  end
+end
