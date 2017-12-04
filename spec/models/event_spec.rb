@@ -18,4 +18,16 @@ RSpec.describe Event, type: :model do
   it 'has valid factory' do
     expect{ create(:event) }.to change(Event, :count).by(1)
   end
+
+  describe 'scope dashboard list' do
+    it 'returns only facility alarm and protected status and in a backward order' do
+      event1 = create(:event)
+      facility = event1.facility
+      facility.update_columns(status: :protected)
+      event2 = create(:event, facility: facility, target: event1.target)
+      facility.update_columns(status: :alarm)
+      event3 = create(:event, facility: facility, target: event1.target)
+      expect(facility.events.dashboard_list.to_a).to eq([event3, event2])
+    end
+  end
 end

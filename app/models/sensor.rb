@@ -36,7 +36,7 @@ class Sensor < ApplicationRecord
   private
 
   def create_event
-    return unless saved_changes.key?(:status) && self.device.facility.status.in?(['alarm', 'protected'])
+    return unless saved_changes.key?(:status)
     events.create(facility: device.facility)
   end
 

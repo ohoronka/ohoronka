@@ -20,7 +20,7 @@ RSpec.describe AlarmService do
 
         expect(device.status).to eq('online')
         expect(sensor.alarm_status?).to be_truthy
-        expect(Event.count).to eq(0)
+        expect(Event.count).to eq(1) # it creates event
         expect(facility.idle_status?).to be_truthy
       end
     end

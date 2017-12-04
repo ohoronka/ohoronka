@@ -25,6 +25,7 @@ class Facility < ApplicationRecord
   has_many :events, foreign_key: :facility_id, inverse_of: :facility
   has_many :shares, class_name: 'FacilityShare', inverse_of: :facility, dependent: :destroy
   has_many :users, through: :shares, inverse_of: :facilities
+
   enum status: STATUSES, _suffix: true
 
   scope :shared, -> { where.not(facility_shares: {role: FacilityShare::ROLES[:owner]}) }

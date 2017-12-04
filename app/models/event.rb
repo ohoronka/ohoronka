@@ -22,7 +22,7 @@ class Event < ApplicationRecord
   before_validation :set_values, on: [:create]
   after_create :notify_web
 
-  scope :dashboard_list, ->{ includes(:target).order(id: :desc).limit(50) }
+  scope :dashboard_list, ->{ where(facility_status: [:alarm, :protected]).preload(:target).order(id: :desc).limit(50) }
 
   def notify_web
     FacilityChannel.broadcast_to(self.facility_id, {
