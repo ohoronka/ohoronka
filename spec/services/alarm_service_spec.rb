@@ -57,6 +57,22 @@ RSpec.describe AlarmService do
   end
 
   describe '#check_offline_devices' do
+    context 'there is no offline devices' do
+      before do
+        sensor.update_attributes(status: :ok)
+        device.update_attributes(status: :online, pinged_at: 1.second.ago)
+        facility.update_attributes(status: :protected)
+      end
+
+      it 'does nothing' do
+        AlarmService.check_offline_devices
+        facility.reload
+        expect(facility.status).to eq('protected')
+        expect(device.status).to eq('online')
+        expect(sensor.status).to eq('ok')
+      end
+    end
+
     context 'device became offline' do
       before do
         sensor.update_attributes(status: :ok)

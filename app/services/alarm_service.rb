@@ -50,7 +50,7 @@ class AlarmService
         device.offline_status!
         device.sensors.each(&:offline_status!)
       end
-    end until devices.any?
+    end while devices.any?
   end
 
 end
