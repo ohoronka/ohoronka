@@ -22,7 +22,8 @@ class Event < ApplicationRecord
   before_validation :set_values, on: [:create]
   after_create :notify_web
 
-  scope :dashboard_list, ->{ where(facility_status: [:alarm, :protected]).preload(:target).order(id: :desc).limit(50) }
+  scope :dashboard_list, ->{ where(facility_status: [:alarm, :protected]).preload(:target).ordered.limit(50) }
+  scope :ordered, ->{ order(id: :desc) }
 
   def notify_web
     FacilityChannel.broadcast_to(self.facility_id, {
@@ -34,7 +35,7 @@ class Event < ApplicationRecord
         t_target_status: decorate.target_status,
         created_at: created_at,
       }
-    })
+    }) if facility_status.in?(['protected', 'alarm'])
   end
 
   private

@@ -30,4 +30,16 @@ RSpec.describe Event, type: :model do
       expect(facility.events.dashboard_list.to_a).to eq([event3, event2])
     end
   end
+
+  describe 'notify_web' do
+    it 'notifies web when facility alarmed or protected event was created' do
+      expect(FacilityChannel).to receive(:broadcast_to)
+      event = create(:event, facility: build(:facility, status: :protected))
+    end
+
+    it 'does not notify web when facility ideled event was created' do
+      expect(FacilityChannel).to_not receive(:broadcast_to)
+      create(:event, facility: build(:facility, status: :idle))
+    end
+  end
 end
