@@ -8,7 +8,7 @@ class CreateDevices < ActiveRecord::Migration[5.1]
 
       t.string :name
 
-      t.integer :status, null: false, default: Device.statuses[:offline]
+      t.integer :status, null: false, default: Device.statuses[:offline], limit: 1
 
 
       t.integer :gpio_listen, null: false, default: 0

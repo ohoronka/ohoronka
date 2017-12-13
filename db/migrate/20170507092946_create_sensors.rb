@@ -7,7 +7,7 @@ class CreateSensors < ActiveRecord::Migration[5.1]
 
       t.string :name
 
-      t.integer :status, null: false, default: Sensor.statuses[:offline]
+      t.integer :status, null: false, default: Sensor.statuses[:offline], limit: 1
 
       t.integer :gpio_listen, null: false, default: 0
       t.integer :gpio_pull, null: false, default: 0

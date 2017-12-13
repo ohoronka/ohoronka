@@ -10,7 +10,7 @@ exit(0) if Rails.env.test?
 user = FactoryGirl.create(:user)
 FactoryGirl.create(:telegram_channel, identifier: (Rails.env.production? ? '429212655': '429212655'), user: user) # same id for both environments. interesting...
 
-facility = FactoryGirl.create(:facility, user_ids: [user.id])
+facility = FactoryGirl.create(:facility)
 device = FactoryGirl.create(:device, facility: facility)
 sensor1 = FactoryGirl.create(:sensor, device: device, gpio_listen: 16, gpio_pull: 0, gpio_ok: 16)
 sensor2 = FactoryGirl.create(:sensor, device: device, gpio_listen: 32, gpio_pull: 0, gpio_ok: 32)
