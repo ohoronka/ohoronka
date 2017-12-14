@@ -45,3 +45,5 @@ msg = {
 }
 
 mos call OTA.Update '{"section": "firmware","commit_timeout": 300,"blob_url": "http://172.16.10.171/fw.zip"}'
+
+cd /usr/local/Cellar/mosquitto/1.4.11_2/etc/mosquitto/
