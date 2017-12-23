@@ -3,17 +3,17 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  first_name      :string(255)
-#  last_name       :string(255)
-#  email           :string(255)
-#  password_digest :string(255)
-#  admin           :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  about           :text(65535)
-#  avatar          :string(255)
-#  background      :string(255)
-#  auth_token      :string(255)
+#  first_name      :string
+#  email           :string
+#  password_digest :string
+#  admin           :boolean          default(FALSE)
+#  last_name       :string
+#  about           :text
+#  avatar          :string
+#  background      :string
+#  auth_token      :string
 #
 
 class User < ApplicationRecord

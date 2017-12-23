@@ -6,8 +6,8 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  mqtt_user_id :integer
-#  user_name    :string(255)
-#  topic        :string(255)
+#  user_name    :string
+#  topic        :string
 #  rw           :integer          default("none")
 #
 

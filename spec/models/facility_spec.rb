@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  name       :string(255)
+#  name       :string
 #  status     :integer          default("idle"), not null
 #
 

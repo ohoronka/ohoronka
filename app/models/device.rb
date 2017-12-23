@@ -7,7 +7,7 @@
 #  updated_at  :datetime         not null
 #  pinged_at   :datetime
 #  facility_id :integer
-#  name        :string(255)
+#  name        :string
 #  status      :integer          default("offline"), not null
 #  gpio_listen :integer          default(0), not null
 #  gpio_pull   :integer          default(0), not null

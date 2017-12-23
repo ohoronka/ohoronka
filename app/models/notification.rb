@@ -3,14 +3,14 @@
 # Table name: notifications
 #
 #  id          :integer          not null, primary key
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #  user_id     :integer
-#  target_type :string(255)
+#  target_type :string
 #  target_id   :integer
 #  event       :integer          default(NULL)
 #  unread      :boolean          default(TRUE)
-#  params      :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  params      :string
 #
 
 class Notification < ApplicationRecord

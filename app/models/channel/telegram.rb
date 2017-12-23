@@ -6,9 +6,9 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
-#  type       :string(255)
-#  auth_token :string(255)
-#  identifier :string(255)
+#  type       :string
+#  auth_token :string
+#  identifier :string
 #  activated  :boolean          default(FALSE)
 #
 

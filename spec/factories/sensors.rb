@@ -6,7 +6,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  device_id   :integer
-#  name        :string(255)
+#  name        :string
 #  status      :integer          default("offline"), not null
 #  gpio_listen :integer          default(0), not null
 #  gpio_pull   :integer          default(0), not null

@@ -6,9 +6,9 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  device_id     :integer
-#  user_name     :string(255)
-#  password      :string(255)
-#  password_hash :string(255)
+#  user_name     :string
+#  password      :string
+#  password_hash :string
 #
 
 require 'rails_helper'
