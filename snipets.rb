@@ -50,3 +50,5 @@ mos call OTA.Update '{"section": "firmware","commit_timeout": 300,"blob_url": "h
 # sudo find / -name "pg_config" -print
 # design
 # https://medialoot.com/blog/10-most-promising-free-bootstrap-4-templates-for-2017/
+
+# nove posta api ea4e107522c7cedd8985edd0ea5b485f
