@@ -3,6 +3,6 @@ class TestController < ApplicationController
   skip_before_action :authorize
 
   def index
-
+    @request = request
   end
 end

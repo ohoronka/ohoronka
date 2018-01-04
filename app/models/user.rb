@@ -35,6 +35,7 @@ class User < ApplicationRecord
   has_many :friends, class_name: 'User', through: :friendships
   has_many :friend_requests, class_name: 'Friendship', foreign_key: :friend_id
   has_many :notifications, dependent: :destroy, inverse_of: :user
+  has_many :mobile_devices, dependent: :destroy
 
   validates :email, uniqueness: {case_sensitive: false}, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, length: {minimum: 8}, on: :create

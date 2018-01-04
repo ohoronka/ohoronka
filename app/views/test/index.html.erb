@@ -1,1 +1,10 @@
-test
+<%= request.user_agent %>
+
+<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
+
+<script type="text/javascript">
+    function showAndroidToast(toast) {
+        token = Android.getFirebaseToken();
+        Android.showToast(token);
+    }
+</script>

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
+  post '/mobile_devices/set_for_user'
+
   resources :friends do
     collection do
       get 'find'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927134637) do
+ActiveRecord::Schema.define(version: 20180104162758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(version: 20170927134637) do
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
+  create_table "mobile_devices", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "token"
+    t.index ["user_id"], name: "index_mobile_devices_on_user_id"
+  end
+
   create_table "mqtt_acls", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -115,6 +123,37 @@ ActiveRecord::Schema.define(version: 20170927134637) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.decimal "price", precision: 5, scale: 2, null: false
+    t.integer "quantity", default: 1
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "status", limit: 2, default: 0
+    t.decimal "total", precision: 5, scale: 2
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "description"
+    t.decimal "price", precision: 5, scale: 2
+    t.integer "stock"
+    t.boolean "deleted", default: false
+    t.index ["deleted"], name: "index_products_on_deleted"
+  end
+
   create_table "sensors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -146,6 +185,10 @@ ActiveRecord::Schema.define(version: 20170927134637) do
   add_foreign_key "facility_shares", "facilities"
   add_foreign_key "facility_shares", "users"
   add_foreign_key "friendships", "users"
+  add_foreign_key "mobile_devices", "users"
   add_foreign_key "mqtt_acls", "mqtt_users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "users"
 end

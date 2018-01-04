@@ -140,5 +140,16 @@
         flash('<%= j flash[:alert] %>')
     </script>
 <% end %>
+
+<script type="text/javascript" charset="utf-8">
+    if (typeof Android !== 'undefined') {
+        token = Android.getFirebaseToken();
+//        Android.showToast(token);
+        if($.inArray(token, <%= current_user.mobile_devices.pluck(:token).to_json.html_safe %>)){
+            jQuery.post('/mobile_devices/set_for_user.json', {token: token})
+        }
+    }
+</script>
+
 </body>
 </html>
