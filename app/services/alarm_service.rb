@@ -24,6 +24,11 @@ class AlarmService
   def fire_alarm
     if facility.protected_status?
       facility.alarm_status!
+
+      user_ids = facility.users.map(&:id)
+      tokens = MobileDevice.where(user_id: user_ids).pluck(:token)
+      MobileDevice.send_all(tokens: tokens, msg: I18n.t('channel.Telegram.alarm', facility: facility.name))
+
       facility.users.each do |user|
         user.channels.each do |channel|
           channel.notify_facility_alarm(facility)
