@@ -28,3 +28,4 @@
 /config/mqtt.yml
 /config/smtp.yml
 /config/aws.yml
+/config/fcm.yml

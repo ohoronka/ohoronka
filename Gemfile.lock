@@ -144,6 +144,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
+    fcm_pusher (0.0.2)
     ffi (1.9.18)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -535,6 +536,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   draper
   factory_girl_rails
+  fcm_pusher
   fog
   font-awesome-sass
   hirb
