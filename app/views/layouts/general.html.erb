@@ -19,7 +19,6 @@
 
 </head>
 <body>
-<%= flash[:notice] %>
 
 <nav class="navbar <%= 'navbar-expand-sm' unless mobile? %> navbar-dark" style="background-color: #3097D1 !important;">
   <a class="navbar-brand" href="<%= root_path %>">
@@ -130,6 +129,7 @@
     <% end %>
   </div>
 </div>
+
 <% if flash[:notice] %>
     <script type="text/javascript" charset="utf-8">
         flash('<%= j flash[:notice] %>')
