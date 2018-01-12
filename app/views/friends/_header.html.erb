@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link <%= 'active' if params[:action] == 'index' %>" href="<%= friends_path %>"><%= t('friend.my_friends') %></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= 'active' if params[:action] == 'find' %>" href="<%= find_friends_path %>"><%= t('friend.find_new') %></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link <%= 'active' if params[:action] == 'requests' %>" href="<%= requests_friends_path %>"><%= t('friend.requests') %></a>
+  </li>
+</ul>

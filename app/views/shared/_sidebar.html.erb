@@ -1,0 +1,49 @@
+<aside class="sidebar">
+  <div class="sidebar-container">
+    <div class="sidebar-header">
+      <div class="brand">
+        <img src="<%= image_path('shield.svg') %>" alt="Ohoronka" width="30" height="30" class="rounded-circle">
+        OHORONKA
+      </div>
+    </div>
+    <nav class="menu">
+      <ul class="sidebar-menu metismenu" id="sidebar-menu">
+        <% current_facility = defined?(facility) ? facility : nil %>
+        <% current_user.facilities.each do |facility| %>
+            <li class="<%= 'active open' if facility == current_facility %>">
+              <a href="<%= facility_path(facility) %>">
+                <i class="fa fa-home"></i> <%= facility.name %>
+                <i class="fa arrow"></i>
+              </a>
+              <ul class="sidebar-nav">
+                <li class="<%= 'active' if params[:controller] == 'facilities' %>">
+                  <%= link_to 'Dashboard', facility_path(facility) %>
+                </li>
+                <li class="<%= 'active' if params[:controller] == 'devices' %>">
+                  <%= link_to t('devices'), facility_devices_path(facility) %>
+                </li>
+                <li class="<%= 'active' if params[:controller] == 'sensors' %>">
+                  <%= link_to t('sensors'), facility_sensors_path(facility) %>
+                </li>
+                <li class="<%= 'active' if params[:controller] == 'events' %>">
+                  <%= link_to t('events'), facility_events_path(facility) %>
+                </li>
+                <li class="<%= 'active' if params[:controller] == 'facility_shares' %>">
+                  <%= link_to t('shares'), facility_facility_shares_path(facility) %>
+                </li>
+              </ul>
+            </li>
+        <% end %>
+        <li class="<%= 'active' if current_page?(facilities_path) %>">
+          <%= link_to '<i class="fa fa-th-large"></i> '.html_safe + t('facilities'), facilities_path %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'friends' %>">
+          <%= link_to '<i class="fa fa-sitemap"></i> '.html_safe + t('friends'), friends_path %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
+<div class="mobile-menu-handle"></div>

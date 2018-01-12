@@ -1,5 +1,9 @@
 {
   "name": "ohoronka",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-touchswipe": "^1.6.18",
+    "jquery.browser": "^0.1.0",
+    "metismenu": "^2.7.2"
+  }
 }

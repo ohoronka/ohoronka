@@ -1,12 +1,13 @@
-<div class="bl">
-  <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-title"><%= Device.model_name.human(count: 2) %></div>
-      <div class="bl-acts">
-        <%= link_to t('device.new'), {action: :new}, class: 'btn btn-new' %>
-      </div>
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= t('devices') %></h3>
     </div>
-
+    <div class="header-block pull-right">
+      <%= link_to t('actions.new_icon_html'), {action: :new}, class: 'btn btn-new btn-act card-link' %>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
     <table class="list">
       <tbody>
       <% @devices.each do |device| %>
@@ -14,14 +15,12 @@
             <td><%= device.name %></td>
             <td><%= device.decorate.status_badge %></td>
             <td class="act-col">
-              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: device.id}, class: 'btn btn-edit' %>
+              <%= link_to t('actions.edit_icon_html'), {action: :edit, id: device.id}, class: 'btn btn-edit' %>
               <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: device.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
             </td>
           </tr>
       <% end %>
       </tbody>
     </table>
-
-    <%= paginate @devices, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

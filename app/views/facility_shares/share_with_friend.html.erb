@@ -1,18 +1,24 @@
-<div class="bl">
-  <%= render :partial => 'header' %>
-
-  <div class="bl-body">
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <%= render :partial => 'header' %>
+  </div>
+  <div class="card-block table-responsive">
     <ul class="list-unstyled">
       <% shared_with_ids = facility.users.ids %>
       <% @friends.each do |friend| %>
-          <% content_for :actions do %>
-              <% if shared_with_ids.include?(friend.id) %>
-                <span class="badge badge-success"><%= t('facility_share.already_shared') %></span>
-              <% else %>
-                  <%= link_to t('actions.share'), {action: :new, friend_id: friend}, class: 'btn btn-new' %>
-              <% end %>
-          <% end %>
-          <%= render :partial => 'friends/friend', object: friend %>
+          <li class="media">
+            <img class="mr-3 rounded-circle" src="<%= friend.decorate.avatar_url %>" alt="photo" style="height: 50px; width: 50px">
+            <div class="media-body">
+              <h5 class="mt-0 mb-1"><%= friend.decorate.full_name %></h5>
+              <div class="pull-right">
+                <% if shared_with_ids.include?(friend.id) %>
+                    <span class="badge badge-success"><%= t('facility_share.already_shared') %></span>
+                <% else %>
+                    <%= link_to t('actions.share'), {action: :new, friend_id: friend}, class: 'btn btn-new' %>
+                <% end %>
+              </div>
+            </div>
+          </li>
       <% end %>
     </ul>
   </div>

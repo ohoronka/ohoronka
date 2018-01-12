@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  layout 'general'
 
   before_action :authorize
   before_action :prepare_for_mobile

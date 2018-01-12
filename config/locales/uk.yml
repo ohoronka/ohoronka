@@ -8,8 +8,8 @@ uk:
         one: Об'єкт
         other: Об'єкти
       device:
-        one: Пристрій
-        other: Пристрої
+        one: Прилад
+        other: Прилад
       sensor:
         one: Сенсор
         other: Сенсори
@@ -48,6 +48,7 @@ uk:
         status: Статус
       sensor:
         name: Назва
+        device_id: Пристрій
         gpio_listen: Порт
   enum:
     status:
@@ -85,8 +86,10 @@ uk:
 
   actions:
     new: Додати
+    new_icon_html: '<i class="fa fa-plus" aria-hidden="true"></i>'
     edit: Редагувати
     edit_with_icon_html: '<i class="fa fa-cog" aria-hidden="true"></i> Редагувати'
+    edit_icon_html: '<i class="fa fa-cog" aria-hidden="true"></i>'
     destroy: Видалити
     destroy_icon_html: '<i class="fa fa-trash-o" aria-hidden="true"></i>'
     destroy_with_icon_html: '<i class="fa fa-trash-o" aria-hidden="true"></i> Видалити'
@@ -112,10 +115,10 @@ uk:
   confirm:
     destroy: "Запис буде остаточно відалено. Ви впевнені?"
   device:
-    new: "Додати девайс"
+    new: "Додати прилад"
   sensor:
     new: "Додати сенсор"
-    select_device: "Оберіть пристрій до якого треба додаті сенсор"
+    select_device: "Оберіть пристрій до якого треба додати сенсор"
   sessions:
     new:
       login_and_register_forms: "Вхід & Реєстрація"
@@ -168,3 +171,13 @@ uk:
   users:
     crop_avatar:
       crop_image_to_feet: "Обріжте зайве"
+  sign_out: "Вихід"
+  notifications: "Повідомлення"
+  profile: "Профіль"
+  view_all: "Переглянути всі"
+  devices: "Прилади"
+  sensors: "Сенсори"
+  events: "Події"
+  shares: "Доступ"
+  facilities: "Об'єкти"
+  friends: "Друзі"

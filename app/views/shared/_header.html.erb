@@ -1,0 +1,32 @@
+<header class="header">
+
+  <!--{{> app/_common/header/collapse/collapse}}-->
+  <div class="header-block header-block-collapse d-lg-none d-xl-none" >
+    <button class="collapse-btn" id="sidebar-collapse-btn">
+      <i class="fa fa-bars"></i>
+    </button>
+  </div>
+
+  <!--{{> app/_common/header/search/search}}-->
+
+  <!--{{> app/_common/header/buttons/buttons}}-->
+
+  <!--{{> app/_common/header/nav/nav}}-->
+  <div class="header-block header-block-nav">
+    <ul class="nav-profile">
+
+      <!--Notifications Dropdown-->
+      <!--{{> app/_common/header/nav/notifications/notifications}}-->
+      <%= render :partial => "shared/header/notifications" %>
+
+      <!--{{Profile Dropdown}}-->
+      <!--{{> app/_common/header/nav/profile/profile}}-->
+      <%= render :partial => "shared/header/profile" %>
+
+    </ul>
+  </div>
+
+</header>
+
+
+

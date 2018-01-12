@@ -1,28 +1,29 @@
-<div class="bl">
-  <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-title"><%= Sensor.model_name.human(count: 2) %></div>
-      <div class="bl-acts">
-        <%= link_to t('sensor.new'), {action: :select_device}, class: 'btn btn-new' %>
-      </div>
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= t('sensors') %></h3>
     </div>
-
+    <div class="header-block pull-right">
+      <%= link_to t('actions.new_icon_html'), {action: :new}, class: 'btn btn-new btn-act card-link' %>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
     <table class="list">
       <tbody>
       <% @sensors.each do |sensor| %>
           <tr>
-            <td><%= sensor.name %></td>
-            <td><small class="text-muted"><%= Device.model_name.human %>: </small> <%= sensor.device.name %></td>
-            <td><span class="badge badge-<%= sensor.status %>"><%= sensor.status %></span></td>
+            <td>
+              <%= sensor.name %> <br>
+              <small class="text-muted"><%= sensor.device.name %></small>
+            </td>
+            <td><%= sensor.decorate.status_badge %></td>
             <td class="act-col">
-              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-edit' %>
-              <%= link_to t('actions.destroy_icon_html'), {action: :destroy, device_id: sensor.device_id, id: sensor.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
+              <%= link_to t('actions.edit_icon_html'), {action: :edit, id: sensor.id}, class: 'btn btn-edit' %>
+              <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: sensor.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
             </td>
           </tr>
       <% end %>
       </tbody>
     </table>
-
-    <%= paginate @sensors, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

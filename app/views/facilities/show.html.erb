@@ -1,55 +1,82 @@
-<div class="bl">
-  <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-title">
-        <%= @facility.name %>
-        <span class="badge badge-<%= @facility.status %>"><%= @facility.decorate.status %></span>
-      </div>
-      <div class="bl-acts">
-        <%= link_to @facility.decorate.next_status,
-          set_next_status_facility_path(@facility),
-          class: "btn btn-act btn-#{@facility.next_status}",
-          method: :patch,
-          data: { disable_with: t('actions.loading_html')}
-        %>
+<section class="section">
+  <div class="row sameheight-container">
+    <div class="col col-12 col-sm-12 col-md-12 col-xl-12">
+      <div class="card sameheight-item" data-exclude="xs">
+        <div class="card-block">
+          <div class="card-header bordered">
+            <div class="header-block">
+              <h3 class="title">
+                <%= @facility.name %>
+                <span style="margin-left: 10px" class="badge badge-<%= @facility.status %>"><%= @facility.decorate.status %></span>
+              </h3>
+            </div>
+            <div class="header-block pull-right">
+              <%= link_to @facility.decorate.next_status,
+                set_next_status_facility_path(@facility),
+                class: "btn btn-act btn-#{@facility.next_status}",
+                method: :patch,
+                data: { disable_with: t('actions.loading_html')}
+              %>
+            </div>
+          </div>
+
+          <div class="card-block">
+            <table class="list">
+              <tbody>
+              <% @facility.sensors.each do |sensor| %>
+                  <tr id="sensor_<%= sensor.id %>">
+                    <td><%= sensor.name %></td>
+                    <td class="text-right">
+                      <span class="badge badge-<%= sensor.status %>"><%= sensor.decorate.status %></span>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
       </div>
     </div>
-
-    <table class="list">
-      <tbody>
-      <% @facility.sensors.each do |sensor| %>
-          <tr id="sensor_<%= sensor.id %>">
-            <td><%= sensor.name %></td>
-            <td class="text-right">
-              <span class="badge badge-<%= sensor.status %>"><%= sensor.decorate.status %></span>
-            </td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-
   </div>
-</div>
+</section>
 
-<div class="bl">
-  <div class="bl-body">
-    <div class="bl-title"><%= t('last_events') %></div>
+<section class="section">
+  <div class="row sameheight-container">
+    <div class="col col-12 col-sm-12 col-md-12 col-xl-12">
+      <div class="card sameheight-item" data-exclude="xs">
+        <div class="card-block">
+          <div class="card-header bordered">
+            <div class="header-block">
+              <h3 class="title">
+                <%= t('last_events') %>
+              </h3>
+            </div>
+          </div>
+
+          <div class="card-block">
+            <div class="table-responsive">
+              <table class="list" id="events">
+                <tbody>
+                <% @facility.events.dashboard_list.each do |event| %>
+                    <tr>
+                      <td><%= event.target.name %></td>
+                      <td><time class="js-timeago" datetime="<%= event.created_at.to_s(:iso8601) %>"><%= l event.created_at %></time></td>
+                      <td class="text-right">
+                        <span class="badge badge-<%= event.target_status %>"><%= event.decorate.target_status %></span>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
-
-  <table class="list" id="events">
-    <tbody>
-    <% @facility.events.dashboard_list.each do |event| %>
-        <tr>
-          <td><%= event.target.name %></td>
-          <td><time class="js-timeago" datetime="<%= event.created_at.to_s(:iso8601) %>"><%= l event.created_at %></time></td>
-          <td class="text-right">
-            <span class="badge badge-<%= event.target_status %>"><%= event.decorate.target_status %></span>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+</section>
 
 <script id="event_template" type="text/x-jsrender">
   <tr id="event_{{:id}}">
@@ -90,7 +117,9 @@
             event_created: function(data) {
                 $('#events tbody').prepend(event_tmpl.render(data.event));
                 $("#event_" + data.event.id + ' .js-timeago').timeago();
-                $('#events tbody tr:last').remove();
+                if($('#events tbody tr').length > 50) {
+                    $('#events tbody tr:last').remove();
+                }
             },
             sensor_updated: function(data) {
                 $('#sensor_' + data.sensor.id).replaceWith(sensor_tmpl.render(data.sensor));

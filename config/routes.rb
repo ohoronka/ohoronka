@@ -21,12 +21,8 @@ Rails.application.routes.draw do
         get 'share_with_friend'
       end
     end
-    resources :devices do
-      resources :sensors, except: [:index]
-    end
-    resources :sensors, only: [:index] do
-      get :select_device, on: :collection
-    end
+    resources :devices
+    resources :sensors
     resources :events, only: [:index]
   end
 

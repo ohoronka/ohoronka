@@ -1,12 +1,15 @@
-<div class="bl">
-  <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-title"><%= t('actions.edit') %> <%= @facility.name %></div>
-      <div class="bl-acts">
-        <%= link_to t('actions.destroy_with_icon_html'), {action: :destroy}, class: 'btn btn-destroy', method: :delete, data: {confirm: t('confirm.destroy')} %>
-      </div>
+<div class="card tasks sameheight-item" data-exclude="xs,sm">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">
+        <%= t('actions.edit') %> <%= @facility.name %>
+      </h3>
     </div>
-
+    <div class="header-block pull-right">
+      <%= link_to t('actions.destroy_icon_html'), {action: :destroy}, class: 'btn btn-destroy btn-sm', method: :delete, data: {confirm: t('confirm.destroy')} %>
+    </div>
+  </div>
+  <div class="card-block">
     <%= render :partial => 'form' %>
   </div>
 </div>

@@ -1,14 +1,14 @@
-<div class="bl">
-  <%= render :partial => "header" %>
-  <div class="bl-body">
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <%= render :partial => 'header' %>
+  </div>
+  <div class="card-block table-responsive">
     <table class="list">
       <tbody>
       <% @facilities.each do |facility| %>
           <tr>
             <td><%= facility.name %></td>
             <td class="act-col">
-              <%# link_to '<i class="fa fa-cog" aria-hidden="true"></i> Edit'.html_safe, {action: :edit, id: facility.id}, class: 'btn btn-edit' %>
-              <%# link_to t('actions.destroy_icon_html'), {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
             </td>
           </tr>
       <% end %>

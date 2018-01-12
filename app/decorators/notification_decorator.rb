@@ -18,6 +18,10 @@ class NotificationDecorator < ApplicationDecorator
     send("#{object.event}_url".to_sym)
   end
 
+  def image_url
+    object.user&.decorate&.avatar_url
+  end
+
   def friendship_request_message
     h.t('notification.messages.friend_ship_request', name: object.target.user.decorate.full_name)
   end

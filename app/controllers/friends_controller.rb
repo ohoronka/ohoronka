@@ -10,7 +10,7 @@ class FriendsController < ApplicationController
   end
 
   def requests
-    @requests = current_user.friend_requests.pending_status.includes(:user)
+    @requests = current_user.friend_requests.pending_status.includes(:user).page(params[:page])
     current_user.notifications.friendship_request.unread.update_all(unread: false)
   end
 

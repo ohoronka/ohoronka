@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  layout 'facility'
 
   def index
     @events = current_user.facilities.find(params[:facility_id]).events.ordered.page(params[:page])

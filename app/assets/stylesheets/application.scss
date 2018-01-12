@@ -1,4 +1,3 @@
-@import "bootstrap-variables";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -9,15 +8,17 @@
 @import "custom/badges";
 @import "flash";
 
-body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.6;
-  color: #292b2c;
-  /* background-color: #f5f8fa; */
-}
-
+@import "modular/variables";
+@import "modular/_styles/mixins";
+@import "modular/_styles/layout";
+@import "modular/_styles/misc";
+@import "modular/_styles/typography";
+@import "modular/main";
+@import "modular/app";
+@import "modular/header";
+@import "modular/card";
+@import "metismenu/dist/metisMenu";
+@import "modular/sidebar";
 
 .has-error{
   input{
@@ -28,10 +29,6 @@ body {
     display: block;
     @extend .invalid-feedback;
   }
-}
-
-.nav-link.active{
-  background-color: #fff !important;
 }
 
 .pagination {

@@ -3,5 +3,6 @@
     <%= f.select :role, FacilityShare::ROLES.keys %>
     <%= f.form_group class: 'form-acts' do %>
         <%= f.submit t('actions.save'), class: 'btn btn-save' %>
+        <%= link_to t('actions.cancel'), {action: :index}, class: 'btn btn-cancel' %>
     <% end %>
 <% end %>

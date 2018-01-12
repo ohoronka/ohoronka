@@ -1,5 +1,6 @@
 .list {
   @extend .table;
+  @extend .table-striped;
 
   .act-col {
     @extend .text-right;

@@ -1,23 +1,24 @@
-<div class="bl">
-  <%= render :partial => 'header' %>
-  <div class="bl-body">
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <%= render :partial => 'header' %>
+
+    <div class="header-block pull-right">
+      <%= link_to t('actions.new_icon_html'), {action: :new}, class: 'btn btn-new btn-act card-link' %>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
     <table class="list">
       <tbody>
       <% @facilities.each do |facility| %>
           <tr>
             <td><%= link_to facility.name, {action: :show, id: facility} %></td>
             <td class="act-col">
-              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: facility.id}, class: 'btn btn-edit' %>
+              <%= link_to t('actions.edit_icon_html'), {action: :edit, id: facility.id}, class: 'btn btn-edit' %>
               <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: facility.id}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
             </td>
           </tr>
       <% end %>
       </tbody>
     </table>
-
-    <%= paginate @facilities, theme: 'twitter-bootstrap-4' %>
-
-    <%= link_to t('facility.new'), {action: :new}, class: 'btn btn-new btn-act card-link' %>
   </div>
-
 </div>

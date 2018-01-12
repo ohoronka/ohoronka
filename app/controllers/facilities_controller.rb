@@ -1,6 +1,5 @@
 class FacilitiesController < ApplicationController
   before_action :facility, only: [:edit, :update, :destroy, :set_next_status, :show]
-  layout -> { params[:action].in?(['index', 'shared', 'new']) ? 'general' : 'facility' }
 
   def index
     @facilities = current_user.facilities.owned.page(params[:page])
@@ -31,7 +30,7 @@ class FacilitiesController < ApplicationController
   end
 
   def new
-    @facility = current_user.facilities.new
+    @facility = Facility.new
   end
 
   def create
@@ -59,7 +58,7 @@ class FacilitiesController < ApplicationController
   private
 
   helper_method def facility
-    @facility = current_user.facilities.owned.find(params[:id])
+    @facility = current_user.facilities.owned.find_by(id: params[:id])
   end
 
   def facility_params

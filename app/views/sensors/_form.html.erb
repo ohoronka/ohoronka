@@ -1,8 +1,7 @@
-<%= bootstrap_form_for([facility, device, @sensor]) do |f| %>
+<%= bootstrap_form_for([facility, @sensor]) do |f| %>
     <%= f.text_field :name %>
-    <%= f.select :gpio_listen, options_for_select(Sensor::PORT_GPIO, disabled: device.sensors.pluck(:gpio_listen), selected: @sensor.gpio_listen) %>
-    <%# f.number_field :gpio_pull %>
-    <%# f.number_field :gpio_ok %>
+    <%= f.select :device_id, options_from_collection_for_select(facility.devices, :id, :name, @sensor.device_id) %>
+    <%= f.select :gpio_listen, options_for_select(Sensor::PORT_GPIO, disabled: @sensor&.device&.sensors&.pluck(:gpio_listen), selected: @sensor.gpio_listen) %>
 
     <%= f.form_group class: 'form-btns' do %>
         <%= f.submit t('actions.save'), class: 'btn btn-save' %>

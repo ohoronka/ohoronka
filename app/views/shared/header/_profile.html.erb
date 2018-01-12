@@ -1,0 +1,18 @@
+<li class="profile dropdown">
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <div class="img" style="background-image: url('<%= current_user.decorate.avatar_url %>')">
+
+    </div>
+    <span class="name">
+      <%= current_user.decorate.full_name %>
+    </span>
+  </a>
+  <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+    <%= link_to '<i class="fa fa-user icon"></i> '.html_safe + t('profile'), edit_user_path(current_user), class: 'dropdown-item' %>
+    <%= link_to '<i class="fa fa-bell icon"></i> '.html_safe + t('notifications'), notifications_path, class: 'dropdown-item' %>
+    <%= link_to '<i class="fa fa-user icon"></i> '.html_safe + 'Admin interface', admin_root_path, class: 'dropdown-item' if current_admin %>
+    <!--<a class="dropdown-item" href="#"><i class="fa fa-gear icon"></i>Settings</a>-->
+    <div class="dropdown-divider" ></div>
+    <%= link_to '<i class="fa fa-power-off icon"></i> '.html_safe + t('sign_out'), sign_out_path, method: :delete, class: 'dropdown-item' %>
+  </div>
+</li>

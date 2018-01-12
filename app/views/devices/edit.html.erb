@@ -1,7 +1,12 @@
-<div class="bl">
-  <div class="bl-body">
-    <div class="bl-title"><%= @device.name %></div>
-
+<div class="card tasks sameheight-item" data-exclude="xs,sm">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">
+        <%= @device.name %>
+      </h3>
+    </div>
+  </div>
+  <div class="card-block">
     <%= render :partial => 'form' %>
   </div>
 </div>

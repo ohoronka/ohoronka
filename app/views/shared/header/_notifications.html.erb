@@ -1,0 +1,36 @@
+<li class="notifications new">
+  <a href="" data-toggle="dropdown">
+    <i class="fa fa-bell-o"></i>
+    <sup>
+      <span class="counter"><%= current_user.notifications.unread.count %></span>
+    </sup>
+  </a>
+
+  <div class="dropdown-menu notifications-dropdown-menu">
+
+    <ul class="notifications-container">
+      <% current_user.notifications.order(id: :desc).limit(10).each do |notification| %>
+      <li>
+        <a href="<%= notification.decorate.url %>" class="notification-item">
+          <div class="img-col">
+            <div class="img" style="background-image: url('<%= notification.decorate.image_url %>')"></div>
+          </div>
+          <div class="body-col">
+            <p>
+              <%= notification.decorate.message %>
+            </p>
+          </div>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+
+    <footer>
+      <ul>
+        <li>
+          <%= link_to t('view_all'), notifications_path %>
+        </li>
+      </ul>
+    </footer>
+  </div>
+</li>

@@ -1,5 +1,4 @@
 class FacilitySharesController < ApplicationController
-  layout 'facility'
   before_action :share, only: [:edit, :update]
 
   def index

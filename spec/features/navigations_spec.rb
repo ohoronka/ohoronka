@@ -26,8 +26,8 @@ RSpec.feature "Navigations", type: :feature do
         visit edit_facility_device_path(facility, device)
 
         visit facility_sensors_path(facility)
-        visit new_facility_device_sensor_path(facility, device)
-        visit edit_facility_device_sensor_path(facility, device, sensor)
+        visit new_facility_sensor_path(facility)
+        visit edit_facility_sensor_path(facility, sensor)
 
         visit facility_events_path(facility)
 

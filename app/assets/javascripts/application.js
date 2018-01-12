@@ -21,6 +21,12 @@
 //= require jquery.timeago
 //= require jstz
 //= require js.cookie
+//= require jquery-touchswipe/jquery.touchSwipe
+
+// sidebar
+//= require jquery.browser/dist/jquery.browser
+//= require metismenu/dist/metisMenu.js
+//= require sidebar
 
 
 var flash = function (message) {
