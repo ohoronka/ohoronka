@@ -12,9 +12,9 @@
 //
 //= require jquery3
 //= require popper
-//= require rails-ujs
 //= require turbolinks
 //= require cable
+//= require rails-ujs
 //= require jsrender
 //= require bootstrap-sprockets
 //= require jquery.backstretch
