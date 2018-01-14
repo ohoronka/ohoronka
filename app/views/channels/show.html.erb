@@ -1,9 +1,8 @@
-<div class="bl">
-  <%= render :partial => 'users/nav' %>
-
-  <div class="bl-body">
-    <div class="bl-title"><%= t('channel.new', type: params[:type]) %></div>
-
+<div class="card tasks sameheight-item" data-exclude="xs,sm">
+  <div class="card-header bordered card-header-sm">
+    <%= render :partial => 'users/header' %>
+  </div>
+  <div class="card-block">
     <%= t('channel.Telegram.follow_link_html') %> <a href="<%= @channel.url %>" target="_blank"><%= @channel.url %></a>
   </div>
 </div>

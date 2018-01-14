@@ -1,14 +1,8 @@
-<div class="bl">
-  <%= render :partial => 'users/nav' %>
-
-  <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-title"><%= t('channel.select_type') %></div>
-      <div class="bl-acts">
-        <%= link_to t('actions.cancel'), {action: :index}, class: 'btn btn-cancel' %>
-      </div>
-    </div>
-
+<div class="card tasks sameheight-item" data-exclude="xs,sm">
+  <div class="card-header bordered card-header-sm">
+    <%= render :partial => 'users/header' %>
+  </div>
+  <div class="card-block">
     <table class="list">
       <tbody>
       <% current_user.allowed_channel_types.each do |type| %>

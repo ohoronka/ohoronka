@@ -1,12 +1,12 @@
-<div class="bl">
-  <%= render :partial => 'users/nav' %>
-  <div class="bl-body">
+<div class="card tasks sameheight-item" data-exclude="xs,sm">
+  <div class="card-header bordered card-header-sm">
+    <%= render :partial => 'header' %>
+  </div>
+  <div class="card-block">
     <%= bootstrap_form_for(@user) do |f| %>
         <%= f.text_field :first_name %>
         <%= f.text_field :last_name %>
         <%= f.email_field :email %>
-
-        <%= f.text_area :about %>
 
         <%= f.file_field :avatar, accept: 'image/*' %>
 
@@ -19,5 +19,3 @@
     <% end %>
   </div>
 </div>
-
-

@@ -1,12 +1,11 @@
-<div class="bl">
-  <%= render :partial => 'users/nav' %>
-  <div class="bl-body">
-    <div class="bl-title-bl">
-      <div class="bl-acts">
-        <%= link_to t('channel.add'), select_type_channels_path, class: 'btn btn-new' if current_user.allowed_channel_types.any? %>
-      </div>
+<div class="card tasks sameheight-item" data-exclude="xs,sm">
+  <div class="card-header bordered card-header-sm">
+    <%= render :partial => 'users/header' %>
+    <div class="header-block pull-right">
+      <%= link_to t('actions.new_icon_html'), select_type_channels_path, class: 'btn btn-new btn-sm' if current_user.allowed_channel_types.any? %>
     </div>
-
+  </div>
+  <div class="card-block">
     <table class="list">
       <tbody>
       <% @channels.each do |channel| %>

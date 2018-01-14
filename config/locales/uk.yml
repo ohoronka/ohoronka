@@ -23,8 +23,8 @@ uk:
         one: Повідомлення
         other: Повідомлення
       channel:
-        one: Канал сповіщення
-        other: Канали сповіщення
+        one: Канал повідомлень
+        other: Канали повідомлень
       channel/telegram: Telegram
     attributes:
       user:
