@@ -18,7 +18,7 @@
   <![endif]-->
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+  <%= "<script>window.bugsnagClient = '#{Bugsnag.configuration.api_key}'</script>".html_safe if Bugsnag.configuration.api_key %>
 </head>
 <body>
 

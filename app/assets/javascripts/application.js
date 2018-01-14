@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require bugsnag-js/dist/bugsnag.js
 //= require jquery3
 //= require popper
 //= require turbolinks
