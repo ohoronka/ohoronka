@@ -1,0 +1,14 @@
+<% content_for :headline do %>
+ Order <%= @order.number %>
+<% end %>
+
+Доброго дня, <strong><%= @order.user.decorate.full_name %></strong>. Ви зробили замовленна на сайті <%= link_to 'OHORONKA.com', order_url(@order) %>:
+<%= render :partial => "orders/order_info", locals: {order: @order} %>
+
+<h3 style="margin: 16px auto; text-align: center"><%= Order.human_attribute_name(:delivery) %></h3>
+<%= render :partial => "orders/delivery_info" %>
+
+<h3 style="margin: 16px auto; text-align: center;"><%= OrderProduct.model_name.human(count: 2) %></h3>
+<%= render :partial => "orders/order_products", locals: {order: @order, layout: :email} %>
+
+<%= link_to t('.details_and_payment'), order_url(@order), class: 'button', style: 'width: 100%;margin: 16px auto' %>

@@ -22,3 +22,4 @@ if Rails.env.development?
 end
 
 FactoryGirl.create(:user, admin: true, email: 'admin@example.com')
+FactoryGirl.create_list(:product, 3)

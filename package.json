@@ -5,6 +5,7 @@
     "bugsnag-js": "^4.1.2",
     "jquery-touchswipe": "^1.6.18",
     "jquery.browser": "^0.1.0",
-    "metismenu": "^2.7.2"
+    "metismenu": "^2.7.2",
+    "typeahead.js": "^0.11.1"
   }
 }

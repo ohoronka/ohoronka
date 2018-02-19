@@ -1,0 +1,24 @@
+<table class="list table">
+  <tbody>
+  <tr>
+    <th><%= Order.human_attribute_name(:delivery_method) %>:</th>
+    <td><%= @order.delivery_method %></td>
+  </tr>
+  <tr>
+    <th><%= @order.delivery.class.human_attribute_name(:full_name) %>:</th>
+    <td><%= @order.delivery.full_name %></td>
+  </tr>
+  <tr>
+    <th><%= @order.delivery.class.human_attribute_name(:phone) %>:</th>
+    <td><%= @order.delivery.phone %></td>
+  </tr>
+  <tr>
+    <th><%= @order.delivery.class.human_attribute_name(:city) %>:</th>
+    <td><%= @order.delivery.city %></td>
+  </tr>
+  <tr>
+    <th><%= @order.delivery.class.human_attribute_name(:warehouse_ref) %>:</th>
+    <td><%= @order.delivery.warehouse['Description'] if @order.delivery.warehouse %></td>
+  </tr>
+  </tbody>
+</table>

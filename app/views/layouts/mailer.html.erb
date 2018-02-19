@@ -2,12 +2,28 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'email' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="layout <%= @wide_layout && 'is-wide' %>">
+      <div class="logo">
+        <%= image_tag 'shield', alt: 'logo' %>
+        <% if content_for? :headline %>
+         <h1 style="padding-top: 8px;"><%= yield :headline %></h1>
+        <% end %>
+      </div>
+      <div class="container">
+
+        <%= yield %>
+      </div>
+      <div class="footer">
+        <% if content_for? :footer %>
+          <%= yield :footer %>
+        <% end %>
+        <div>&copy; <%= Date.today.year %> OHORONKA.com</div>
+      </div>
+    </div>
   </body>
 </html>

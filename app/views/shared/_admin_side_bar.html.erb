@@ -1,0 +1,14 @@
+<li class="<%= 'active open' if params[:controller].split('/').first == 'admin' %>">
+  <a href="<%= admin_root_path %>">
+    <i class="fa fa-lock"></i> Адмінка
+    <i class="fa arrow"></i>
+  </a>
+  <ul class="sidebar-nav">
+    <li class="<%= 'active' if params[:controller] == 'admin/users' %>">
+      <%= link_to User.model_name.human(count: 2), admin_users_path %>
+    </li>
+    <li class="<%= 'active' if params[:controller] == 'admin/orders' %>">
+      <%= link_to Order.model_name.human(count: 2), admin_orders_path %>
+    </li>
+  </ul>
+</li>

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: mobile_devices
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#  token      :string
+#
+
 class MobileDevice < ApplicationRecord
   belongs_to :user
 
@@ -13,6 +24,8 @@ class MobileDevice < ApplicationRecord
   end
 
   def self.send_all(tokens:, msg:)
+    return if tokens.empty?
+
     pusher = FcmPusher.new(FCM_CONFIG[:key])
     pusher.send_all(tokens, "OHORONKA", msg, { badge: 1, sound: 'enabled', priority: FcmPusher::Priority::HIGH })
   end

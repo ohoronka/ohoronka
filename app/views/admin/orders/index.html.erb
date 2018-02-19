@@ -1,0 +1,13 @@
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= Order.model_name.human(count: 2) %></h3>
+    </div>
+
+  </div>
+  <div class="card-block table-responsive">
+    <%= datagrid_form_for @grid, :method => :get, :url => admin_orders_path %>
+    <br>
+    <%= datagrid_table @grid %>
+  </div>
+</div>

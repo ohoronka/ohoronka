@@ -4,7 +4,7 @@
       <h3 class="title"><%= t('sensors') %></h3>
     </div>
     <div class="header-block pull-right">
-      <%= link_to t('actions.new_icon_html'), {action: :new}, class: 'btn btn-new btn-act card-link' %>
+      <%= link_to t('actions.new_with_icon_html'), {action: :new}, class: 'btn btn-new btn-act card-link' %>
     </div>
   </div>
   <div class="card-block table-responsive">
@@ -18,7 +18,7 @@
             </td>
             <td><%= sensor.decorate.status_badge %></td>
             <td class="act-col">
-              <%= link_to t('actions.edit_icon_html'), {action: :edit, id: sensor.id}, class: 'btn btn-edit' %>
+              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: sensor.id}, class: 'btn btn-edit' %>
               <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: sensor.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
             </td>
           </tr>

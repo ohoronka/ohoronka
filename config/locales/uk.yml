@@ -1,4 +1,12 @@
+# puts Product.new.attributes.keys.map{|k| k + ':'}
 uk:
+  activemodel:
+    attributes:
+      order/delivery/nova_poshta:
+        full_name: 'П.І.Б. отримувача'
+        phone: Телефон
+        city: Місто
+        warehouse_ref: Відділення
   activerecord:
     models:
       user:
@@ -26,7 +34,48 @@ uk:
         one: Канал повідомлень
         other: Канали повідомлень
       channel/telegram: Telegram
+      order: Замовлення
+      order_product:
+        one: Позиція
+        other: Позиції
+      product:
+        one: Продукт
+        other: Продукти
     attributes:
+      order:
+        id: '#'
+        user_id: Користувач
+        number: Номер
+        status: Статус
+        delivery_method: Доставка
+        delivery: Доставка
+        payment_method: Оплата
+        total: Всього
+        paid: Сплачено
+        comment: Коментар
+        created_at: Створена
+        updated_at: Змінена
+        payment_methods:
+          liqpay: Карткою
+          on_receipt: Готівкою при отриманні
+        delivery_methods:
+          nova_poshta: Нова Пошта
+      order_product:
+        id: '#'
+        order_id: Замовлення
+        product_id: Продукт
+        price: Ціна за од.
+        subtotal: Ціна
+        quantity: Кількість
+      product:
+        id: '#'
+        created_at: Створено
+        updated_at: Змінено
+        name: Назва
+        description: Опис
+        image: Картинка
+        price: Ціна
+        stock: Залишок
       user:
         id: '#'
         first_name: Ім'я
@@ -58,6 +107,8 @@ uk:
       ok: OK
       online: На зв'язку
       offline: Нема зв'язку
+      pending: Очікує
+      cart: Кошик
     target_status:
       idle: Знято
       protected: Захищено
@@ -87,8 +138,9 @@ uk:
   actions:
     new: Додати
     new_icon_html: '<i class="fa fa-plus" aria-hidden="true"></i>'
+    new_with_icon_html: '<i class="fa fa-plus" aria-hidden="true"></i> <span class="d-none d-sm-inline">Додати</span>'
     edit: Редагувати
-    edit_with_icon_html: '<i class="fa fa-cog" aria-hidden="true"></i> Редагувати'
+    edit_with_icon_html: '<i class="fa fa-cog" aria-hidden="true"></i> <span class="d-none d-sm-inline">Редагувати</span>'
     edit_icon_html: '<i class="fa fa-cog" aria-hidden="true"></i>'
     destroy: Видалити
     destroy_icon_html: '<i class="fa fa-trash-o" aria-hidden="true"></i>'
@@ -101,6 +153,8 @@ uk:
     continue: "Продовжити"
     crop: "Обрізати"
     loading_html: "<i class='fa fa-spinner fa-spin fa-fw'></i> <span class='sr-only'>Загружаю...</span>"
+    show: "Показати"
+    checkout: "Оформити замовлення"
 
   facility:
     new: Новий об'єкт
@@ -181,3 +235,14 @@ uk:
   shares: "Доступ"
   facilities: "Об'єкти"
   friends: "Друзі"
+  units: 'од.'
+  paid: 'Сплачено'
+  unpaid: 'Не сплачено'
+  orders_history: "Історія замовлень"
+  order_mailer:
+    checkout_email:
+      details_and_payment: "Деталі та оплата"
+  add_to_cart: "У кошик"
+  cart: "Кошик"
+  continue_shopping: "Продовжити покупки"
+

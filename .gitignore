@@ -30,3 +30,5 @@
 /config/aws.yml
 /config/fcm.yml
 /modular-admin-html/
+/config/liqpay.yml
+/config/nova_poshta.yml

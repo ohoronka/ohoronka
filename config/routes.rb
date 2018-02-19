@@ -26,6 +26,25 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
+  resources :products, only: [:index] do
+    member do
+      post :to_cart
+    end
+  end
+
+  resource :cart, only: [:show, :edit, :update] do
+    collection do
+      get :cities
+      get :warehouses
+      delete :remove_item
+      patch :update_item
+    end
+  end
+
+  resources :orders
+
+  post 'payment/liqpay' => 'payment/liqpay#index', as: :payment_liqpay
+
   post '/mobile_devices/set_for_user'
 
   resources :friends do
@@ -53,6 +72,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'users#index'
+    resources :orders
     resources :users do
       patch :login_as, on: :member
     end

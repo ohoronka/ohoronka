@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104162758) do
+ActiveRecord::Schema.define(version: 20180122205823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,35 +123,49 @@ ActiveRecord::Schema.define(version: 20180104162758) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "order_products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "order_id"
-    t.bigint "product_id"
-    t.decimal "price", precision: 5, scale: 2, null: false
-    t.integer "quantity", default: 1
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-    t.index ["product_id"], name: "index_order_items_on_product_id"
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.decimal "price", precision: 8, scale: 2, default: "0.0", null: false
+    t.integer "quantity", default: 1, null: false
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.integer "status", limit: 2, default: 0
-    t.decimal "total", precision: 5, scale: 2
+    t.bigint "user_id", null: false
+    t.integer "number", default: -> { "nextval('order_number_seq'::regclass)" }, null: false
+    t.integer "status", limit: 2, default: 0, null: false
+    t.integer "delivery_method", limit: 2, default: 0, null: false
+    t.integer "payment_method", limit: 2, default: 0, null: false
+    t.decimal "total", precision: 8, scale: 2, default: "0.0", null: false
+    t.boolean "paid", default: false, null: false
+    t.text "comment"
+    t.json "delivery_options"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payment_callbacks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.string "status"
+    t.json "options"
+    t.index ["order_id"], name: "index_payment_callbacks_on_order_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.text "description"
-    t.decimal "price", precision: 5, scale: 2
-    t.integer "stock"
-    t.boolean "deleted", default: false
-    t.index ["deleted"], name: "index_products_on_deleted"
+    t.string "name", null: false
+    t.string "description"
+    t.string "image"
+    t.decimal "price", precision: 8, scale: 2, default: "0.0", null: false
+    t.integer "stock", default: 0, null: false
   end
 
   create_table "sensors", force: :cascade do |t|
@@ -188,7 +202,8 @@ ActiveRecord::Schema.define(version: 20180104162758) do
   add_foreign_key "mobile_devices", "users"
   add_foreign_key "mqtt_acls", "mqtt_users"
   add_foreign_key "notifications", "users"
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products"
+  add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
+  add_foreign_key "payment_callbacks", "orders"
 end

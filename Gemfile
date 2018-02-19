@@ -39,6 +39,10 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :test do
+  gem 'webmock'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -46,6 +50,8 @@ group :development, :test do
   gem 'pry-rails', require: false
   gem 'letter_opener', require: false
   gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'vcr', require: false
 end
 
 group :development do
@@ -88,3 +94,7 @@ gem 'bootstrap4-kaminari-views'
 # gem 'firebase'
 # gem 'fcm'
 gem 'fcm_pusher'
+gem 'nova_poshta'
+gem 'liqpay', github: 'liqpay/sdk-ruby'
+gem 'premailer-rails'
+gem 'datagrid'

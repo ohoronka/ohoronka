@@ -15,7 +15,7 @@
                 <span class="badge badge-success"><%= t('its_you') %></span>
             <% end %>
             <div class="pull-right">
-              <%= link_to t('actions.edit_icon_html'), {action: :edit, id: share}, class: 'btn btn-edit' %>
+              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: share}, class: 'btn btn-edit' %>
               <% if current_user.id != user.id %>
                   <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
               <% end %>

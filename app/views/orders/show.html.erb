@@ -1,0 +1,36 @@
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= Order.model_name.human %> <%= @order.number %></h3>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
+    <div class="row">
+      <div class="col-md-6">
+        <h5><%= Order.model_name.human %></h5>
+        <%= render :partial => 'orders/order_info', locals: {order: @order} %>
+      </div>
+      <div class="col-md-6">
+        <h5><%= Order.human_attribute_name(:delivery) %></h5>
+        <%= render :partial => 'orders/delivery_info', locals: {order: @order} %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= @order.payment_form %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= OrderProduct.model_name.human(count: 2) %></h3>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
+    <%= render :partial => 'orders/order_products', locals: {order: @order} %>
+  </div>
+</div>

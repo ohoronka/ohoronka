@@ -1,0 +1,56 @@
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= t('cart') %></h3>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
+    <% nova_poshta = NovaPoshtaService.new %>
+    <%= bootstrap_form_for @cart, url: {action: :update} do |f| %>
+     <div class="row">
+       <div class="col-md-6">
+         <h4><%= Order.model_name.human %></h4>
+         <%= f.fields_for :delivery_attributes, @cart.delivery do |d| %>
+          <%= d.text_field :full_name %>
+          <%= d.text_field :email, placeholder: 'me@example.com' %>
+          <%= d.text_field :phone, placeholder: '0501234567' %>
+         <% end %>
+         <%= f.text_area :comment %>
+       </div>
+       <div class="col-md-6">
+         <h4><%= Order.human_attribute_name(:delivery) %></h4>
+         <%= f.fields_for :delivery_attributes, @cart.delivery do |d| %>
+          <%= d.hidden_field :city_ref, id: :city_ref %>
+          <%= d.text_field :city, id: :city %>
+          <%= d.select :warehouse_ref, d.object.city_ref.present? ? nova_poshta.warehouses(d.object.city_ref).map{|w| [w['Description'], w['Ref']]} : [], {}, {id: :warehouse} %>
+         <% end %>
+         <h4><%= Order.human_attribute_name(:payment_method) %></h4>
+         <%= f.select :payment_method, OrderDecorator.payment_methods %>
+       </div>
+     </div>
+     <div>
+       <%= f.submit t('actions.checkout'), class: 'btn btn-success btn-lg pull-right', id: 'checkout' %>
+     </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    $('#city').typeahead(null,
+        {
+            display: 'label',
+            source: function (query, r, asyncResult) {
+                r(['Loading...']);
+                return $.get('/cart/cities', { q: query }, function (data) {
+                    return asyncResult(data);
+                });
+            }
+        })
+    $('#city').bind('typeahead:select', function(ev, city) {
+        console.log(city);
+        $('#city_ref').val(city.ref);
+        $.get('/cart/warehouses', { city_ref: city.ref }, function (data) {
+            $('#warehouse').html(data)
+        })
+    });
+</script>

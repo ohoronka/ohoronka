@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
 require "sidekiq/testing"
+require_relative 'support/wait_for_ajax'
 Sidekiq::Testing.inline!
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -70,6 +71,11 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include_context 'controller session', type: :controller
+  config.include WaitForAjax, type: :feature
+
+  # config.around(:each, vcr: true) do
+  #   allow_any_instance_of(Reporting::Exporter).to receive(:need_schedule_flush?).and_return(true)
+  # end
 end
 
 def login_as(login, password)
@@ -79,4 +85,8 @@ def login_as(login, password)
     fill_in 'session_password', with: password
     click_on 'Увійти'
   end
+end
+
+def vcr_response(file, index = 0)
+  YAML.load(File.read("spec/fixtures/vcr_cassettes/#{file}.yml"))['http_interactions'][index]['response']['body']['string']
 end

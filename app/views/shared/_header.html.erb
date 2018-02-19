@@ -15,6 +15,16 @@
   <div class="header-block header-block-nav">
     <ul class="nav-profile">
 
+      <!-- cart -->
+      <li class="notifications new">
+        <a href="<%= cart_path %>">
+          <i class="fa fa-shopping-cart"></i>
+          <sup>
+            <span class="counter"><%= current_user.cart.order_products.count %></span>
+          </sup>
+        </a>
+      </li>
+
       <!--Notifications Dropdown-->
       <!--{{> app/_common/header/nav/notifications/notifications}}-->
       <%= render :partial => "shared/header/notifications" %>

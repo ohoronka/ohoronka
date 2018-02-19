@@ -74,6 +74,10 @@ jquery.browser@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/jquery.browser/-/jquery.browser-0.1.0.tgz#9c72a6095fd2814b44476ea8f716677b72a6a2bb"
 
+jquery@>=1.7:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
+
 metismenu@^2.7.2:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/metismenu/-/metismenu-2.7.2.tgz#82495746b0591aaa10aeef3c149c59c3ca02d219"
@@ -111,6 +115,12 @@ through2@0.6.3:
   dependencies:
     readable-stream ">=1.0.33-1 <1.1.0-0"
     xtend ">=4.0.0 <4.1.0-0"
+
+typeahead.js@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/typeahead.js/-/typeahead.js-0.11.1.tgz#4e64e671b22310a8606f4aec805924ba84b015b8"
+  dependencies:
+    jquery ">=1.7"
 
 "xtend@>=4.0.0 <4.1.0-0":
   version "4.0.1"

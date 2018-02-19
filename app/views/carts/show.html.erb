@@ -1,0 +1,16 @@
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= t('cart') %></h3>
+    </div>
+
+  </div>
+  <div class="card-block table-responsive">
+    <%= render :partial => "orders/order_products", locals: {order: @cart.decorate, layout: :cart} %>
+
+    <div>
+      <%= link_to t('continue_shopping'), products_path, class: 'btn btn-list' %>
+      <%= link_to t('actions.checkout'), {action: :edit}, class: 'btn btn-success btn-lg pull-right', id: 'checkout' if @cart.order_products.any? %>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,8 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.active_job.queue_adapter     = :sidekiq
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
@@ -23,6 +25,9 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
   end
+
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  # config.action_controller.asset_host = 'https://ohoronka.com'
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

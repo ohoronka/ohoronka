@@ -36,6 +36,7 @@ class User < ApplicationRecord
   has_many :friend_requests, class_name: 'Friendship', foreign_key: :friend_id
   has_many :notifications, dependent: :destroy, inverse_of: :user
   has_many :mobile_devices, dependent: :destroy
+  has_many :orders
 
   validates :email, uniqueness: {case_sensitive: false}, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, length: {minimum: 8}, on: :create
@@ -53,5 +54,13 @@ class User < ApplicationRecord
 
   def generate_auth_token
     self.auth_token = SecureRandom.urlsafe_base64
+  end
+
+  def cart
+    @cart ||= orders.cart.take || orders.cart.create!
+  end
+
+  def cart_service
+    @cart_service ||= CartService.new(cart: cart)
   end
 end

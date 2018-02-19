@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'email' %>
+  </head>
+
+  <body>
+    <div class="layout">
+      <div class="container">
+        <div class="header">
+          <%= image_tag 'shield.svg', class: 'logo', alt: 'logo' %>
+          <% if content_for? :headline %>
+           <h2 style="padding-top: 8px;"><%= yield :headline %></h2>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="<%= @width_class || 'col-md-12' %>">
+            <div class="card">
+              <div class="card-body">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <% if content_for? :footer %>
+           <%= yield :footer %>
+          <% end %>
+          <div>&copy; <%= Date.today.year %> <%= link_to 'OHORONKA.com', root_url %></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

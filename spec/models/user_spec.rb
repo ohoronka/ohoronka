@@ -19,7 +19,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it 'has valid factory' do
-    create(:user)
+
+  describe '#cart' do
+    let(:user) { create(:user) }
+
+    it 'creates a cart' do
+      expect{
+        user.cart
+      }.to change(user.orders.cart, :count).by(1)
+    end
   end
 end

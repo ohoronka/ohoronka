@@ -2,7 +2,7 @@
   <div class="card-header bordered card-header-sm">
     <%= render :partial => 'users/header' %>
     <div class="header-block pull-right">
-      <%= link_to t('actions.new_icon_html'), select_type_channels_path, class: 'btn btn-new btn-sm' if current_user.allowed_channel_types.any? %>
+      <%= link_to t('actions.new_with_icon_html'), select_type_channels_path, class: 'btn btn-new btn-sm' if current_user.allowed_channel_types.any? %>
     </div>
   </div>
   <div class="card-block">

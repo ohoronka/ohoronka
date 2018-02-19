@@ -1,0 +1,2 @@
+$('#item_<%= @item.id %>_subtotal').html('<%= j number_to_currency @item.price * @item.quantity %>')
+$('#cart_total').html('<%= j number_to_currency @cart.total %>')

@@ -1,0 +1,13 @@
+<%= form_for grid, options do |f| -%>
+  <% grid.filters.each do |filter| %>
+    <div class="form-group row">
+      <%= f.datagrid_label filter, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= f.datagrid_filter filter, class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+  <div class="text-right">
+    <%= f.submit I18n.t("datagrid.form.search").html_safe, :class => "btn btn-primary" %>
+  </div>
+<% end -%>

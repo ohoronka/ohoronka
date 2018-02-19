@@ -1,0 +1,31 @@
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= Order.model_name.human(count: 2) %></h3>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
+    <table class="list">
+      <thead>
+      <tr>
+        <th><%= Order.human_attribute_name(:number) %></th>
+        <th><%= Order.human_attribute_name(:total) %></th>
+        <th><%= Order.human_attribute_name(:status) %></th>
+        <th><%= Order.human_attribute_name(:paid) %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @orders.each do |order| %>
+       <tr>
+         <td><%= order.decorate.number %></td>
+         <td><%= order.decorate.total %></td>
+         <td><%= order.decorate.status %></td>
+         <td><%= order.decorate.paid? %></td>
+         <td class="act-col"><%= link_to t('actions.show'), order_path(order), class: 'btn btn-show' %></td>
+       </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

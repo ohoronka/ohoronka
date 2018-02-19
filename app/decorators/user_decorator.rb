@@ -18,4 +18,8 @@ class UserDecorator < ApplicationDecorator
     "#{object.first_name} #{object.last_name}"
   end
 
+  def mail_to
+    "#{full_name} <#{object.email}>"
+  end
+
 end

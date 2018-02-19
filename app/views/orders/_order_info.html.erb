@@ -1,0 +1,28 @@
+<table class="list table">
+  <tbody>
+  <tr>
+    <th><%= Order.human_attribute_name(:number) %>:</th>
+    <td><%= order.number %></td>
+  </tr>
+  <tr>
+    <th><%= Order.human_attribute_name(:status) %>:</th>
+    <td><%= order.status %></td>
+  </tr>
+  <tr>
+    <th><%= Order.human_attribute_name(:payment_method) %>:</th>
+    <td><%= order.payment_method %></td>
+  </tr>
+  <tr>
+    <th><%= Order.human_attribute_name(:paid) %>:</th>
+    <td><%= order.paid? %></td>
+  </tr>
+  <tr>
+    <th><%= User.model_name.human %>:</th>
+    <td><%= order.user.full_name %></td>
+  </tr>
+  <tr>
+    <th><%= Order.human_attribute_name(:comment) %>:</th>
+    <td><%= order.comment %></td>
+  </tr>
+  </tbody>
+</table>
