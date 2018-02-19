@@ -25,7 +25,7 @@ set :bundle_flags, nil
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/secrets.yml", 'config/redis.yml', 'config/telegram.yml', 'config/cable.yml', 'config/mqtt.yml', 'config/smtp.yml', 'config/aws.yml', 'config/fcm.yml', 'nova_poshta.yml'
+append :linked_files, "config/database.yml", "config/secrets.yml", 'config/redis.yml', 'config/telegram.yml', 'config/cable.yml', 'config/mqtt.yml', 'config/smtp.yml', 'config/aws.yml', 'config/fcm.yml', 'config/nova_poshta.yml', 'config/liqpay.yml'
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", 'public/uploads', 'node_modules'
