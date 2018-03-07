@@ -42,6 +42,10 @@ uk:
         one: Продукт
         other: Продукти
     attributes:
+      facility_share:
+        user_uuid_or_email: 'UUID користовача або email'
+        user: Користувач
+        user_id: Користувач
       order:
         id: '#'
         user_id: Користувач
@@ -188,6 +192,7 @@ uk:
   facility_share:
     share_with: "Розшарити з другом"
     already_shared: "Вже розшарено"
+    user_not_found: "Користовача з таким UUID або email не знайдено"
   its_you: "це ви"
   friend:
     my_friends: "Мої друзі"

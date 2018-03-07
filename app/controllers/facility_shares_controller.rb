@@ -5,33 +5,27 @@ class FacilitySharesController < ApplicationController
     @shares = facility.shares.includes(:user).page(params[:page])
   end
 
-  def share_with_friend
-    @friends = current_user.friends
-  end
-
   def new
-    @friend = current_user.friends.find(params[:friend_id])
-    @share = facility.shares.new(user: @friend)
+    @share = facility.shares.new
   end
 
-  def edit
+  # def edit
+  #
+  # end
 
-  end
-
-  def update
-    if @share.update(edit_share_params)
-      flash[:notice] = t('msg.updated')
-      redirect_to action: :index
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @share.update(edit_share_params)
+  #     flash[:notice] = t('msg.updated')
+  #     redirect_to action: :index
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   def create
-    @friend = current_user.friends.find(share_params[:user_id])
-    @share = facility.shares.new(user: @friend, role: share_params[:role])
+    @share = facility.shares.new(share_params)
     if @share.save
-      @friend.notifications.create(event: :facility_share, target: @share, params: {initiator: current_user.id})
+      share.user.notifications.create(event: :facility_share, target: @share, params: {initiator: current_user.id})
       flash[:notice] = t('msg.created')
       redirect_to action: :index
     else
@@ -56,10 +50,10 @@ class FacilitySharesController < ApplicationController
   end
 
   def share_params
-    params.require(:facility_share)
+    params.require(:facility_share).permit(:user_uuid_or_email)
   end
 
-  def edit_share_params
-    params.require(:facility_share).permit(:role)
-  end
+  # def edit_share_params
+  #   params.require(:facility_share).permit(:role)
+  # end
 end

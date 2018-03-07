@@ -33,3 +33,4 @@
 /config/liqpay.yml
 /config/nova_poshta.yml
 /public/packs/
+/db_struct.json

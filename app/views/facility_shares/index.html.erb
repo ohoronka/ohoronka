@@ -1,28 +1,36 @@
 <div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
   <div class="card-header card-header-sm bordered">
-    <%= render :partial => 'header' %>
+    <div class="header-block">
+      <h3 class="title"><%= FacilityShare.model_name.human(count: 2) %></h3>
+    </div>
+    <div class="header-block pull-right">
+      <%= link_to t('facility_share.share_with'), new_facility_facility_share_path, class: 'btn btn-new btn-act card-link' %>
+    </div>
   </div>
   <div class="card-block table-responsive">
-    <ul class="list-unstyled">
+    <table class="list">
+      <tbody>
       <% @shares.each do |share| %>
         <% user = share.user %>
-        <li class="media">
-          <img class="mr-3 rounded-circle" src="<%= user.decorate.avatar_url %>" alt="photo" style="height: 50px; width: 50px">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1"><%= user.decorate.full_name %></h5>
-            <%= share.decorate.human_enum(:role) %>
+        <tr>
+          <td>
+            <img class="mr-3 rounded-circle" src="<%= user.decorate.avatar_url %>" alt="photo" style="height: 50px; width: 50px">
+          </td>
+          <td>
+            <%= user.decorate.full_name %>
             <% if current_user.id == user.id %>
-                <span class="badge badge-success"><%= t('its_you') %></span>
+             <span class="badge badge-success"><%= t('its_you') %></span>
             <% end %>
-            <div class="pull-right">
-              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: share}, class: 'btn btn-edit' %>
-              <% if current_user.id != user.id %>
-                  <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
-              <% end %>
-            </div>
-          </div>
-        </li>
+          </td>
+          <td class="d-none d-sm-block"><%= share.decorate.human_enum(:role) %></td>
+          <td class="acts-col">
+            <% if current_user.id != user.id %>
+             <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
   </div>
 </div>

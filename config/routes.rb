@@ -16,11 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'shared'
     end
-    resources :facility_shares do
-      collection do
-        get 'share_with_friend'
-      end
-    end
+    resources :facility_shares, only: [:new, :create, :destroy, :index]
     resources :devices
     resources :sensors
     resources :events, only: [:index]
