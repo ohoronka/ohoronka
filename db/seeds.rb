@@ -7,19 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 exit(0) if Rails.env.test?
 
-user = FactoryGirl.create(:user)
-FactoryGirl.create(:telegram_channel, identifier: (Rails.env.production? ? '429212655': '429212655'), user: user) # same id for both environments. interesting...
+user = FactoryBot.create(:user)
+FactoryBot.create(:telegram_channel, identifier: (Rails.env.production? ? '429212655': '429212655'), user: user) # same id for both environments. interesting...
 
-facility = FactoryGirl.create(:facility)
-device = FactoryGirl.create(:device, facility: facility)
-sensor1 = FactoryGirl.create(:sensor, device: device, gpio_listen: 16, gpio_pull: 0, gpio_ok: 16)
-sensor2 = FactoryGirl.create(:sensor, device: device, gpio_listen: 32, gpio_pull: 0, gpio_ok: 32)
+facility = FactoryBot.create(:facility)
+device = FactoryBot.create(:device, facility: facility)
+sensor1 = FactoryBot.create(:sensor, device: device, gpio_listen: 16, gpio_pull: 0, gpio_ok: 16)
+sensor2 = FactoryBot.create(:sensor, device: device, gpio_listen: 32, gpio_pull: 0, gpio_ok: 32)
 
 if Rails.env.development?
   [sensor1, sensor2].each do |sensor|
-    FactoryGirl.create_list(:event, 5, target: sensor, facility: facility)
+    FactoryBot.create_list(:event, 5, target: sensor, facility: facility)
   end
 end
 
-FactoryGirl.create(:user, admin: true, email: 'admin@example.com')
-FactoryGirl.create_list(:product, 3)
+FactoryBot.create(:user, admin: true, email: 'admin@example.com')
+FactoryBot.create_list(:product, 3)

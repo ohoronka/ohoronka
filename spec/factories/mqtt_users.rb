@@ -11,7 +11,7 @@
 #  password_hash :string
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :mqtt_user, class: 'Mqtt::User' do
     user "MyString"
     password "MyString"

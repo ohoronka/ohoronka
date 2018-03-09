@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122205823) do
+ActiveRecord::Schema.define(version: 20180308194651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,17 +67,6 @@ ActiveRecord::Schema.define(version: 20180122205823) do
     t.index ["facility_id"], name: "index_facility_shares_on_facility_id"
     t.index ["user_id", "facility_id"], name: "index_facility_shares_on_user_id_and_facility_id", unique: true
     t.index ["user_id"], name: "index_facility_shares_on_user_id"
-  end
-
-  create_table "friendships", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "friend_id"
-    t.integer "status", limit: 2, default: 0
-    t.index ["friend_id"], name: "index_friendships_on_friend_id"
-    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
-    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "mobile_devices", force: :cascade do |t|
@@ -198,7 +187,6 @@ ActiveRecord::Schema.define(version: 20180122205823) do
   add_foreign_key "channels", "users"
   add_foreign_key "facility_shares", "facilities"
   add_foreign_key "facility_shares", "users"
-  add_foreign_key "friendships", "users"
   add_foreign_key "mobile_devices", "users"
   add_foreign_key "mqtt_acls", "mqtt_users"
   add_foreign_key "notifications", "users"

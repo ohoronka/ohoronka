@@ -16,11 +16,7 @@ Rails.application.routes.draw do
     collection do
       get 'shared'
     end
-    resources :facility_shares do
-      collection do
-        get 'share_with_friend'
-      end
-    end
+    resources :facility_shares, only: [:new, :create, :destroy, :index]
     resources :devices
     resources :sensors
     resources :events, only: [:index]
@@ -46,18 +42,6 @@ Rails.application.routes.draw do
   post 'payment/liqpay' => 'payment/liqpay#index', as: :payment_liqpay
 
   post '/mobile_devices/set_for_user'
-
-  resources :friends do
-    collection do
-      get 'find'
-      get 'requests'
-    end
-    member do
-      post 'add'
-      post 'accept'
-      delete 'reject'
-    end
-  end
 
   resources :notifications
 

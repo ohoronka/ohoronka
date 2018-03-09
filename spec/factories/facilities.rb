@@ -9,12 +9,16 @@
 #  status     :integer          default("idle"), not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :facility do
     sequence(:name) {|n| "facility ##{n}"}
 
-    before(:create) do |facility|
-      facility.users << (User.take || create(:user))
+    transient do
+      user false
+    end
+
+    before(:create) do |facility, evaluator|
+      facility.users << (evaluator.user || User.take || create(:user)) if facility.users.blank?
     end
   end
 end

@@ -10,7 +10,7 @@
 #  role        :integer          default("owner")
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :facility_share do
     user nil
     facility nil

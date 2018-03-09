@@ -20,4 +20,18 @@ class FacilityShare < ApplicationRecord
   belongs_to :facility
 
   enum role: ROLES
+
+  attr_accessor :user_uuid_or_email
+
+  before_validation :find_user_by_uuid_or_email
+  validates :facility_id, uniqueness: {scope: :user_id}
+
+  private
+
+  def find_user_by_uuid_or_email
+    return if user_uuid_or_email.blank?
+
+    self.user = User.where(id: user_uuid_or_email).or(User.where(email: user_uuid_or_email)).take
+    errors.add(:user_uuid_or_email, I18n.t('facility_share.user_not_found')) unless self.user
+  end
 end

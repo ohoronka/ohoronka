@@ -14,7 +14,7 @@
 #  gpio_ok     :integer          default(0), not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :device do
     association :facility, factory: :facility
 

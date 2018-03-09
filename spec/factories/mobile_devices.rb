@@ -9,7 +9,7 @@
 #  token      :string
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :mobile_device do
     user nil
     token "MyString"

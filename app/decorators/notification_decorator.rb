@@ -22,25 +22,10 @@ class NotificationDecorator < ApplicationDecorator
     object.user&.decorate&.avatar_url
   end
 
-  def friendship_request_message
-    h.t('notification.messages.friend_ship_request', name: object.target.user.decorate.full_name)
-  end
-
-  def friendship_request_url
-    h.requests_friends_path
-  end
-
-  def accepted_friendship_message
-    h.t('notification.accepted_friendship', name: object.target.friend.decorate.full_name)
-  end
-
-  def accepted_friendship_url
-    h.friends_path
-  end
-
   def facility_share_message
-    "#{User.find(object.params['initiator']).decorate.full_name} shared facility with you."
-    h.t('notification.facility_share', name: User.find(object.params['initiator']).decorate.full_name)
+    sharer = User.find(object.params['initiator']).decorate
+    "#{sharer.full_name} shared facility with you."
+    h.t('notification.facility_share', name: sharer.full_name)
   end
 
   def facility_share_url
