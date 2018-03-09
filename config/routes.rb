@@ -43,18 +43,6 @@ Rails.application.routes.draw do
 
   post '/mobile_devices/set_for_user'
 
-  resources :friends do
-    collection do
-      get 'find'
-      get 'requests'
-    end
-    member do
-      post 'add'
-      post 'accept'
-      delete 'reject'
-    end
-  end
-
   resources :notifications
 
   resources :users do

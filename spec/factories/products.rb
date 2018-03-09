@@ -12,7 +12,7 @@
 #  stock       :integer          default(0), not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :product do
     image 'https://i1.rozetka.ua/goods/2535341/huawei_p_smart_blue_images_2535341215.jpg'
     sequence(:name) {|n| "product name#{n}" }

@@ -12,7 +12,7 @@
 #  facility_status :integer          default(NULL), not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :event do
     association :target, factory: :sensor
   end

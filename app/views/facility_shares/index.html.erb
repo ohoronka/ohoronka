@@ -25,7 +25,7 @@
           <td class="d-none d-sm-block"><%= share.decorate.human_enum(:role) %></td>
           <td class="acts-col">
             <% if current_user.id != user.id %>
-             <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')} %>
+             <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: share}, method: :delete, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, id: "destroy_#{share.id}" %>
             <% end %>
           </td>
         </tr>

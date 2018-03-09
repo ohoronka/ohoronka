@@ -31,9 +31,6 @@ class User < ApplicationRecord
   has_many :devices, through: :facilities
   has_many :sensors, through: :devices
   has_many :channels, dependent: :destroy
-  has_many :friendships, dependent: :destroy
-  has_many :friends, class_name: 'User', through: :friendships
-  has_many :friend_requests, class_name: 'Friendship', foreign_key: :friend_id
   has_many :notifications, dependent: :destroy, inverse_of: :user
   has_many :mobile_devices, dependent: :destroy
   has_many :orders

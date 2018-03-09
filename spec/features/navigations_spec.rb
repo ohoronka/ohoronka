@@ -33,9 +33,6 @@ RSpec.feature "Navigations", type: :feature do
 
         visit notifications_path
 
-        visit friends_path
-        visit find_friends_path
-
         visit channels_path
         visit new_channel_path(type: 'Telegram')
         visit select_type_channels_path

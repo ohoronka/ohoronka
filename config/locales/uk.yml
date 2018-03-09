@@ -132,7 +132,6 @@ uk:
       full_version: Повна версія
       channels: Повідомлення
       sign_out: Вихід
-      friends: "Друзі"
       mobile_version: "Мобідльна версія"
       profile: "Профіль"
     facility:
@@ -191,22 +190,12 @@ uk:
       register: "Зареєструватися"
   facility_share:
     share_with: "Розшарити з другом"
-    already_shared: "Вже розшарено"
+    already_shared: "Ви вже розшарили з цим користувачем"
     user_not_found: "Користовача з таким UUID або email не знайдено"
   its_you: "це ви"
-  friend:
-    my_friends: "Мої друзі"
-    find_new: "Пошук друзів"
-    requests: "Запрошення"
-    enter_your_friends_name: "Введіть ім'я друга"
-    send_request: "Відправити запит"
-    accept: "Дружити"
   notification:
     new: "Нове"
     go: "Перейти"
-    messages:
-      friend_ship_request: "%{name} хоче дружити з Вами"
-    accepted_friendship: "%{name} підтвердив/ла дружбу з Вами"
     facility_share: "%{name} розшарив/ла з Вами об'єкт"
   user:
     profile: "Профіль"
@@ -239,7 +228,6 @@ uk:
   events: "Події"
   shares: "Доступ"
   facilities: "Об'єкти"
-  friends: "Друзі"
   units: 'од.'
   paid: 'Сплачено'
   unpaid: 'Не сплачено'

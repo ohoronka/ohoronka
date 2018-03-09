@@ -11,7 +11,7 @@
 #  rw           :integer          default("none")
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :mqtt_acl, class: 'Mqtt::Acl' do
     mqtt_user nil
     user_name "MyString"

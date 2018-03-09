@@ -69,7 +69,7 @@ RSpec.configure do |config|
     example.run
   end
 
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include_context 'controller session', type: :controller
   config.include WaitForAjax, type: :feature
 
@@ -89,4 +89,8 @@ end
 
 def vcr_response(file, index = 0)
   YAML.load(File.read("spec/fixtures/vcr_cassettes/#{file}.yml"))['http_interactions'][index]['response']['body']['string']
+end
+
+def t(*arguments)
+  I18n.t(*arguments)
 end

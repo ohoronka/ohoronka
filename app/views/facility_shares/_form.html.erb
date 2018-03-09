@@ -1,5 +1,5 @@
 <%= bootstrap_form_for([@facility, @share]) do |f| %>
-    <%= f.alert_message t('facility_share.user_not_found') if @share.errors.details[:user].any?{|h|h[:error] == :blank} %>
+    <% @share.errors.add(:user_uuid_or_email, I18n.t('facility_share.already_shared')) if @share.errors.details[:facility_id].any? %>
     <%= f.text_field :user_uuid_or_email, placeholder: FacilityShare.human_attribute_name(:user_uuid_or_email) %>
     <%# f.select :role, FacilityShare::ROLES.keys %>
     <%= f.form_group class: 'form-acts' do %>

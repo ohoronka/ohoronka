@@ -16,7 +16,7 @@
 #  delivery_options :json
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :order do
     
   end

@@ -37,9 +37,6 @@
         <li class="<%= 'active' if current_page?(facilities_path) %>">
           <%= link_to '<i class="fa fa-th-large"></i> '.html_safe + t('facilities'), facilities_path %>
         </li>
-        <li class="<%= 'active' if params[:controller] == 'friends' %>">
-          <%= link_to '<i class="fa fa-sitemap"></i> '.html_safe + t('friends'), friends_path %>
-        </li>
         <%= render :partial => "shared/admin_side_bar" if current_admin %>
       </ul>
     </nav>

@@ -10,7 +10,7 @@
 #  options    :json
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :payment_callback do
     order nil
     options ""

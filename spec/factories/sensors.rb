@@ -13,7 +13,7 @@
 #  gpio_ok     :integer          default(0), not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :sensor do
     association :device
 
