@@ -2,14 +2,13 @@
 #
 # Table name: sensors
 #
-#  id          :integer          not null, primary key
+#  id          :uuid             not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  device_id   :integer
+#  device_id   :uuid             not null
 #  name        :string
 #  status      :integer          default("offline"), not null
 #  gpio_listen :integer          default(0), not null
-#  gpio_pull   :integer          default(0), not null
 #  gpio_ok     :integer          default(0), not null
 #
 

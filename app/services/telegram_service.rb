@@ -30,7 +30,7 @@ class TelegramService
         token = message.text.match(/\/start (\S+)/)[1]
         channel = Channel::Telegram.find_by(auth_token: token)
         if channel
-          channel.update(identifier: message.chat.id, activated: true)
+          channel.update(identifier: message.chat.id, active: true)
           channel.notify(I18n.t('channel.Telegram.was_configured'))
         else
           # TODO: notify dev

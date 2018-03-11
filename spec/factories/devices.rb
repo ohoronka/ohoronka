@@ -2,16 +2,15 @@
 #
 # Table name: devices
 #
-#  id          :integer          not null, primary key
+#  id          :uuid             not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  pinged_at   :datetime
-#  facility_id :integer
+#  number      :integer          not null
+#  facility_id :uuid             not null
 #  name        :string
 #  status      :integer          default("offline"), not null
 #  gpio_listen :integer          default(0), not null
-#  gpio_pull   :integer          default(0), not null
-#  gpio_ok     :integer          default(0), not null
 #
 
 FactoryBot.define do

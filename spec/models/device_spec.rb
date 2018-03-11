@@ -2,16 +2,15 @@
 #
 # Table name: devices
 #
-#  id          :integer          not null, primary key
+#  id          :uuid             not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  pinged_at   :datetime
-#  facility_id :integer
+#  number      :integer          not null
+#  facility_id :uuid             not null
 #  name        :string
 #  status      :integer          default("offline"), not null
 #  gpio_listen :integer          default(0), not null
-#  gpio_pull   :integer          default(0), not null
-#  gpio_ok     :integer          default(0), not null
 #
 
 require 'rails_helper'
@@ -20,13 +19,14 @@ RSpec.describe Device, type: :model do
   let(:device) { create(:device) }
 
   it 'creates device' do
-    create(:device)
+    device = create(:device)
+    expect(device.number).not_to be_nil
   end
 
   describe '#update_gpio' do
     before do
       [0b01, 0b10].each do |gpio|
-        create(:sensor, device: device, gpio_listen: gpio, gpio_pull: gpio, gpio_ok: gpio)
+        create(:sensor, device: device, gpio_listen: gpio, gpio_ok: gpio)
       end
     end
 

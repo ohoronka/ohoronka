@@ -13,5 +13,7 @@ class CreateEvents < ActiveRecord::Migration[5.1]
 
       t.boolean :dashboard, null: false, default: false
     end
+
+    add_index :events, [:facility_id, :created_at]
   end
 end

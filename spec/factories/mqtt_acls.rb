@@ -2,10 +2,10 @@
 #
 # Table name: mqtt_acls
 #
-#  id           :integer          not null, primary key
+#  id           :uuid             not null, primary key
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  mqtt_user_id :integer
+#  mqtt_user_id :uuid             not null
 #  user_name    :string
 #  topic        :string
 #  rw           :integer          default("none")

@@ -2,10 +2,10 @@
 #
 # Table name: mqtt_users
 #
-#  id            :integer          not null, primary key
+#  id            :uuid             not null, primary key
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  device_id     :integer
+#  device_id     :uuid             not null
 #  user_name     :string
 #  password      :string
 #  password_hash :string

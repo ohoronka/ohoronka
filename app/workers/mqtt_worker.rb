@@ -7,13 +7,13 @@ class MqttWorker
 
   def parse_message(params)
     split_topic = params['topic'].split('/')
-    device_id = split_topic.first.to_i
+    device_number = split_topic.first.to_i
     topic = split_topic[1]
 
     case topic
     when 'm'
       msg = JSON.parse(params['message'])
-      device = Device.find(device_id)
+      device = Device.find_by(number: device_number) || raise(ActiveRecord::RecordNotFound, "device with number #{device_number} is not found")
       device.alarm_service.handle_device_message(msg)
     when 'rpc'
       Rails.logger.info("RPC message received: #{params.to_json}")

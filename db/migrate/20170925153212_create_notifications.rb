@@ -11,7 +11,7 @@ class CreateNotifications < ActiveRecord::Migration[5.1]
 
       t.integer :event, default: 0, limit: 1
       t.boolean :unread, default: true
-      t.string :options
+      t.json :options
     end
   end
 end

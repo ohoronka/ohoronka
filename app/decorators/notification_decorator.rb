@@ -23,7 +23,7 @@ class NotificationDecorator < ApplicationDecorator
   end
 
   def facility_share_message
-    sharer = User.find(object.params['initiator']).decorate
+    sharer = object.source.decorate
     "#{sharer.full_name} shared facility with you."
     h.t('notification.facility_share', name: sharer.full_name)
   end

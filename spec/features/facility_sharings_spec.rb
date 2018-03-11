@@ -22,7 +22,7 @@ RSpec.feature "FacilitySharings", type: :feature do
         target: user2.facility_shares.last,
         event: 'facility_share',
         unread: true,
-        params: {'initiator' => user.id}
+        source: user
       )
 
       click_on 'profile_button'

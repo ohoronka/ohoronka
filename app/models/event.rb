@@ -2,14 +2,15 @@
 #
 # Table name: events
 #
-#  id              :integer          not null, primary key
+#  id              :uuid             not null, primary key
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  target_type     :string
-#  target_id       :integer
-#  facility_id     :integer
+#  target_id       :uuid             not null
+#  facility_id     :uuid             not null
 #  target_status   :integer          default(NULL), not null
 #  facility_status :integer          default(NULL), not null
+#  dashboard       :boolean          default(FALSE), not null
 #
 
 class Event < ApplicationRecord
@@ -23,7 +24,7 @@ class Event < ApplicationRecord
   after_create :notify_web
 
   scope :dashboard_list, ->{ where(facility_status: [:alarm, :protected]).preload(:target).ordered.limit(50) }
-  scope :ordered, ->{ order(id: :desc) }
+  scope :ordered, ->{ order(created_at: :desc) }
 
   def notify_web
     FacilityChannel.broadcast_to(self.facility_id, {

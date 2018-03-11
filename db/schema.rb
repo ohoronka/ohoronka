@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20180122205823) do
     t.integer "target_status", limit: 2, default: 0, null: false
     t.integer "facility_status", limit: 2, default: 0, null: false
     t.boolean "dashboard", default: false, null: false
+    t.index ["facility_id", "created_at"], name: "index_events_on_facility_id_and_created_at"
     t.index ["facility_id"], name: "index_events_on_facility_id"
     t.index ["target_type", "target_id"], name: "index_events_on_target_type_and_target_id"
   end
@@ -111,7 +112,7 @@ ActiveRecord::Schema.define(version: 20180122205823) do
     t.uuid "source_id"
     t.integer "event", limit: 2, default: 0
     t.boolean "unread", default: true
-    t.string "options"
+    t.json "options"
     t.index ["source_type", "source_id"], name: "index_notifications_on_source_type_and_source_id"
     t.index ["target_type", "target_id"], name: "index_notifications_on_target_type_and_target_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"

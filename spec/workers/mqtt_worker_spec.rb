@@ -9,7 +9,7 @@ RSpec.describe MqttWorker, type: :worker do
 
     it 'runs AlarmService' do
       expect_any_instance_of(AlarmService).to receive(:handle_device_message).with(msg)
-      MqttWorker.perform_async(:parse_message, topic: "#{device.id}/m", message: msg.to_json)
+      MqttWorker.perform_async(:parse_message, topic: "#{device.number}/m", message: msg.to_json)
     end
   end
 end

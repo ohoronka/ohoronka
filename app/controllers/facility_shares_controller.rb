@@ -25,7 +25,7 @@ class FacilitySharesController < ApplicationController
   def create
     @share = facility.shares.new(share_params)
     if @share.save
-      share.user.notifications.create(event: :facility_share, target: @share, params: {initiator: current_user.id})
+      share.user.notifications.create(event: :facility_share, target: @share, source: current_user)
       flash[:notice] = t('msg.created')
       redirect_to action: :index
     else

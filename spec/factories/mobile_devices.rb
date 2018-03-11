@@ -2,10 +2,10 @@
 #
 # Table name: mobile_devices
 #
-#  id         :integer          not null, primary key
+#  id         :uuid             not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
+#  user_id    :uuid             not null
 #  token      :string
 #
 

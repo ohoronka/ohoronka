@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    raise ActionController::RoutingError.new('Not Found') unless current_user && (params[:id].to_i == current_user.id)
+    raise ActionController::RoutingError.new('Not Found') unless current_user && (params[:id] == current_user.id)
     @user ||= current_user
   end
 

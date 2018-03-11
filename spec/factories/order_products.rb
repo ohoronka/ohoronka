@@ -2,12 +2,12 @@
 #
 # Table name: order_products
 #
-#  id         :integer          not null, primary key
+#  id         :uuid             not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  order_id   :integer          not null
-#  product_id :integer          not null
-#  price      :decimal(8, 2)    default(0.0), not null
+#  order_id   :uuid             not null
+#  product_id :uuid             not null
+#  price      :decimal(8, 2)
 #  quantity   :integer          default(1), not null
 #
 

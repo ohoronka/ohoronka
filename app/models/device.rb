@@ -2,16 +2,15 @@
 #
 # Table name: devices
 #
-#  id          :integer          not null, primary key
+#  id          :uuid             not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  pinged_at   :datetime
-#  facility_id :integer
+#  number      :integer          not null
+#  facility_id :uuid             not null
 #  name        :string
 #  status      :integer          default("offline"), not null
 #  gpio_listen :integer          default(0), not null
-#  gpio_pull   :integer          default(0), not null
-#  gpio_ok     :integer          default(0), not null
 #
 
 class Device < ApplicationRecord
@@ -89,15 +88,21 @@ class Device < ApplicationRecord
     @alarm_service ||= AlarmService.new(device: self, facility: facility)
   end
 
+  # number creates on DB side. So we need to reload the data
+  def number
+    reload if attributes['number'].nil? && persisted?
+    attributes['number']
+  end
+
   private
 
   def update_gpio
     sensors.reload
-    self.gpio_listen = sensors.map(&gpio).inject(&:|) || 0
+    self.gpio_listen = sensors.map(&:gpio_listen).inject(&:|) || 0
     save!
   end
 
   def set_mqtt_user
-    self.create_mqtt_user(user_name: self.id)
+    self.create_mqtt_user(user_name: self.number)
   end
 end

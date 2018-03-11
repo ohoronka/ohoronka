@@ -2,15 +2,17 @@
 #
 # Table name: notifications
 #
-#  id          :integer          not null, primary key
+#  id          :uuid             not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :integer
+#  user_id     :uuid             not null
 #  target_type :string
-#  target_id   :integer
+#  target_id   :uuid
+#  source_type :string
+#  source_id   :uuid
 #  event       :integer          default(NULL)
 #  unread      :boolean          default(TRUE)
-#  params      :string
+#  options     :json
 #
 
 require 'rails_helper'

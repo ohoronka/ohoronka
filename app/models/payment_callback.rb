@@ -2,10 +2,10 @@
 #
 # Table name: payment_callbacks
 #
-#  id         :integer          not null, primary key
+#  id         :uuid             not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  order_id   :integer
+#  order_id   :uuid             not null
 #  status     :string
 #  options    :json
 #

@@ -2,11 +2,11 @@
 #
 # Table name: facility_shares
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer
-#  facility_id :integer
+#  id          :uuid             not null, primary key
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :uuid             not null
+#  facility_id :uuid             not null
 #  role        :integer          default("owner")
 #
 
