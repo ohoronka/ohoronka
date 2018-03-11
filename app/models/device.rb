@@ -15,7 +15,7 @@
 #
 
 class Device < ApplicationRecord
-  GPIO = [:gpio_listen, :gpio_pull, :gpio_ok]
+  GPIO = [:gpio_listen]
 
   enum status: ALL_STATUSES.slice(:online, :offline), _suffix: true
 
@@ -43,7 +43,6 @@ class Device < ApplicationRecord
           device: {
             id: self.id.to_s,
             gpio_listen: self.gpio_listen,
-            gpio_pull: self.gpio_pull
           },
           mqtt: {
             client_id: self.id.to_s,
@@ -94,9 +93,7 @@ class Device < ApplicationRecord
 
   def update_gpio
     sensors.reload
-    GPIO.each do |gpio|
-      self.send("#{gpio}=".to_sym, sensors.map(&gpio).inject(&:|) || 0)
-    end
+    self.gpio_listen = sensors.map(&gpio).inject(&:|) || 0
     save!
   end
 

@@ -1,6 +1,8 @@
 class CreateProducts < ActiveRecord::Migration[5.1]
   def change
-    create_table :products do |t|
+    enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
+
+    create_table :products, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.timestamps
       t.string :name, null: false
       t.string :description
