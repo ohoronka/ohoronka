@@ -102,7 +102,7 @@
 
         App.facility = App.cable.subscriptions.create({
             channel: "FacilityChannel",
-            facility_id: <%= @facility.id %>
+            facility_id: "<%= @facility.id %>"
         }, {
             connected: function() {
                 console.log('connected to facility', arguments);

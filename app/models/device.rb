@@ -75,7 +75,7 @@ class Device < ApplicationRecord
       src: :rpc_result
     }
     Mqtt.as_admin do |c|
-      c.publish("#{self.id}/rpc", body.to_json)
+      c.publish("#{self.number}/rpc", body.to_json)
     end
   end
 
