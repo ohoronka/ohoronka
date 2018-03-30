@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 ## Install user
 sudo adduser bguban
-usermod -aG adm,dialout,cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,lxd bguban
+sudo usermod -aG adm,dialout,cdrom,floppy,sudo,audio,dip,video,plugdev,netdev,lxd bguban
 sudo cp -r .ssh/ /home/bguban
 sudo chown -R bguban.bguban /home/bguban/.ssh
 sudo apt-get update
 
 ## install environment
-sudo apt-get -y install mc libmysqlclient-dev nodejs mysql-client redis-server nginx mosquitto mosquitto-clients monit
+sudo apt-get -y install mc nodejs redis-server nginx monit
 sudo update-rc.d monit defaults
 sudo update-rc.d monit enable
 sudo /etc/init.d/monit start
@@ -22,4 +22,10 @@ rvm use 2.4.0
 rvm gemset create ohoronka
 rvm use 2.4.0@ohoronka
 gem install bundler
-
+sudo apt-get install libpq-dev
+sudo apt-get install nginx
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+sudo echo "bguban ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+apt-get install libmosquitto-dev

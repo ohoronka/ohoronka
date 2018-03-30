@@ -34,3 +34,4 @@
 /config/nova_poshta.yml
 /public/packs/
 /db_struct.json
+/config/deploy/config/
