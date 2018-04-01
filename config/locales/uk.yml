@@ -156,6 +156,7 @@ uk:
     continue: "Продовжити"
     crop: "Обрізати"
     loading_html: "<i class='fa fa-spinner fa-spin fa-fw'></i> <span class='sr-only'>Загружаю...</span>"
+    loading: "Загружаю..."
     show: "Показати"
     checkout: "Оформити замовлення"
 
@@ -238,4 +239,5 @@ uk:
   add_to_cart: "У кошик"
   cart: "Кошик"
   continue_shopping: "Продовжити покупки"
+  sensors_must_be_ok: "Сенсори мають бути OK"
 

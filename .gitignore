@@ -32,6 +32,10 @@
 /modular-admin-html/
 /config/liqpay.yml
 /config/nova_poshta.yml
-/public/packs/
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
 /db_struct.json
 /config/deploy/config/

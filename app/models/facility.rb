@@ -32,6 +32,9 @@ class Facility < ApplicationRecord
   scope :owned, -> { where(facility_shares: {role: FacilityShare::ROLES[:owner]}) }
 
   after_update :create_event
+  after_update :notify_web
+
+  validate :validate_status
 
   def alarm!
     if protected_status?
@@ -52,7 +55,24 @@ class Facility < ApplicationRecord
     @alarm_service ||= AlarmService.new(facility: self)
   end
 
+  def notify_web
+    FacilityChannel.broadcast_to(self.facility_id, {
+      e: :facility_updated,
+      event: {
+        id: id,
+        target_name: target.name,
+        target_status: target_status,
+        t_target_status: decorate.target_status,
+        created_at: created_at,
+      }
+    }) if facility_status.in?(['protected', 'alarm'])
+  end
+
   private
+
+  def validate_status
+    errors.add :status, I18n.t('sensors_must_be_ok') if protected_status? && sensors.any?(&:alarm_status?)
+  end
 
   def create_event
     def create_event
@@ -63,6 +83,9 @@ class Facility < ApplicationRecord
   end
 
   def notify_web
-    # TODO implement
+    FacilityChannel.broadcast_to(self.id, {
+      e: :facility_updated,
+      facility: self.as_json
+    })
   end
 end

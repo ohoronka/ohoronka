@@ -42,13 +42,7 @@ class Sensor < ApplicationRecord
   def notify_web
     FacilityChannel.broadcast_to(self.device.facility_id, {
       e: :sensor_updated,
-      sensor: {
-        id: id,
-        name: name,
-        status: status,
-        t_status: decorate.status,
-        css_status: decorate.css_status
-      }
+      sensor: self.as_json
     })
   end
 end

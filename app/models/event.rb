@@ -27,15 +27,9 @@ class Event < ApplicationRecord
   scope :ordered, ->{ order(created_at: :desc) }
 
   def notify_web
-    FacilityChannel.broadcast_to(self.facility_id, {
+    DashboardEventsChannel.broadcast_to(self.facility_id, {
       e: :event_created,
-      event: {
-        id: id,
-        target_name: target.name,
-        target_status: target_status,
-        t_target_status: decorate.target_status,
-        created_at: created_at,
-      }
+      event: self.as_json(include: :target)
     }) if facility_status.in?(['protected', 'alarm'])
   end
 

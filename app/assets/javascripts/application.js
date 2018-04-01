@@ -19,7 +19,6 @@
 //= require jsrender
 //= require bootstrap-sprockets
 //= require jquery.backstretch
-//= require jquery.timeago
 //= require jstz
 //= require js.cookie
 //= require jquery-touchswipe/jquery.touchSwipe
@@ -30,6 +29,8 @@
 //= require metismenu/dist/metisMenu.js
 //= require sidebar
 
+//= require i18n/translations
+//= require constants
 
 var flash = function (message) {
     var msg = $('<div class="alert alert-dark alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span> </button>' + message + '</div>');
@@ -38,9 +39,6 @@ var flash = function (message) {
 };
 
 $( document ).on('turbolinks:load', function() {
-    jQuery(".js-timeago").timeago();
-    setInterval(function(){jQuery(".js-timeago").timeago();}, 7000);
-
     var tz = jstz.determine();
     Cookies.set('timezone', tz.name());
 });

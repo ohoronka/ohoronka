@@ -52,7 +52,11 @@ class FacilitiesController < ApplicationController
 
   def set_next_status
     @facility.update(status: @facility.next_status)
-    redirect_to action: :show
+
+    respond_to do |format|
+      format.html { redirect_to action: :show }
+      format.json { render json: {ok: true, facility: facility} }
+    end
   end
 
   private
