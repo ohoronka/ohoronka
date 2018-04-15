@@ -5,7 +5,7 @@ RSpec.feature "PasswordResets", type: :feature do
     let(:user) { create(:user) }
 
     it 'sends email' do
-      visit root_paths
+      visit root_path
       click_on 'password-reset-link'
       expect(page).to have_current_path(new_password_reset_path)
 

@@ -59,5 +59,5 @@ namespace :deploy do
       info "--> All tests passed"
     end
   end
-  before :deploy, "deploy:run_tests"
+  # before :deploy, "deploy:run_tests"
 end

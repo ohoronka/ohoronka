@@ -13,6 +13,7 @@ set :deploy_to, "/var/projects/ohoronka"
 set :rvm_type, :user
 set :bundle_path, nil
 set :bundle_flags, nil
+# set :assets_role, 'web'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -25,10 +26,13 @@ set :bundle_flags, nil
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/secrets.yml", 'config/redis.yml', 'config/telegram.yml', 'config/cable.yml', 'config/mqtt.yml', 'config/smtp.yml', 'config/aws.yml', 'config/fcm.yml', 'config/nova_poshta.yml', 'config/liqpay.yml'
+append :linked_files, "config/database.yml", "config/secrets.yml", 'config/redis.yml', 'config/telegram.yml',
+  'config/cable.yml', 'config/mqtt.yml', 'config/smtp.yml', 'config/aws.yml', 'config/fcm.yml', 'config/nova_poshta.yml',
+  'config/liqpay.yml'
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", 'public/uploads', 'node_modules'
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", 'public/uploads',
+  'node_modules', 'public/packs'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

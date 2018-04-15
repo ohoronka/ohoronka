@@ -39,3 +39,4 @@ yarn-debug.log*
 .yarn-integrity
 /db_struct.json
 /config/deploy/config/
+/public/assets/
