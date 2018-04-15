@@ -32,14 +32,7 @@
 
     <%= render :partial => "shared/sidebar" %>
 
-    <div id="flash" class="flash"></div>
-    <% if flash[:notice] || flash[:alert] %>
-     <script type="text/javascript" charset="utf-8">
-         $( document ).on('turbolinks:load', function() {
-             flash('<%= j flash[:notice] || flash[:alert] %>')
-         });
-     </script>
-    <% end %>
+    <%= render :partial => 'shared/flash_popup' %>
 
     <article class="content">
       <%= yield %>

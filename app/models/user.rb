@@ -58,4 +58,15 @@ class User < ApplicationRecord
   def cart_service
     @cart_service ||= CartService.new(cart: cart)
   end
+
+  def send_password_reset
+    generate_password_reset_token if password_reset_token.nil? || password_reset_token_expires_at < 1.hour.from_now
+    save!
+    UserMailer.send_password_reset(self).deliver_later
+  end
+
+  def generate_password_reset_token
+    self.password_reset_token = SecureRandom.urlsafe_base64
+    self.password_reset_token_expires_at = 1.day.from_now
+  end
 end

@@ -23,6 +23,53 @@
 
 </head>
   <body>
-  <%= yield %>
+  <%= render :partial => "shared/flash_popup" %>
+  <!-- Top content -->
+  <div class="top-content">
+
+    <div class="inner-bg">
+      <div class="container">
+
+        <div class="row">
+          <div class="col"></div>
+          <div class="col-sm-8 text">
+            <h1><strong>Ohoronka</strong></h1>
+            <div class="description">
+              <p>
+                <%= t('slogan') %>
+              </p>
+              <%= image_tag('shield.svg', style: 'height: 150px; margin-bottom: -130px;') %>
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+
+        <div class="row">
+          <%= yield %>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-sm-8">
+          <div class="footer-border"></div>
+          <p>Ohoronka © <%= Time.current.year %></p>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" charset="utf-8">
+    $.backstretch("<%= image_path('sign_up_background.jpg') %>");
+  </script>
+
   </body>
 </html>

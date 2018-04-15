@@ -58,6 +58,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  routes.default_url_options[:host] = 'ohoronka.com' # TODO: was used for testing telegram bot
-  routes.default_url_options[:protocol] = 'https'
+  routes.default_url_options[:host] = 'localhost'
+  routes.default_url_options[:port] = 3000
+  routes.default_url_options[:protocol] = 'http'
 end

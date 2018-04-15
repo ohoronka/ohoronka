@@ -1,113 +1,56 @@
-<!-- Top content -->
-<div class="top-content">
+<div class="col-sm-5">
 
-  <div class="inner-bg">
-    <div class="container">
-
-      <div class="row">
-        <div class="col"></div>
-        <div class="col-sm-8 text">
-          <h1><strong>Ohoronka</strong> <%= t('.login_and_register_forms') %></h1>
-          <div class="description">
-            <p>
-              <%= t('.slogan') %>
-            </p>
-            <%= image_tag('shield.svg', style: 'height: 150px; margin-bottom: -130px;') %>
-          </div>
-        </div>
-        <div class="col"></div>
+  <div class="form-box sign-in">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3><%= t('.login') %></h3>
+        <p><%= t('.enter_email_and_password') %></p>
       </div>
-
-      <div class="row">
-        <div class="col-sm-5">
-
-          <div class="form-box sign-in">
-            <div class="form-top">
-              <div class="form-top-left">
-                <h3><%= t('.login') %></h3>
-                <p><%= t('.enter_email_and_password') %></p>
-              </div>
-              <div class="form-top-right">
-                <i class="fa fa-lock"></i>
-              </div>
-            </div>
-            <div class="form-bottom">
-              <%= bootstrap_form_for((@session || SessionService.new), url: {action: :create}, method: :post, as: :session, class: 'login-form') do |f| %>
-                  <%= f.errors_on :base %>
-                  <%= f.text_field :user_name, placeholder: t('.email'), hide_label: true %>
-                  <%= f.password_field :password, placeholder: t('.password'), hide_label: true %>
-                  <button type="submit" class="btn"><%= t('.sign_in') %></button>
-              <% end %>
-            </div>
-          </div>
-
-          <!--<div class="social-login">-->
-          <!--<h3>...or login with:</h3>-->
-          <!--<div class="social-login-buttons">-->
-          <!--<a class="btn btn-link-2" href="#">-->
-          <!--<i class="fa fa-facebook"></i> Facebook-->
-          <!--</a>-->
-          <!--<a class="btn btn-link-2" href="#">-->
-          <!--<i class="fa fa-twitter"></i> Twitter-->
-          <!--</a>-->
-          <!--<a class="btn btn-link-2" href="#">-->
-          <!--<i class="fa fa-google-plus"></i> Google Plus-->
-          <!--</a>-->
-          <!--</div>-->
-          <!--</div>-->
-
-        </div>
-
-        <div class="col-sm-1 middle-border"></div>
-        <div class="col-sm-1"></div>
-
-        <div class="col-sm-5">
-
-          <div class="form-box">
-            <div class="form-top">
-              <div class="form-top-left">
-                <h3><%= t('.sign_up_form') %></h3>
-                <p><%= t('.fill_in_registration_form') %>:</p>
-              </div>
-              <div class="form-top-right">
-                <i class="fa fa-pencil"></i>
-              </div>
-            </div>
-            <div class="form-bottom">
-              <%= bootstrap_form_for((@user || User.new), method: :post, class: 'login-form') do |f| %>
-                  <%= f.errors_on :base %>
-                  <%= f.text_field :first_name, placeholder: User.human_attribute_name(:first_name), hide_label: true %>
-                  <%= f.text_field :last_name, placeholder: User.human_attribute_name(:last_name), hide_label: true %>
-                  <%= f.text_field :email, placeholder: User.human_attribute_name(:email), hide_label: true %>
-                  <%= f.password_field :password, placeholder: User.human_attribute_name(:password), hide_label: true %>
-                  <%# f.text_area :about, placeholder: 'About yourself...', hide_label: true %>
-                  <button type="submit" class="btn"><%= t('.register') %></button>
-              <% end %>
-            </div>
-          </div>
-
-        </div>
+      <div class="form-top-right">
+        <i class="fa fa-lock"></i>
       </div>
-
+    </div>
+    <div class="form-bottom">
+      <%= bootstrap_form_for((@session || SessionService.new), url: {action: :create}, method: :post, as: :session, class: 'login-form') do |f| %>
+       <%= f.errors_on :base %>
+       <%= f.text_field :user_name, placeholder: t('.email'), hide_label: true %>
+       <%= f.password_field :password, placeholder: t('.password'), hide_label: true %>
+       <button type="submit" class="btn"><%= t('.sign_in') %></button>
+       <div class="text-right">
+         <%= t('password_restore_link_html', path: new_password_reset_path) %>
+       </div>
+      <% end %>
     </div>
   </div>
 
 </div>
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col"></div>
-      <div class="col-sm-8">
-        <div class="footer-border"></div>
-        <p>Ohoronka © <%= Time.current.year %></p>
+<div class="col-sm-1 middle-border"></div>
+<div class="col-sm-1"></div>
+
+<div class="col-sm-5">
+
+  <div class="form-box">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3><%= t('.sign_up_form') %></h3>
+        <p><%= t('.fill_in_registration_form') %>:</p>
       </div>
-      <div class="col"></div>
+      <div class="form-top-right">
+        <i class="fa fa-pencil"></i>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <%= bootstrap_form_for((@user || User.new), method: :post, class: 'login-form') do |f| %>
+       <%= f.errors_on :base %>
+       <%= f.text_field :first_name, placeholder: User.human_attribute_name(:first_name), hide_label: true %>
+       <%= f.text_field :last_name, placeholder: User.human_attribute_name(:last_name), hide_label: true %>
+       <%= f.text_field :email, placeholder: User.human_attribute_name(:email), hide_label: true %>
+       <%= f.password_field :password, placeholder: User.human_attribute_name(:password), hide_label: true %>
+       <%# f.text_area :about, placeholder: 'About yourself...', hide_label: true %>
+       <button type="submit" class="btn"><%= t('.register') %></button>
+      <% end %>
     </div>
   </div>
-</footer>
 
-<script type="text/javascript" charset="utf-8">
-    $.backstretch("<%= image_path('sign_up_background.jpg') %>");
-</script>
+</div>

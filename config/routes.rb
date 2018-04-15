@@ -62,6 +62,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :password_reset, only: [:new, :create, :edit, :update]
+
   get '/test' => 'test#index'
 
   mount Sidekiq::Web => '/admin/sidekiq'

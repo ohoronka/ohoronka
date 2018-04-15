@@ -180,7 +180,6 @@ uk:
   sessions:
     new:
       login_and_register_forms: "Вхід & Реєстрація"
-      slogan: "Захисти своє майно"
       login: "Увійти до сайту"
       enter_email_and_password: "Введіть свій E-mail і пароль"
       email: "E-mail"
@@ -240,4 +239,12 @@ uk:
   cart: "Кошик"
   continue_shopping: "Продовжити покупки"
   sensors_must_be_ok: "Сенсори мають бути OK"
-
+  password_restore_link_html: "Забули пароль? Натиснить <a id='password-reset-link' href='%{path}'>тут</a>."
+  slogan: "Захисти своє майно"
+  password_reset: "Скинути пароль"
+  enter_your_email: "Введіть свій email"
+  you_have_required_resetting_of_password: "Ви запросили зміну паролю"
+  change_password: "Змінити пароль"
+  password_reset_token_has_expired_or_not_found: "Токен збросу паролю не знайдено або вийшов термін його дії"
+  password_has_been_changed: "Пароль було змінено"
+  password_reset_email_was_sent: "Лист відправлено. Перевірте пошту."

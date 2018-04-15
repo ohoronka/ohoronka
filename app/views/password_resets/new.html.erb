@@ -1,0 +1,19 @@
+<div class="col-sm-5" style="margin-left: auto; margin-right: auto">
+  <div class="form-box sign-in">
+    <div class="form-top">
+      <div class="form-top-left">
+        <h3><%= t('password_reset') %></h3>
+        <p><%= t('enter_your_email') %></p>
+      </div>
+      <div class="form-top-right">
+        <i class="fa fa-lock"></i>
+      </div>
+    </div>
+    <div class="form-bottom">
+      <%= bootstrap_form_tag(url: {action: :create}, method: :post, as: :password_reset) do |f| %>
+       <%= f.text_field :email, placeholder: User.human_attribute_name(:email), hide_label: true %>
+       <button type="submit" class="btn"><%= t('password_reset') %></button>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,8 @@
 
 @import "mobile";
 
+@import 'flash';
+
 .has-error{
   input{
     @extend .is-invalid;
