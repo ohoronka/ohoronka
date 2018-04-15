@@ -9,7 +9,7 @@
   <body>
     <div class="layout <%= @wide_layout && 'is-wide' %>">
       <div class="logo">
-        <%= image_tag 'shield', alt: 'logo' %>
+        <%= image_tag 'shield.svg', alt: 'logo' %>
         <% if content_for? :headline %>
          <h1 style="padding-top: 8px;"><%= yield :headline %></h1>
         <% end %>

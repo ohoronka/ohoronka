@@ -21,7 +21,6 @@ set :nginx_socket_flags, fetch(:nginx_flags)
 # set :nginx_ssl_certificate_key, "/etc/ssl/private/{fetch(:nginx_config_name)}.key"
 set :nginx_use_ssl, true
 
-
 # role-based syntax
 # ==================
 
