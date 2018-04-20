@@ -64,14 +64,14 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'hirb'
 
-  gem 'capistrano', '~> 3.6'
-  gem 'capistrano-rails', '~> 1.3'
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.3", require: false
   gem 'capistrano-rvm'
   gem 'capistrano-bundler', '~> 1.2'
   gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-sidekiq'
   gem 'annotate', require: false
-  # gem 'capistrano-local-precompile', '~> 1.1.0', require: false
+  gem 'capistrano-local-precompile', '~> 1.1.0', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

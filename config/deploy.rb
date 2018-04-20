@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.8.2"
+lock "3.10.2"
 
 set :application, "ohoronka"
 set :repo_url, "git@gitlab.com:ohoronka/ohoronka.git"
@@ -13,7 +13,7 @@ set :deploy_to, "/var/projects/ohoronka"
 set :rvm_type, :user
 set :bundle_path, nil
 set :bundle_flags, nil
-# set :assets_role, 'web'
+set :assets_role, 'web'
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh

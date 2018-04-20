@@ -3,10 +3,23 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-# server "ec2-35-158-109-219.eu-central-1.compute.amazonaws.com", user: "bguban", roles: %w{app db web}
+server "staging.ohoronka.com", user: "bguban", roles: %w{app db web}
+# server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+set :rvm_ruby_version, '2.4.0@ohoronka'
+
+set :nginx_config_name, "#{fetch(:application)}_#{fetch(:stage)}"
+set :nginx_flags, 'fail_timeout=0'
+set :nginx_http_flags, fetch(:nginx_flags)
+set :nginx_server_name, "#{fetch(:application)}.com"
+set :nginx_sites_available_path, '/etc/nginx/sites-available'
+set :nginx_sites_enabled_path, '/etc/nginx/sites-enabled'
+set :nginx_socket_flags, fetch(:nginx_flags)
+# set :nginx_ssl_certificate, "/etc/ssl/certs/{fetch(:nginx_config_name)}.crt"
+# set :nginx_ssl_certificate_key, "/etc/ssl/private/{fetch(:nginx_config_name)}.key"
+set :nginx_use_ssl, true
 
 # role-based syntax
 # ==================

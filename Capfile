@@ -30,9 +30,10 @@ require "capistrano/rvm"
 # require "capistrano/rbenv"
 # require "capistrano/chruby"
 require "capistrano/bundler"
-require "capistrano/rails/assets"
+# require "capistrano/rails/assets"
 require "capistrano/rails/migrations"
 # require "capistrano/passenger"
+# require 'capistrano/local_precompile'
 
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
@@ -46,21 +47,21 @@ require 'capistrano/sidekiq/monit'
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 
-namespace :deploy do
-  desc "Runs test before deploying, can't deploy unless they pass"
-  task :run_tests do
-    run_locally do
-      test_log = "log/capistrano.test.log"
-      info "--> Running tests locally, please wait ..."
-      unless system('bundle exec rspec')
-        warn "--> Tests: failed"
-        exit
-      end
-      info "--> All tests passed"
-    end
-  end
-  # before :deploy, "deploy:run_tests"
-end
+# namespace :deploy do
+#   desc "Runs test before deploying, can't deploy unless they pass"
+#   task :run_tests do
+#     run_locally do
+#       test_log = "log/capistrano.test.log"
+#       info "--> Running tests locally, please wait ..."
+#       unless system('bundle exec rspec')
+#         warn "--> Tests: failed"
+#         exit
+#       end
+#       info "--> All tests passed"
+#     end
+#   end
+#   # before :deploy, "deploy:run_tests"
+# end
 
 require 'capistrano/rails/assets'
 
@@ -70,6 +71,7 @@ namespace :load do
     set :assets_dir,       "public/assets"
     set :packs_dir,        "public/packs"
     set :rsync_cmd,        "rsync -av --delete"
+    set :assets_role,      "web"
 
     after "bundler:install", "deploy:assets:prepare"
     #before "deploy:assets:symlink", "deploy:assets:remove_manifest"
@@ -111,10 +113,10 @@ namespace :deploy do
 
     desc "Performs rsync to app servers"
     task :precompile do
-      run_locally do
-        roles(:web).each do |host|
-          execute "#{fetch(:rsync_cmd)} ./#{fetch(:assets_dir)}/ #{host}:#{release_path}/#{fetch(:assets_dir)}/"
-          execute "#{fetch(:rsync_cmd)} ./#{fetch(:packs_dir)}/ #{host}:#{release_path}/#{fetch(:packs_dir)}/"
+      on roles(fetch(:assets_role)) do |server|
+        run_locally do
+          execute "#{fetch(:rsync_cmd)} ./#{fetch(:assets_dir)}/ #{server.user}@#{server.hostname}:#{release_path}/#{fetch(:assets_dir)}/" if Dir.exists?(fetch(:assets_dir))
+          execute "#{fetch(:rsync_cmd)} ./#{fetch(:packs_dir)}/ #{server.user}@#{server.hostname}:#{release_path}/#{fetch(:packs_dir)}/" if Dir.exists?(fetch(:packs_dir))
         end
       end
     end

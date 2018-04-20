@@ -6,7 +6,6 @@ ActiveRecord::Base.transaction do
     user.save(validate: false)
     user_data['channels'].each do |channel_data|
       channel_attr = channel_data.except('id')
-      channel_attr['active'] = channel_attr.delete('activated')
       user.channels.create(channel_attr)
     end
 
