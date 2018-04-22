@@ -1,5 +1,13 @@
 require 'sidekiq/web'
 
+class AdminConstraint
+  def matches?(request)
+    return false unless request.session[:user_id]
+    user = User.find request.session[:user_id]
+    user && user.admin?
+  end
+end
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'facilities#index'
@@ -66,5 +74,5 @@ Rails.application.routes.draw do
 
   get '/test' => 'test#index'
 
-  mount Sidekiq::Web => '/admin/sidekiq'
+  mount Sidekiq::Web => '/admin/sidekiq', constraints: AdminConstraint.new
 end
