@@ -12,6 +12,7 @@ class SensorsController < ApplicationController
   def create
     @sensor = Sensor.new(sensor_params)
     if @sensor.save
+      flash[:notice] = t('msg.created')
       redirect_to action: :index
     else
       render action: :new
@@ -24,6 +25,7 @@ class SensorsController < ApplicationController
 
   def update
     if @sensor.update(sensor_params)
+      flash[:notice] = t('msg.updated')
       redirect_to action: :index, facility_id: facility.id
     else
       render action: :edit
@@ -45,7 +47,7 @@ class SensorsController < ApplicationController
   def sensor_params
     p = params.require(:sensor).permit(:name, :device_id, :gpio_listen, :gpio_ok, :gpio_pull)
     p[:gpio_ok] = p[:gpio_listen] if p[:gpio_listen]
-    raise ActiveRecord::RecordNotFound unless facility.devices.ids.include?(p[:device_id].to_i)
+    raise ActiveRecord::RecordNotFound unless facility.devices.ids.include?(p[:device_id])
     p
   end
 

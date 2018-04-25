@@ -1,6 +1,6 @@
-<div id="flash" class="flash"></div>
 <% if flash[:notice] || flash[:alert] %>
- <script type="text/javascript" charset="utf-8">
+ <div id="flash" class="flash"></div>
+ <script type="text/javascript" charset="utf-8" data-turbolinks-eval="false">
    $( document ).on('turbolinks:load', function() {
      flash('<%= j flash[:notice] || flash[:alert] %>')
    });
