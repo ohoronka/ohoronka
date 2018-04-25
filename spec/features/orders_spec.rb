@@ -1,15 +1,14 @@
 require 'rails_helper'
 
 RSpec.feature "Orders", type: :feature do
+  let(:facility) { create(:facility) }
+  let(:user) { facility.users.take }
+  let(:product) { create(:product) }
+
+  before { login_as(user.email, attributes_for(:user)[:password]) }
 
   describe 'device ordering process' do
-    let(:facility) { create(:facility) }
-    let(:user) { facility.users.take }
-    let(:product) { create(:product) }
-
     before do
-      login_as(user.email, attributes_for(:user)[:password])
-
       stub_request(:post, "https://api.novaposhta.ua/v2.0/json/").
         with(body: "{\"apiKey\":\"ac1b36959b82784f9ed5dd1ec2719430\",\"modelName\":\"Address\",\"calledMethod\":\"getCities\",\"methodProperties\":{}}").
         to_return(status: 200, body: vcr_response('nova_poshta/cities'), headers: {})
@@ -63,6 +62,18 @@ RSpec.feature "Orders", type: :feature do
           "warehouse_ref"=>"1ec09d88-e1c2-11e3-8c4a-0050568002cf"
         }})
 
+    end
+  end
+
+  describe 'removing item from cart', js: true do
+    before { user.cart_service.add(product) }
+
+    it 'removes item form the cart' do
+      visit cart_path
+
+      expect {
+        click_on(class: 'btn-destroy')
+      }.to change(user.cart.order_products, :count).by(-1)
     end
   end
 end

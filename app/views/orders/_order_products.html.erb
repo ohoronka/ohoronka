@@ -2,13 +2,16 @@
 <table class="list table">
   <thead>
   <tr>
-    <% unless layout == :email %>
+    <% if layout != :email %>
      <th><%= Product.human_attribute_name(:image) %></th>
     <% end %>
     <th><%= Product.human_attribute_name(:name) %></th>
     <th><%= OrderProduct.human_attribute_name(:quantity) %></th>
     <th><%= OrderProduct.human_attribute_name(:price) %></th>
     <th><%= OrderProduct.human_attribute_name(:subtotal) %></th>
+    <% if layout != :email %>
+      <th></th>
+    <% end %>
   </tr>
   </thead>
   <tbody>
@@ -28,12 +31,17 @@
      <% end %>
      <td><%= order_product.price %></td>
      <td id="item_<%= order_product.id %>_subtotal"><%= order_product.subtotal %></td>
+     <% if layout != :email %>
+     <td class="act-col">
+       <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :remove_item, item_id: order_product.id}, class: 'btn btn-destroy', method: :delete %>
+     </td>
+     <% end %>
    </tr>
   <% end %>
   </tbody>
   <tfooter>
     <tr>
-      <td colspan="<%= layout == :email ? 4 : 5 %>" style="text-align: right">
+      <td colspan="<%= layout == :email ? 4 : 6 %>" style="text-align: right">
         <strong><%= Order.human_attribute_name(:total) %>: </strong><strong id="cart_total"><%= order.total %></strong>
       </td>
     </tr>
