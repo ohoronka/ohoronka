@@ -248,3 +248,6 @@ uk:
   password_reset_token_has_expired_or_not_found: "Токен збросу паролю не знайдено або вийшов термін його дії"
   password_has_been_changed: "Пароль було змінено"
   password_reset_email_was_sent: "Лист відправлено. Перевірте пошту."
+  product:
+    new: "Новий продукт"
+    edit: "Редагування продукту"

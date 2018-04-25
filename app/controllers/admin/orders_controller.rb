@@ -1,4 +1,4 @@
-class Admin::OrdersController < ApplicationController
+class Admin::OrdersController < Admin::ApplicationController
   before_action :order, only: [:show]
 
   def index

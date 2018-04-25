@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     resources :users do
       patch :login_as, on: :member
     end
+    resources :products
   end
 
   resource :password_reset, only: [:new, :create, :edit, :update]

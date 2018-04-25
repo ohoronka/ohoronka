@@ -10,7 +10,7 @@
         <% group.each do |product| %>
           <div class="card text-center">
             <% if product.present? %>
-             <img class="card-img-top mx-auto" src="<%= product.image.html_safe %>" alt="<%= product.name %>" style="height: 150px; width: 150px">
+             <img class="card-img-top mx-auto" src="<%= product.image.url(:normal) %>" alt="<%= product.name %>" style="height: 150px; width: 150px">
              <div class="card-body">
                <h5 class="card-title"><%= product.name %></h5>
                <h3 class="card-title"><%= number_to_currency product.price %></h3>

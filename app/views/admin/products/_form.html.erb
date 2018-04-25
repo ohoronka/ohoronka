@@ -1,0 +1,11 @@
+<%= bootstrap_form_for([:admin, @product]) do |f| %>
+ <%= f.text_field :name %>
+ <%= f.text_area  :description %>
+ <%= f.file_field :image %>
+ <%= f.number_field :stock, step: 1 %>
+ <%= f.number_field :price, step: 0.01 %>
+ <%= f.form_group class: 'form-btns' do %>
+  <%= f.submit t('actions.save'), class: 'btn btn-save' %>
+  <%= link_to t('actions.cancel'), {action: :index}, class: 'btn btn-cancel' %>
+ <% end %>
+<% end %>

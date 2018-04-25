@@ -1,0 +1,39 @@
+<div class="card sameheight-item" data-exclude="xs" id="dashboard-history">
+  <div class="card-header card-header-sm bordered">
+    <div class="header-block">
+      <h3 class="title"><%= Product.model_name.human(count: 2) %></h3>
+    </div>
+    <div class="header-block pull-right">
+      <%= link_to t('actions.new_with_icon_html'), new_admin_product_path, class: 'btn btn-new btn-act card-link' %>
+    </div>
+  </div>
+  <div class="card-block table-responsive">
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= Product.human_attribute_name(:image) %></th>
+          <th><%= Product.human_attribute_name(:name) %></th>
+          <th><%= Product.human_attribute_name(:stock) %></th>
+          <th><%= Product.human_attribute_name(:price) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @products.each do |product| %>
+       <tr>
+         <td><%= image_tag product.image.url(:thumb) if product.image.present? %></td>
+         <td><%= product.name %></td>
+         <td><%= product.decorate.stock %></td>
+         <td><%= product.decorate.price %></td>
+         <td class="act-col">
+           <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: product.id}, class: 'btn btn-edit' %>
+           <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: product.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
+         </td>
+       </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
