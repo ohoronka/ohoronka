@@ -31,19 +31,20 @@
      <% end %>
      <td><%= order_product.price %></td>
      <td id="item_<%= order_product.id %>_subtotal"><%= order_product.subtotal %></td>
-     <% if layout != :email %>
      <td class="act-col">
+     <% if layout != :email && order.cart? %>
        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :remove_item, item_id: order_product.id}, class: 'btn btn-destroy', method: :delete %>
-     </td>
      <% end %>
+     </td>
    </tr>
   <% end %>
   </tbody>
   <tfooter>
     <tr>
-      <td colspan="<%= layout == :email ? 4 : 6 %>" style="text-align: right">
+      <td colspan="<%= layout == :email ? 4 : 5 %>" style="text-align: right">
         <strong><%= Order.human_attribute_name(:total) %>: </strong><strong id="cart_total"><%= order.total %></strong>
       </td>
+      <td></td>
     </tr>
   </tfooter>
 </table>

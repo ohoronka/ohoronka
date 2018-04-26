@@ -77,7 +77,7 @@ uk:
         updated_at: Змінено
         name: Назва
         description: Опис
-        image: Картинка
+        image: Зображення
         price: Ціна
         stock: Залишок
       user:
@@ -238,7 +238,7 @@ uk:
   add_to_cart: "У кошик"
   cart: "Кошик"
   continue_shopping: "Продовжити покупки"
-  sensors_must_be_ok: "Сенсори мають бути OK"
+  sensors_must_be_ok: "Сенсори не OK"
   password_restore_link_html: "Забули пароль? Натиснить <a id='password-reset-link' href='%{path}'>тут</a>."
   slogan: "Захисти своє майно"
   password_reset: "Скинути пароль"

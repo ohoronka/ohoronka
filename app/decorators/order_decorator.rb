@@ -18,7 +18,7 @@ class OrderDecorator < ApplicationDecorator
   def payment_form
     return if object.paid?
 
-    if payment_method == 'liqpay'
+    if object.payment_method == 'liqpay'
       liqpay = Liqpay.new
 
       options = {
