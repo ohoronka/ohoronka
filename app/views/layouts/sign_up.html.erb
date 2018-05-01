@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>OHORONKA</title>
+  <title><%= t('brand') %></title>
 
   <link rel="icon" href="/favicon.ico">
 
@@ -33,7 +33,7 @@
         <div class="row">
           <div class="col"></div>
           <div class="col-sm-8 text">
-            <h1><strong>Ohoronka</strong></h1>
+            <h1><strong><%= t('brand') %></strong></h1>
             <div class="description">
               <p>
                 <%= t('slogan') %>
@@ -59,8 +59,17 @@
       <div class="row">
         <div class="col"></div>
         <div class="col-sm-8">
+          <%= t('contacts') %>
+          <table class="mx-auto">
+            <tr>
+              <td><%= t('phone') %>:</td> <td><a href="tel:+380661167697">+38-066-116-76-97</a></td>
+            </tr>
+            <tr>
+              <td><%= t('email') %>:</td> <td><a href="mailto:info@ohoronka.com">info@ohoronka.com</a></td>
+            </tr>
+          </table>
           <div class="footer-border"></div>
-          <p>Ohoronka © <%= Time.current.year %></p>
+          <p><%= t('brand') %> © <%= Time.current.year %></p>
         </div>
         <div class="col"></div>
       </div>
