@@ -50,7 +50,7 @@ RSpec.feature "Orders", type: :feature do
       expect(order).to have_attributes({
         "status"=>"pending",
         "delivery_method"=>"nova_poshta",
-        "payment_method"=>"liqpay",
+        "payment_method"=>"on_receipt",
         "paid"=>false,
         "comment"=>'some comment',
         "delivery_options"=>{

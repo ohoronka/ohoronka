@@ -4,7 +4,7 @@ class OrderDecorator < ApplicationDecorator
   decorates_association :user
 
   def self.payment_methods
-    Order.payment_methods.keys.map{|p| [I18n.t("activerecord.attributes.order.payment_methods.#{p}"), p]}
+    Order::ENABLED_PAYMENT_METHODS.map{|p| [I18n.t("activerecord.attributes.order.payment_methods.#{p}"), p]}
   end
 
   def payment_method

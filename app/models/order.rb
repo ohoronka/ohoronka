@@ -17,6 +17,8 @@
 #
 
 class Order < ApplicationRecord
+  ENABLED_PAYMENT_METHODS = [:on_receipt]
+
   has_many :order_products, dependent: :destroy
   has_many :products, through: :order_products
   has_many :payment_callbacks, dependent: :destroy
