@@ -47,7 +47,7 @@
        <%= f.text_field :last_name, placeholder: User.human_attribute_name(:last_name), hide_label: true %>
        <%= f.text_field :email, placeholder: User.human_attribute_name(:email), hide_label: true %>
        <%= f.password_field :password, placeholder: User.human_attribute_name(:password), hide_label: true %>
-       <%# f.text_area :about, placeholder: 'About yourself...', hide_label: true %>
+       <p>Реєструючись у системі ви погоджуєтесь з <a href="https://docs.ohoronka.com/end-user-agreement/" target="_blank">угодою користувача</a></p>
        <button type="submit" class="btn"><%= t('.register') %></button>
       <% end %>
     </div>
