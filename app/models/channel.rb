@@ -16,6 +16,8 @@ class Channel < ApplicationRecord
   belongs_to :user
 
   SUB_CLASSES = [Telegram]
+
+  scope :telegram, -> { where(type: 'Channel::Telegram') }
 end
 
 require (Rails.root + 'app/models/channel/telegram')

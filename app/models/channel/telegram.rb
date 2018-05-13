@@ -15,9 +15,9 @@
 class Channel::Telegram < Channel
   before_create :set_auth_token
 
-  def notify(msg)
+  def notify(msg, reply_markup: nil)
     ::Telegram.bot.run do |bot|
-      bot.api.send_message(chat_id: identifier, text: msg)
+      bot.api.send_message(chat_id: identifier, text: msg, reply_markup: reply_markup)
     end
   end
 

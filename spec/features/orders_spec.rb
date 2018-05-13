@@ -4,6 +4,8 @@ RSpec.feature "Orders", type: :feature do
   let(:facility) { create(:facility) }
   let(:user) { facility.users.take }
   let(:product) { create(:product) }
+  let(:admin) { create(:user, admin: true) }
+  let(:telegram) { create(:telegram_channel, user: admin) }
 
   before { login_as(user.email, attributes_for(:user)[:password]) }
 
@@ -23,6 +25,8 @@ RSpec.feature "Orders", type: :feature do
     end
 
     it 'works', js: true do
+      expect_any_instance_of(Channel::Telegram).to receive(:notify)
+      telegram
       product
       cart = user.cart
       visit facility_devices_path(facility)

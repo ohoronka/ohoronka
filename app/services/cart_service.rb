@@ -1,4 +1,6 @@
 class CartService
+  include Rails.application.routes.url_helpers
+
   attr_accessor :cart
 
   def initialize(cart:)
@@ -39,6 +41,16 @@ class CartService
     cart.validate_delivery = true
     cart.update!(params.merge(status: :pending, created_at: Time.current))
     OrderMailer.checkout_email(cart).deliver_later
+
+    kb = [
+      ::Telegram::Bot::Types::InlineKeyboardButton.new(text: 'Go to order', url: admin_order_url(cart)),
+    ]
+    markup = ::Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
+    User.where(admin: true).each do |user|
+      user.channels.telegram.each do |telegram|
+        telegram.notify("New order has been added", reply_markup: markup)
+      end
+    end
     true
   rescue ActiveRecord::RecordInvalid
     false
