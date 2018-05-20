@@ -22,7 +22,7 @@ class Facility < ApplicationRecord
 
   has_many :devices, foreign_key: :facility_id, inverse_of: :facility, dependent: :destroy
   has_many :sensors, through: :devices
-  has_many :events, foreign_key: :facility_id, inverse_of: :facility
+  has_many :events, foreign_key: :facility_id, inverse_of: :facility, dependent: :destroy
   has_many :shares, class_name: 'FacilityShare', inverse_of: :facility, dependent: :destroy
   has_many :users, through: :shares, inverse_of: :facilities
 
