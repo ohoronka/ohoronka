@@ -30,7 +30,7 @@ class Device < ApplicationRecord
   def config_string
     # puts "mos wifi AP 0509435618" if Rails.env.development?
     server = Rails.env.development? ? "192.168.0.103:1883" : "ohoronka.com:1883"
-    puts "mos config-set mqtt.server=#{server} mqtt.client_id=#{id} mqtt.user=#{mqtt_user.user_name} mqtt.pass=#{mqtt_user.password} device.id=#{id} device.gpio_listen=#{Sensor::PORT_GPIO.values.inject(0){|sum, port| sum | port}} wifi.ap.ssid=OHORONKA#{id} wifi.ap.pass=12345678"
+    puts "mos config-set mqtt.server=#{server} mqtt.client_id=#{number} mqtt.user=#{mqtt_user.user_name} mqtt.pass=#{mqtt_user.password} device.id=#{number} device.gpio_listen=#{gpio_listen} wifi.ap.ssid=OHORONKA_#{number} wifi.ap.pass=12345678"
     puts "mos wifi TP-LINK_3B3DC8 0505933918"
   end
 
