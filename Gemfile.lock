@@ -92,7 +92,7 @@ GEM
       concurrent-ruby (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
-    capistrano (3.11.0)
+    capistrano (3.10.2)
       airbrussh (>= 1.0.0)
       i18n
       rake (>= 10.0.0)
@@ -595,7 +595,7 @@ DEPENDENCIES
   bootstrap_form (~> 2.7)
   bugsnag
   byebug
-  capistrano (~> 3.10)
+  capistrano (= 3.10.2)
   capistrano-bundler (~> 1.2)
   capistrano-local-precompile (~> 1.1.1)
   capistrano-rails (~> 1.3)
