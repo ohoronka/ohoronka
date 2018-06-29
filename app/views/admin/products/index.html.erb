@@ -27,7 +27,7 @@
          <td><%= product.decorate.price %></td>
          <td class="act-col">
            <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: product.id}, class: 'btn btn-edit' %>
-           <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, {action: :destroy, id: product.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
+           <%= link_to t('actions.destroy_icon_html'), {action: :destroy, id: product.id}, class: 'btn btn-destroy', data: {confirm: t('confirm.destroy')}, method: :delete %>
          </td>
        </tr>
       <% end %>
