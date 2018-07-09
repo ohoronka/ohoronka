@@ -6,10 +6,7 @@ class TelegramService
   end
 
   def parse(data)
-    @message ||= begin
-      update = Telegram::Bot::Types::Update.new(data)
-      bot.send(:extract_message, update)
-    end
+    @message ||= Telegram::Bot::Types::Update.new(data).current_message
   end
 
   def process(message)
