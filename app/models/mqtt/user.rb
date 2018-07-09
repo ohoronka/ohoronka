@@ -23,11 +23,11 @@ class Mqtt::User < ApplicationRecord
   private
 
   def set_password
-    self.password ||= SecureRandom.base64(30)
-    self.password_hash = Mqtt.password_hash(self.password)
+    self.password = SecureRandom.base58(32)
+    self.password_hash = Mqtt.password_hash(password)
   end
 
   def set_default_acl
-    self.acls.create(topic: "#{self.device_id}/#", rw: :full)
+    self.acls.create(topic: "#{self.device.number}/#", rw: :full) if device
   end
 end

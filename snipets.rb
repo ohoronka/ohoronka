@@ -12,6 +12,8 @@ MQTT::Client.connect('mqtt://test:test@localhost') do |c|
   c.publish('test/rpc', msg.to_json)
 end
 
+c = MQTT::Client.connect('mqtt://2:b1Vg3ze0ESDqlRi571C7nyUw8nMQ24tjlznvJApj@ohoronka.com')
+
 msg = {
   method: 'Config.Set',
   args: {
