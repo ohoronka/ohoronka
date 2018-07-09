@@ -8,6 +8,8 @@ server "staging.ohoronka.com", user: "bguban", roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
+set :branch, 'staging'
+
 set :rvm_ruby_version, '2.4.0@ohoronka'
 
 set :nginx_config_name, "#{fetch(:application)}_#{fetch(:stage)}"
