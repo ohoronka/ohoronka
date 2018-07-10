@@ -23,7 +23,7 @@ class Mqtt::User < ApplicationRecord
   private
 
   def set_password
-    self.password = SecureRandom.base58(32)
+    self.password ||= SecureRandom.base58(32)
     self.password_hash = Mqtt.password_hash(password)
   end
 
