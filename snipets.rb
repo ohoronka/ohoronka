@@ -12,7 +12,13 @@ MQTT::Client.connect('mqtt://test:test@localhost') do |c|
   c.publish('test/rpc', msg.to_json)
 end
 
-c = MQTT::Client.connect('mqtt://2:b1Vg3ze0ESDqlRi571C7nyUw8nMQ24tjlznvJApj@ohoronka.com')
+c = MQTT::Client.connect('mqtt://1:9NJiZDLkJth99B5xy3yUTkdK4oBKdqdD@192.168.0.102')
+
+c.get('1/#') do |topic, message|
+  puts "#{topic}: #{message}"
+  # MqttWorker.perform_async(:parse_message, topic: topic, message: message)
+end
+c.publish('1/foo', 'bar')
 
 msg = {
   method: 'Config.Set',

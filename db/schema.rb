@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20180709153934) do
     t.string "user_name"
     t.string "password"
     t.string "password_hash"
+    t.boolean "admin", default: false
     t.index ["device_id"], name: "index_mqtt_users_on_device_id"
     t.index ["user_name"], name: "index_mqtt_users_on_user_name", unique: true
   end
