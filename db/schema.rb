@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408135759) do
+ActiveRecord::Schema.define(version: 20180709153934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,10 +94,11 @@ ActiveRecord::Schema.define(version: 20180408135759) do
   create_table "mqtt_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "device_id", null: false
+    t.uuid "device_id"
     t.string "user_name"
     t.string "password"
     t.string "password_hash"
+    t.boolean "admin", default: false
     t.index ["device_id"], name: "index_mqtt_users_on_device_id"
     t.index ["user_name"], name: "index_mqtt_users_on_user_name", unique: true
   end
