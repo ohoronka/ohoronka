@@ -14,5 +14,10 @@
 require 'rails_helper'
 
 RSpec.describe Mqtt::User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'sets a password' do
+    user = Mqtt::User.new
+    user.valid?
+    expect(user.password).not_to be_empty
+    expect(user.password_hash).not_to be_empty
+  end
 end
