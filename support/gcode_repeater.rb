@@ -12,9 +12,86 @@
 # )
 # coder.run
 
+# making the net
+root_shift = {'X' => 0, 'Y' => 2}
+
+net_shift = {'X' => (240 / 2), 'Y' => (180 / 2)}
+net_coder = GcodeRepeater.new
+net_coder.f_in =  '/Users/bguban/Dropbox/projects/ohoronka/Sides/net.nc'
+net_coder.f_out = '/Users/bguban/Dropbox/projects/ohoronka/Sides/net_moved.nc'
+net_coder.shifts = [GcodeRepeater.sum_shifts(root_shift, net_shift)]
+
+net_coder.run
+
+# moving the side with a button
+movement_shift = {'X' => 0, 'Y' => 26}
+# GcodeRepeater.cut_garbage_lines('/Users/bguban/Dropbox/projects/ohoronka/Sides/with_button.nc')
+mover = GcodeRepeater.new
+mover.f_in = '/Users/bguban/Dropbox/projects/ohoronka/Sides/with_button.nc'
+mover.f_out = '/Users/bguban/Dropbox/projects/ohoronka/Sides/with_button_moved.nc'
+mover.shifts = [GcodeRepeater.sum_shifts(root_shift, movement_shift)]
+mover.run
+
+# preparing the side without the button
+# GcodeRepeater.cut_garbage_lines('/Users/bguban/Dropbox/projects/ohoronka/Sides/without_button.nc')
+
+# making the couple of the two sides
+GcodeRepeater.compound(
+  '/Users/bguban/Dropbox/projects/ohoronka/Sides/without_button.nc',
+  '/Users/bguban/Dropbox/projects/ohoronka/Sides/with_button_moved.nc',
+  '/Users/bguban/Dropbox/projects/ohoronka/Sides/two_sides.nc'
+)
+
+# repeating the couple by the net
+net_repeater = GcodeRepeater.new
+net_repeater.f_in = '/Users/bguban/Dropbox/projects/ohoronka/Sides/two_sides.nc'
+net_repeater.f_out = '/Users/bguban/Dropbox/projects/ohoronka/Sides/sides_by_the_net.nc'
+net_repeater.build_matrix(4, 3, 58, 29 * 2)
+# net_repeater.shifts.delete_at(0)
+net_repeater.run
+
+# shift the sides by the root
+all_mover = GcodeRepeater.new
+all_mover.f_in = '/Users/bguban/Dropbox/projects/ohoronka/Sides/sides_by_the_net.nc'
+all_mover.f_out = '/Users/bguban/Dropbox/projects/ohoronka/Sides/all_ready.nc'
+all_mover.shifts = [GcodeRepeater.sum_shifts(root_shift, {'X' => 33, 'Y' => 17.5})]
+all_mover.run
+
+# check with the net
+GcodeRepeater.compound(
+  '/Users/bguban/Dropbox/projects/ohoronka/Sides/all_ready.nc',
+  '/Users/bguban/Dropbox/projects/ohoronka/Sides/net_moved.nc',
+  '/Users/bguban/Dropbox/projects/ohoronka/Sides/net_checker.nc'
+)
 
 class GcodeRepeater
   attr_accessor :f_in, :f_out, :shifts, :pre, :post
+
+  def self.compound(*files, result)
+    File.open(result, 'w') do |res|
+      files.each do |file|
+        File.foreach(file) do |line|
+          res.puts line
+        end
+      end
+    end
+  end
+  #
+  # def self.cut_garbage_lines(file, start = 1, ending = 1)
+  #   lines = File.readlines(file)
+  #   File.open(file, 'w') do |f|
+  #     lines[start..(-ending - 1)].each do |line|
+  #       f.puts line
+  #     end
+  #   end
+  # end
+
+  def self.sum_shifts(a, b)
+    res = {}
+    res['X'] = a['X'] + b['X']
+    res['Y'] = a['Y'] + b['Y']
+    res
+  end
 
   def run
     File.open(f_out, 'w') do |out|
