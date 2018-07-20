@@ -34,19 +34,20 @@ class Device < ApplicationRecord
     puts "mos wifi TP-LINK_3B3DC8 0505933918"
   end
 
-  def rpc_config_set
+  def send_config(to_number = self.number)
     msg_config_set = {
       method: 'Config.Set',
       args: {
         config: {
           device: {
-            id: self.id.to_s,
-            gpio_listen: self.gpio_listen,
+            id: number.to_s,
           },
           mqtt: {
-            client_id: self.id.to_s,
-            user: self.mqtt_user.user_name,
-            pass: self.mqtt_user.password
+            server: 'ohoronka.com:8883',
+            ssl_ca_cert: 'ca.pem',
+            client_id: number.to_s,
+            user: mqtt_user.user_name,
+            pass: mqtt_user.password
           }
         }
       },
@@ -60,22 +61,11 @@ class Device < ApplicationRecord
       },
       src: :rpc_result
     }
-    # TODO make general mqtt sender or RPC model/service
-    Mqtt.as_admin do |c|
-      c.publish("#{self.id}/rpc", msg_config_set.to_json)
-      sleep 0.5
-      c.publish("#{self.id}/rpc", msg_config_save.to_json)
-    end
-  end
 
-  def rpc(method, params)
-    body = {
-      method: method,
-      args: params,
-      src: :rpc_result
-    }
     Mqtt.as_admin do |c|
-      c.publish("#{self.number}/rpc", body.to_json)
+      c.publish("#{to_number}/rpc", msg_config_set.to_json)
+      sleep 2
+      c.publish("#{to_number}/rpc", msg_config_save.to_json)
     end
   end
 

@@ -1,4 +1,3 @@
-# TODO use configuration to pass server credentials
 begin
   pid_file = File.expand_path('tmp/pids/mqtt_listener.pid', Rails.root)
   File.open(pid_file, "w") do |f|

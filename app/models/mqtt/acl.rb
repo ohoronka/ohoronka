@@ -14,9 +14,10 @@
 class Mqtt::Acl < ApplicationRecord
   RW = {
     none: 0,
-    read: 4,
+    read: 1,
     write: 2,
-    full: 6
+    subscribe: 4,
+    full: 7
   }
   enum rw: RW, _suffix: true
 
