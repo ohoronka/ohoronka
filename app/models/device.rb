@@ -27,13 +27,6 @@ class Device < ApplicationRecord
   after_touch :update_gpio
   after_create :set_mqtt_user
 
-  def config_string
-    # puts "mos wifi AP 0509435618" if Rails.env.development?
-    server = Rails.env.development? ? "192.168.0.103:1883" : "ohoronka.com:1883"
-    puts "mos config-set mqtt.server=#{server} mqtt.client_id=#{number} mqtt.user=#{mqtt_user.user_name} mqtt.pass=#{mqtt_user.password} device.id=#{number} device.gpio_listen=#{gpio_listen} wifi.ap.ssid=OHORONKA_#{number} wifi.ap.pass=12345678"
-    puts "mos wifi TP-LINK_3B3DC8 0505933918"
-  end
-
   def send_config(to_number = self.number)
     msg_config_set = {
       method: 'Config.Set',
@@ -48,6 +41,11 @@ class Device < ApplicationRecord
             client_id: number.to_s,
             user: mqtt_user.user_name,
             pass: mqtt_user.password
+          },
+          wifi: {
+            sta: {
+              nameserver: '18.194.211.108'
+            }
           }
         }
       },
@@ -66,6 +64,29 @@ class Device < ApplicationRecord
       c.publish("#{to_number}/rpc", msg_config_set.to_json)
       sleep 2
       c.publish("#{to_number}/rpc", msg_config_save.to_json)
+    end
+  end
+
+  def update_firmware(url = 'http://mongoose-os.com/fw.zip', commit_timeout: 300)
+    msg_update = {
+      method: 'OTA.Update',
+      args: {
+        url: url,
+        commit_timeout: commit_timeout
+      },
+      src: :rpc_result
+    }
+
+    msg_commit = {
+      method: 'OTA.Commit',
+      args: {},
+      src: :rpc_result
+    }
+
+    Mqtt.as_admin do |c|
+      c.publish("#{number}/rpc", msg_update.to_json)
+      # sleep 30
+      # c.publish("#{number}/rpc", msg_commit.to_json)
     end
   end
 
