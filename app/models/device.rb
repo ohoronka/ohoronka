@@ -116,4 +116,15 @@ class Device < ApplicationRecord
   def set_mqtt_user
     self.create_mqtt_user(user_name: self.number)
   end
+
+  def rpc(method, params)
+    body = {
+      method: method,
+      args: params,
+      src: :rpc_result
+    }
+    Mqtt.as_admin do |c|
+      c.publish("#{self.number}/rpc", body.to_json)
+    end
+  end
 end
