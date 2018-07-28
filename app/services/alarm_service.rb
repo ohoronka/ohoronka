@@ -8,7 +8,17 @@ class AlarmService
     device.pinged_at = Time.current
     device.status = :online
 
-    gpio = msg['gpio']
+    gpio =  msg['g'] || msg['gpio']
+    alarm = msg['a'] || msg['alarm']
+    user_email = msg['e']
+    fw_version = msg['v']
+
+    if fw_version && device.fw_version != fw_version
+      device.fw_version = fw_version
+      device.rpc('OTA.Commit', {})
+    end
+
+    device.user = User.find_by(email: user_email) if user_email.present?
 
     fire_alarm if device.sensors.any?{|sensor| sensor.gpio_alarm?(gpio)}
 
@@ -16,7 +26,7 @@ class AlarmService
       sensor.gpio_ok?(gpio) ? sensor.ok_status! : sensor.alarm_status!
     end
 
-    device_alarm_status = (msg['alarm'] != 0) # 1: alarm; 0: normal; like in c++
+    device_alarm_status = (alarm != 0) # 1: alarm; 0: normal; like in c++
     device.set_alarm if device_alarm_status != facility.alarm_status?
     device.save
   end

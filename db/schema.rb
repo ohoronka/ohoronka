@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180709153934) do
+ActiveRecord::Schema.define(version: 20180727121444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,12 @@ ActiveRecord::Schema.define(version: 20180709153934) do
     t.datetime "updated_at", null: false
     t.datetime "pinged_at"
     t.integer "number", default: -> { "nextval('device_number_seq'::regclass)" }, null: false
-    t.uuid "facility_id", null: false
+    t.uuid "facility_id"
     t.string "name"
     t.integer "status", limit: 2, default: 6, null: false
     t.integer "gpio_listen", default: 0, null: false
+    t.integer "fw_version", default: 0
+    t.uuid "user_id"
     t.index ["facility_id"], name: "index_devices_on_facility_id"
     t.index ["number"], name: "index_devices_on_number", unique: true
   end
@@ -43,7 +45,7 @@ ActiveRecord::Schema.define(version: 20180709153934) do
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "target_type", null: false
+    t.string "target_type"
     t.uuid "target_id", null: false
     t.uuid "facility_id", null: false
     t.integer "target_status", limit: 2, default: 0, null: false

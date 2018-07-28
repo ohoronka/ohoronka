@@ -19,12 +19,12 @@ class Device < ApplicationRecord
   enum status: ALL_STATUSES.slice(:online, :offline), _suffix: true
 
   has_many :sensors, inverse_of: :device, dependent: :destroy
-  belongs_to :facility, inverse_of: :devices
+  belongs_to :facility, inverse_of: :devices, optional: true
+  belongs_to :user, optional: true
   has_one :mqtt_user, :class_name => 'Mqtt::User', dependent: :destroy
 
   validates :name, presence: true
 
-  after_touch :update_gpio
   after_create :set_mqtt_user
 
   def send_config(to_number = self.number)
@@ -106,12 +106,6 @@ class Device < ApplicationRecord
   end
 
   private
-
-  def update_gpio
-    sensors.reload
-    self.gpio_listen = sensors.map(&:gpio_listen).inject(&:|) || 0
-    save!
-  end
 
   def set_mqtt_user
     self.create_mqtt_user(user_name: self.number)

@@ -16,7 +16,7 @@ class Sensor < ApplicationRecord
   STATUSES = ALL_STATUSES.slice(:alarm, :ok, :offline)
   PORT_GPIO = {1 => 16, 2 => 32, 3 => 4096, 4 => 8192}
 
-  belongs_to :device, inverse_of: :sensors, touch: true
+  belongs_to :device, inverse_of: :sensors
   has_many :events, as: :target, dependent: :delete_all, inverse_of: :target
 
   enum status: STATUSES, _suffix: true
