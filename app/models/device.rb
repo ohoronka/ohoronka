@@ -20,8 +20,10 @@ class Device < ApplicationRecord
 
   has_many :sensors, inverse_of: :device, dependent: :destroy
   belongs_to :facility, inverse_of: :devices, optional: true
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, inverse_of: :devices
   has_one :mqtt_user, :class_name => 'Mqtt::User', dependent: :destroy
+
+  scope :free, -> { where(user_id: nil) }
 
   validates :name, presence: true
 
@@ -43,6 +45,9 @@ class Device < ApplicationRecord
             pass: mqtt_user.password
           },
           wifi: {
+            ap: {
+              ssid: "OHORONKA_#{number}"
+            },
             sta: {
               nameserver: '18.194.211.108'
             }

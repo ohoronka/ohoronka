@@ -6,7 +6,7 @@ class AddUserIdToDevice < ActiveRecord::Migration[5.1]
     change_column_null(:devices, :facility_id, true)
 
     Device.all.each do |device|
-      device.user_id = device.facility.shares.where(role: :owner).take.user_id
+      device.update(user_id: device.facility.shares.where(role: :owner).take.user_id)
     end
   end
 
