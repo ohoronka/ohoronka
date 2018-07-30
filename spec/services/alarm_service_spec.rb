@@ -4,7 +4,7 @@ RSpec.describe AlarmService do
   let(:sensor) { create(:sensor) }
   let(:device) { sensor.device }
   let(:facility) { device.facility}
-  let(:alarm_msg) { {'gpio' => 0, 'alarm' => 0 } }
+  let(:alarm_msg) { {'g' => 0, 'a' => 0 } }
   let(:alarm_service){ device.alarm_service }
 
   describe '#handle_device_message' do
@@ -99,6 +99,22 @@ RSpec.describe AlarmService do
 
         expect(facility.alarm_status?).to be_falsey
       end
+    end
+  end
+
+  describe 'ota implementation' do
+    it 'sends OTA.Commit if fw version was changed' do
+      expect(device).to receive(:rpc).with('OTA.Commit', {})
+      alarm_service.handle_device_message({a: 0, g: 0, e: '', v: 2}.stringify_keys)
+    end
+  end
+
+  describe 'the device connection to user' do
+    let(:user) { facility.users.take }
+    it 'connects device to user' do
+      alarm_service.handle_device_message({a: 0, g: 0, e: user.email, v: 2}.stringify_keys)
+      expect(device.user).to eq(user)
+      expect(device.facility).to eq(facility)
     end
   end
 end

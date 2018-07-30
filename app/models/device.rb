@@ -92,7 +92,7 @@ class Device < ApplicationRecord
 
   # it sets alarm sound on device
   def set_alarm(alarm = facility.alarm_status?)
-    self.rpc('alarm', {enabled: (alarm ? 1 : 0)})
+    rpc('alarm', {enabled: (alarm ? 1 : 0)})
   end
 
   def alarm_service
@@ -105,12 +105,6 @@ class Device < ApplicationRecord
     attributes['number']
   end
 
-  private
-
-  def set_mqtt_user
-    self.create_mqtt_user(user_name: self.number)
-  end
-
   def rpc(method, params)
     body = {
       method: method,
@@ -120,5 +114,11 @@ class Device < ApplicationRecord
     Mqtt.as_admin do |c|
       c.publish("#{self.number}/rpc", body.to_json)
     end
+  end
+
+  private
+
+  def set_mqtt_user
+    self.create_mqtt_user(user_name: self.number)
   end
 end

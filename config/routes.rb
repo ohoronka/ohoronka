@@ -25,10 +25,12 @@ Rails.application.routes.draw do
       get 'shared'
     end
     resources :facility_shares, only: [:new, :create, :destroy, :index]
-    resources :devices
+    resources :devices, controller: :facility_devices
     resources :sensors
     resources :events, only: [:index]
   end
+
+  resources :devices
 
   resources :products, only: [:index] do
     member do

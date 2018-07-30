@@ -23,19 +23,19 @@ RSpec.describe Device, type: :model do
     expect(device.number).not_to be_nil
   end
 
-  describe '#update_gpio' do
-    before do
-      [0b01, 0b10].each do |gpio|
-        create(:sensor, device: device, gpio_listen: gpio, gpio_ok: gpio)
-      end
-    end
-
-    it 'updates device gpio state' do
-      Device::GPIO.each do |gpio|
-        expect(device.send(gpio)).to eq(0b11)
-      end
-    end
-  end
+  # describe '#update_gpio' do
+  #   before do
+  #     [0b01, 0b10].each do |gpio|
+  #       create(:sensor, device: device, gpio_listen: gpio, gpio_ok: gpio)
+  #     end
+  #   end
+  #
+  #   it 'updates device gpio state' do
+  #     Device::GPIO.each do |gpio|
+  #       expect(device.send(gpio)).to eq(0b11)
+  #     end
+  #   end
+  # end
 
   # TODO: moved to MQTT module
   # describe '#password_hash' do

@@ -1,7 +1,9 @@
-<%= bootstrap_form_for([facility, @device]) do |f| %>
-    <%= f.text_field :name %>
-    <%= f.form_group class: 'form-btns' do %>
-        <%= f.submit t('actions.save'), class: 'btn btn-save' %>
-        <%= link_to t('actions.cancel'), {action: :index}, class: 'btn btn-cancel' %>
-    <% end %>
+<%= bootstrap_form_for(@device) do |f| %>
+ <%= f.text_field :name %>
+ <%= f.select :facility_id, options_from_collection_for_select(current_user.facilities, :id, :name, @device.facility_id) %>
+
+ <%= f.form_group class: 'form-btns' do %>
+  <%= f.submit t('actions.save'), class: 'btn btn-save' %>
+  <%= link_to t('actions.cancel'), {action: :index}, class: 'btn btn-cancel' %>
+ <% end %>
 <% end %>

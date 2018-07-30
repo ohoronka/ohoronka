@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20180727121444) do
 
   add_foreign_key "channels", "users"
   add_foreign_key "devices", "facilities"
+  add_foreign_key "devices", "users"
   add_foreign_key "events", "facilities"
   add_foreign_key "facility_shares", "facilities"
   add_foreign_key "facility_shares", "users"

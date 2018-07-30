@@ -22,7 +22,6 @@ RSpec.feature "Navigations", type: :feature do
 
 
         visit facility_devices_path(facility)
-        visit new_facility_device_path(facility)
         visit edit_facility_device_path(facility, device)
 
         visit facility_sensors_path(facility)
@@ -39,6 +38,9 @@ RSpec.feature "Navigations", type: :feature do
         visit edit_user_path(user)
 
         visit facility_facility_shares_path(facility)
+
+        visit devices_path
+        visit edit_device_path(device)
       end
     end
   end

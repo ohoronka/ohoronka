@@ -18,7 +18,10 @@ class AlarmService
       device.rpc('OTA.Commit', {})
     end
 
-    device.user = User.find_by(email: user_email) if user_email.present?
+    if user_email.present?
+      device.user = User.find_by(email: user_email)
+      device.facility_id ||= device.user.facility_shares.where(role: :owner).take.facility_id
+    end
 
     fire_alarm if device.sensors.any?{|sensor| sensor.gpio_alarm?(gpio)}
 

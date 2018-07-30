@@ -11,14 +11,13 @@
     <table class="list">
       <tbody>
       <% @devices.each do |device| %>
-       <tr>
-         <td><%= device.name %></td>
-         <td><%= device.facility&.name %></td>
-         <td><%= device.decorate.status_badge %></td>
-         <td class="act-col">
-           <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: device.id}, class: 'btn btn-edit' %>
-         </td>
-       </tr>
+          <tr>
+            <td><%= device.name %></td>
+            <td><%= device.decorate.status_badge %></td>
+            <td class="act-col">
+              <%= link_to t('actions.edit_with_icon_html'), {action: :edit, id: device.id}, class: 'btn btn-edit' %>
+            </td>
+          </tr>
       <% end %>
       </tbody>
     </table>

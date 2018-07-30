@@ -99,6 +99,8 @@ uk:
       device:
         name: Назва
         status: Статус
+        facility: Об'єкт
+        facility_id: Об'єкт
       sensor:
         name: Назва
         device_id: Пристрій
