@@ -82,16 +82,8 @@ class Device < ApplicationRecord
       src: :rpc_result
     }
 
-    msg_commit = {
-      method: 'OTA.Commit',
-      args: {},
-      src: :rpc_result
-    }
-
     Mqtt.as_admin do |c|
       c.publish("#{number}/rpc", msg_update.to_json)
-      # sleep 30
-      # c.publish("#{number}/rpc", msg_commit.to_json)
     end
   end
 
