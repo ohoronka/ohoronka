@@ -18,16 +18,15 @@ class AlarmService
       device.rpc('OTA.Commit', {})
     end
 
-    if user_email.present?
-      device.user = User.find_by(email: user_email)
-      device.facility_id ||= device.user.facility_shares.where(role: :owner).take.facility_id
+    if user_email.present? && (device.user = User.find_by(email: user_email))
+      device.facility_id ||= device.user.facility_shares.where(role: :owner).take&.facility_id
     end
-
-    fire_alarm if device.sensors.any?{|sensor| sensor.gpio_alarm?(gpio)}
 
     device.sensors.each do |sensor|
       sensor.gpio_ok?(gpio) ? sensor.ok_status! : sensor.alarm_status!
     end
+
+    fire_alarm if device.sensors.any?{|sensor| sensor.gpio_alarm?(gpio)}
 
     if device.facility_id
       device_alarm_status = (alarm != 0) # 1: alarm; 0: normal; like in c++

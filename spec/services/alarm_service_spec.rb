@@ -110,7 +110,8 @@ RSpec.describe AlarmService do
   end
 
   describe 'the device connection to user' do
-    let(:user) { facility.users.take }
+    let(:user) { create(:user) }
+    let(:device) { create(:device, facility: nil) }
     it 'connects device to user' do
       alarm_service.handle_device_message({a: 0, g: 0, e: user.email, v: 2}.stringify_keys)
       expect(device.user).to eq(user)
