@@ -20,15 +20,16 @@ class AlarmService
 
     if user_email.present? && (device.user = User.find_by(email: user_email))
       device.facility_id ||= device.user.facility_shares.where(role: :owner).take&.facility_id
+      self.facility = device.facility
     end
 
     device.sensors.each do |sensor|
       sensor.gpio_ok?(gpio) ? sensor.ok_status! : sensor.alarm_status!
     end
 
-    fire_alarm if device.sensors.any?{|sensor| sensor.gpio_alarm?(gpio)}
+    if facility
+      fire_alarm if device.sensors.any?{|sensor| sensor.gpio_alarm?(gpio)}
 
-    if device.facility_id
       device_alarm_status = (alarm != 0) # 1: alarm; 0: normal; like in c++
       device.set_alarm if device_alarm_status != facility.alarm_status?
     end
