@@ -1,0 +1,24 @@
+<table style="width: 100%;">
+  <% @devices.each_slice(3) do |group| %>
+  <tr>
+    <% group.each do |device| %>
+      <td style="border: solid 1px lightgray">
+        <table style="width: 100%" class="table-striped">
+          <tr>
+            <th>WI-FI точка</th>
+            <td><%= device.decorate.wifi_ap %></td>
+          </tr>
+          <tr>
+            <th>WI-FI пароль</th>
+            <td><%= device.decorate.wifi_password %></td>
+          </tr>
+          <tr>
+            <th>Інтерфейс</th>
+            <td>http://192.168.4.1</td>
+          </tr>
+        </table>
+      </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

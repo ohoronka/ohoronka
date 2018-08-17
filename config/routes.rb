@@ -71,6 +71,9 @@ Rails.application.routes.draw do
       patch :login_as, on: :member
     end
     resources :products
+    resources :devices, only: [] do
+      get :labels, on: :collection
+    end
   end
 
   resource :password_reset, only: [:new, :create, :edit, :update]
