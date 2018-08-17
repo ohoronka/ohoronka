@@ -10,3 +10,26 @@
     <%= render :partial => 'form' %>
   </div>
 </div>
+
+<div class="card tasks sameheight-item" data-exclude="xs,sm">
+  <div class="card-header bordered">
+    <div class="header-block">
+      <h3 class="title">
+        Настройки WI-FI
+      </h3>
+    </div>
+  </div>
+  <div class="card-block">
+    <table class="table">
+      <tr>
+        <th>Точка доступу</th>
+        <td><%= @device.decorate.wifi_ap %></td>
+      </tr>
+      <tr>
+        <th>Пароль</th>
+        <td><%= @device.decorate.wifi_password %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+

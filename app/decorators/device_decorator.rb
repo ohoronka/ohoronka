@@ -1,13 +1,11 @@
 class DeviceDecorator < ApplicationDecorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       facility.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def wifi_password
+    '%08d' % object.options['wifi_password']
+  end
 
+  def wifi_ap
+    "OHORONKA_#{object.number}"
+  end
 end

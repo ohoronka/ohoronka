@@ -7,10 +7,12 @@
 #  updated_at  :datetime         not null
 #  pinged_at   :datetime
 #  number      :integer          not null
-#  facility_id :uuid             not null
+#  facility_id :uuid
 #  name        :string
 #  status      :integer          default("offline"), not null
 #  gpio_listen :integer          default(0), not null
+#  fw_version  :integer          default(0)
+#  user_id     :uuid
 #
 
 class Device < ApplicationRecord
@@ -28,6 +30,7 @@ class Device < ApplicationRecord
   validates :name, presence: true
 
   after_create :set_mqtt_user
+  before_create :set_options
 
   def send_config(to_number = self.number)
     msg_config_set = {
@@ -46,7 +49,8 @@ class Device < ApplicationRecord
           },
           wifi: {
             ap: {
-              ssid: "OHORONKA_#{number}"
+              ssid: self.decorate.wifi_ap,
+              pass: self.decorate.wifi_password
             },
             sta: {
               nameserver: '18.194.211.108'
@@ -114,6 +118,10 @@ class Device < ApplicationRecord
   end
 
   private
+
+  def set_options
+    self.options['wifi_password'] = rand 100_000_000
+  end
 
   def set_mqtt_user
     self.create_mqtt_user(user_name: self.number)

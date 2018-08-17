@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180727121444) do
+ActiveRecord::Schema.define(version: 20180816150049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20180727121444) do
     t.integer "gpio_listen", default: 0, null: false
     t.integer "fw_version", default: 0
     t.uuid "user_id"
+    t.json "options", default: {}
     t.index ["facility_id"], name: "index_devices_on_facility_id"
     t.index ["number"], name: "index_devices_on_number", unique: true
   end
@@ -121,15 +122,15 @@ ActiveRecord::Schema.define(version: 20180727121444) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "order_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "order_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "order_id", null: false
     t.uuid "product_id", null: false
     t.decimal "price", precision: 8, scale: 2
     t.integer "quantity", default: 1, null: false
-    t.index ["order_id"], name: "index_order_products_on_order_id"
-    t.index ["product_id"], name: "index_order_products_on_product_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -205,8 +206,8 @@ ActiveRecord::Schema.define(version: 20180727121444) do
   add_foreign_key "mqtt_acls", "mqtt_users"
   add_foreign_key "mqtt_users", "devices"
   add_foreign_key "notifications", "users"
-  add_foreign_key "order_products", "orders"
-  add_foreign_key "order_products", "products"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "payment_callbacks", "orders"
   add_foreign_key "sensors", "devices"
