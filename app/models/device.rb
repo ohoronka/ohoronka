@@ -45,7 +45,8 @@ class Device < ApplicationRecord
             ssl_ca_cert: 'ca.pem',
             client_id: number.to_s,
             user: mqtt_user.user_name,
-            pass: mqtt_user.password
+            pass: mqtt_user.password,
+            reconnect_timeout_max: 3
           },
           wifi: {
             ap: {
