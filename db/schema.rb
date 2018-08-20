@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20180816150049) do
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "target_type"
+    t.string "target_type", null: false
     t.uuid "target_id", null: false
     t.uuid "facility_id", null: false
     t.integer "target_status", limit: 2, default: 0, null: false
@@ -122,15 +122,15 @@ ActiveRecord::Schema.define(version: 20180816150049) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "order_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "order_products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "order_id", null: false
     t.uuid "product_id", null: false
     t.decimal "price", precision: 8, scale: 2
     t.integer "quantity", default: 1, null: false
-    t.index ["order_id"], name: "index_order_items_on_order_id"
-    t.index ["product_id"], name: "index_order_items_on_product_id"
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -206,8 +206,8 @@ ActiveRecord::Schema.define(version: 20180816150049) do
   add_foreign_key "mqtt_acls", "mqtt_users"
   add_foreign_key "mqtt_users", "devices"
   add_foreign_key "notifications", "users"
-  add_foreign_key "order_items", "orders"
-  add_foreign_key "order_items", "products"
+  add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "payment_callbacks", "orders"
   add_foreign_key "sensors", "devices"

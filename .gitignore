@@ -40,3 +40,4 @@ yarn-debug.log*
 /db_struct.json
 /config/deploy/config/
 /public/assets/
+/config/hirb.yml

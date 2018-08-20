@@ -13,6 +13,8 @@ RSpec.feature "Navigations", type: :feature do
       it 'navigates over the site' do
         sensor = create(:sensor)
         device = sensor.device
+        device.user = user
+        device.save
         facility = device.facility
 
         visit facilities_path

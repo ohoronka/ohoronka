@@ -14,11 +14,12 @@ class TelegramService
     when Telegram::Bot::Types::CallbackQuery
       # Here you can handle your callbacks from inline buttons
       params = JSON.parse(message.data).with_indifferent_access
-      case params[:method]
-      when 'disable_alarm'
-        channel = ::Channel::Telegram.find_by(identifier: message.from.id)
-        facility = channel.user.facilities.find(params[:facility_id])
-        facility.alarm_service.disable_alarm(user: channel.user)
+
+      case params[:m] # method
+        when 'da' # disable_alarm
+          channel = ::Channel::Telegram.find_by(identifier: message.from.id)
+          facility = channel.user.facilities.find(params[:facility_id])
+          facility.alarm_service.disable_alarm(user: channel.user)
       end
     when Telegram::Bot::Types::Message
       case message.text

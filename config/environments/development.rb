@@ -58,7 +58,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  routes.default_url_options[:host] = 'localhost'
-  routes.default_url_options[:port] = 3000
-  routes.default_url_options[:protocol] = 'http'
+  routes.default_url_options[:host] = 'ohoronka.com'
+  # routes.default_url_options[:port] = 3000
+  routes.default_url_options[:protocol] = 'https'
 end
