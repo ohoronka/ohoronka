@@ -18,7 +18,7 @@ class TelegramService
       case params[:m] # method
         when 'da' # disable_alarm
           channel = ::Channel::Telegram.find_by(identifier: message.from.id)
-          facility = channel.user.facilities.find(params[:facility_id])
+          facility = channel.user.facilities.find(params[:fid])
           facility.alarm_service.disable_alarm(user: channel.user)
       end
     when Telegram::Bot::Types::Message
