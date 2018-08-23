@@ -20,7 +20,7 @@ class Facility < ApplicationRecord
     alarm: [:idle]
   }
 
-  has_many :devices, foreign_key: :facility_id, inverse_of: :facility, dependent: :destroy
+  has_many :devices, inverse_of: :facility, dependent: :nullify
   has_many :sensors, through: :devices
   has_many :events, foreign_key: :facility_id, inverse_of: :facility, dependent: :destroy
   has_many :shares, class_name: 'FacilityShare', inverse_of: :facility, dependent: :destroy

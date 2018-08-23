@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   has_many :facility_shares, inverse_of: :user, dependent: :destroy
   has_many :facilities, through: :facility_shares
-  has_many :devices
+  has_many :devices, dependent: :nullify
   has_many :sensors, through: :devices
   has_many :channels, dependent: :destroy
   has_many :notifications, dependent: :destroy, inverse_of: :user
