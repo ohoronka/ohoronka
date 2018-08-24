@@ -39,15 +39,23 @@
     </article>
   </div>
 
-  <script type="text/javascript" charset="utf-8">
-    if (typeof Android !== 'undefined') {
-      var token = Android.getFirebaseToken();
-      if($.inArray(token, <%= current_user.mobile_devices.pluck(:token).to_json.html_safe %>)){
-        $.post('/mobile_devices/set_for_user.json', {token: token})
-      }
-    }
-  </script>
 
+  <% if real_user? %>
+    <script type="text/javascript" charset="utf-8">
+      if (typeof Android !== 'undefined') {
+        var token = Android.getFirebaseToken();
+
+        // set token for sign-out link
+        var signOutUrl = $('.js-sign-out-btn').attr('href');
+        $('.js-sign-out-btn').attr('href', signOutUrl + '?mobile_token=' + token);
+
+        // send token to server
+        if($.inArray(token, <%= current_user.mobile_devices.pluck(:token).to_json.html_safe %>)){
+          $.post('/mobile_devices/set_for_user.json', {token: token})
+        }
+      }
+    </script>
+  <% end %>
 
 </body>
 </html>

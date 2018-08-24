@@ -17,7 +17,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    SessionService.new.sign_out(self)
+    if params[:mobile_token]
+      current_user.mobile_devices.find_by(token: params[:mobile_token]).destroy
+    end
+    cookies.delete(:auth_token)
+    reset_session
     redirect_to sign_in_path
   end
 

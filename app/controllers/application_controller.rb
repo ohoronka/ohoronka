@@ -27,6 +27,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  helper_method def real_user
+    current_admin || current_user
+  end
+
+  helper_method def real_user?
+    current_user == real_user
+  end
+
   helper_method def current_admin
     @current_admin ||= User.find_by(id: session[:admin_id])
   end
