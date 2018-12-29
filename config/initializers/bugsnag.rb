@@ -1,3 +1,3 @@
 Bugsnag.configure do |config|
-  config.api_key = 'af3c48500905952259d857a72b37ee73'
+  config.api_key = 'e638958bcb04421b7d6188f805b76d36'
 end if Rails.env.production?
