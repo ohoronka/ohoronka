@@ -1,5 +1,5 @@
 require 'sidekiq'
-require_relative 'app/workers/mqtt_worker'
+require_relative '../app/workers/mqtt_worker'
 require 'erb'
 require 'yaml'
 require 'mqtt'
@@ -13,6 +13,10 @@ Sidekiq.configure_client do |config|
   config.redis = redis_config['sidekiq']
 end
 
+exit if fork
+Process.setsid
+exit if fork
+# Dir.chdir "/"
 
 begin
   pid_file = File.expand_path('tmp/pids/mqtt_listener.pid', Dir.pwd)
