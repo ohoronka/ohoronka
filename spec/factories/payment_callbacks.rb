@@ -12,7 +12,7 @@
 
 FactoryBot.define do
   factory :payment_callback do
-    order nil
-    options ""
+    order { nil }
+    options { "" }
   end
 end

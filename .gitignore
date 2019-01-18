@@ -41,3 +41,4 @@ yarn-debug.log*
 /config/deploy/config/
 /public/assets/
 /config/hirb.yml
+/config/storage.yml

@@ -14,8 +14,8 @@
 
 FactoryBot.define do
   factory :product do
-    image File.open('spec/fixtures/device.png')
+    image { File.open('spec/fixtures/device.png') }
     sequence(:name) {|n| "product name#{n}" }
-    price 9.99
+    price { 9.99 }
   end
 end

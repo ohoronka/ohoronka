@@ -41,6 +41,8 @@ group :development do
   gem 'capistrano3-puma', require: false
   gem 'capistrano-sidekiq', require: false
   gem 'annotate', require: false
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 gem 'mqtt'

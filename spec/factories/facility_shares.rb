@@ -12,7 +12,7 @@
 
 FactoryBot.define do
   factory :facility_share do
-    user nil
-    facility nil
+    user { nil }
+    facility { nil }
   end
 end

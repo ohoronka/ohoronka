@@ -14,7 +14,7 @@ FactoryBot.define do
     sequence(:name) {|n| "facility ##{n}"}
 
     transient do
-      user false
+      user { false }
     end
 
     before(:create) do |facility, evaluator|

@@ -13,8 +13,8 @@
 
 FactoryBot.define do
   factory :order_product do
-    order nil
-    product nil
-    price "9.99"
+    order { nil }
+    product { nil }
+    price { "9.99" }
   end
 end
