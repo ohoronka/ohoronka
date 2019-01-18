@@ -1,16 +1,6 @@
 require_relative 'boot'
 
-require "rails"
-# Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "action_cable/engine"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -51,10 +41,6 @@ module Ohoronka
     ::FCM_CONFIG = config_for('fcm').deep_symbolize_keys
 
     ::AWS_CONFIG = config_for('aws').deep_symbolize_keys
-
-    # def read_config(name, env: Rails.env)
-    #   YAML.load(ERB.new(File.read(Rails.root.join("config/#{name}.yml"))).result)[env].deep_symbolize_keys
-    # end
 
     config.i18n.default_locale = :uk
   end
