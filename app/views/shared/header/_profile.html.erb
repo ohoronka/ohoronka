@@ -10,7 +10,7 @@
   <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
     <%= link_to '<i class="fa fa-user icon"></i> '.html_safe + t('profile'), edit_user_path(current_user), class: 'dropdown-item' %>
     <%= link_to '<i class="fa fa-bell icon"></i> '.html_safe + t('notifications'), notifications_path, class: 'dropdown-item' %>
-    <%= link_to '<i class="fa fa-shopping-cart icon"></i> '.html_safe + t('orders_history'), orders_path, class: 'dropdown-item' %>
+    <%# link_to '<i class="fa fa-shopping-cart icon"></i> '.html_safe + t('orders_history'), orders_path, class: 'dropdown-item' %>
     <!--<a class="dropdown-item" href="#"><i class="fa fa-gear icon"></i>Settings</a>-->
     <div class="dropdown-divider" ></div>
     <%= link_to '<i class="fa fa-power-off icon"></i> '.html_safe + t('sign_out'), sign_out_path, method: :delete, class: 'js-sign-out-btn dropdown-item' %>

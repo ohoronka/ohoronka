@@ -9,23 +9,25 @@ gem 'rails', '5.2.2'
 gem 'pg'
 gem 'puma'
 gem 'sass-rails'
+gem 'coffee-rails'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
+gem 'jbuilder'
 
 group :test do
   gem 'webmock'
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'vcr', require: false
+  gem 'vcr'
   gem 'factory_bot_rails'
-  gem 'rspec-rails'
 end
 
 group :development, :test do
   gem 'pry-rails', require: false
   gem 'letter_opener', require: false
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -43,6 +45,7 @@ group :development do
   gem 'annotate', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
+  gem 'factory_bot_rails', require: false
 end
 
 gem 'mqtt'

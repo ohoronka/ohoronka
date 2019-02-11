@@ -40,9 +40,9 @@
         <li class="<%= 'active' if current_page?(facilities_path) %>">
           <%= link_to '<i class="fa fa-th-large"></i> '.html_safe + t('facilities'), facilities_path %>
         </li>
-        <li>
-          <a target="_blank" href="https://docs.ohoronka.com/"><i class="fa fa-question-circle fa-2x"></i>Документація</a>
-        </li>
+<!--        <li>-->
+<!--          <a target="_blank" href="https://docs.ohoronka.com/"><i class="fa fa-question-circle fa-2x"></i>Документація</a>-->
+<!--        </li>-->
         <%= render :partial => "shared/admin_side_bar" if current_admin %>
       </ul>
     </nav>

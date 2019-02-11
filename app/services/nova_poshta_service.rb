@@ -35,7 +35,7 @@ class NovaPoshtaService
   def filter(collection, options)
     result = collection
     result = result.select{|i| i['Ref'] == options[:ref]} if options[:ref]
-    result = result.select{|i| i['Description'].match?(/\A#{options[:description]}/i) || i['DescriptionRu'].match?(/\A#{options[:description]}/i)} if options[:description]
+    result = result.select{|i| i['Description'].match?(/\A#{options[:description]}/i) || i['DescriptionRu']&.match?(/\A#{options[:description]}/i)} if options[:description]
     result
   end
 

@@ -10,21 +10,7 @@ RSpec.feature "Orders", type: :feature do
   before { login_as(user.email, attributes_for(:user)[:password]) }
 
   describe 'device ordering process' do
-    before do
-      stub_request(:post, "https://api.novaposhta.ua/v2.0/json/").
-        with(body: "{\"apiKey\":\"ac1b36959b82784f9ed5dd1ec2719430\",\"modelName\":\"Address\",\"calledMethod\":\"getCities\",\"methodProperties\":{}}").
-        to_return(status: 200, body: vcr_response('nova_poshta/cities'), headers: {})
-
-      stub_request(:post, "https://api.novaposhta.ua/v2.0/json/").
-        with(body: "{\"apiKey\":\"ac1b36959b82784f9ed5dd1ec2719430\",\"modelName\":\"Address\",\"calledMethod\":\"getAreas\",\"methodProperties\":{}}").
-        to_return(status: 200, body: vcr_response('nova_poshta/areas'), headers: {})
-
-      stub_request(:post, "https://api.novaposhta.ua/v2.0/json/").
-        with(body: "{\"apiKey\":\"ac1b36959b82784f9ed5dd1ec2719430\",\"modelName\":\"Address\",\"calledMethod\":\"getWarehouses\",\"methodProperties\":{\"CityRef\":\"8d5a980d-391c-11dd-90d9-001a92567626\"}}",).
-        to_return(status: 200, body: vcr_response('nova_poshta/warehouses/kiev'), headers: {})
-    end
-
-    it 'works', js: true do
+    it 'works', js: true, vcr: "device_ordering" do
       expect_any_instance_of(Channel::Telegram).to receive(:notify)
       telegram
       product
@@ -65,7 +51,6 @@ RSpec.feature "Orders", type: :feature do
           "city_ref"=>"8d5a980d-391c-11dd-90d9-001a92567626",
           "warehouse_ref"=>"1ec09d88-e1c2-11e3-8c4a-0050568002cf"
         }})
-
     end
   end
 

@@ -35,6 +35,13 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+RSpec.shared_context 'controller session' do
+  let(:user) { User.take || create(:user) }
+  let(:user_session) { {user_id: user.id} }
+end
+
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -73,9 +80,19 @@ RSpec.configure do |config|
   config.include_context 'controller session', type: :controller
   config.include WaitForAjax, type: :feature
 
-  # config.around(:each, vcr: true) do
-  #   allow_any_instance_of(Reporting::Exporter).to receive(:need_schedule_flush?).and_return(true)
-  # end
+  # Configure VCR
+  VCR.configure do |c|
+    c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+    c.hook_into :webmock
+    c.ignore_localhost = true
+
+    c.filter_sensitive_data("<apiKey>") { NOVA_POSHTA_CONFIG['apiKey'] }
+  end
+
+  config.around(:each, :vcr) do |example|
+    name = example.metadata[:vcr]
+    VCR.use_cassette(name) { example.call }
+  end
 end
 
 def login_as(login, password)
@@ -85,10 +102,6 @@ def login_as(login, password)
     fill_in 'session_password', with: password
     click_on 'Увійти'
   end
-end
-
-def vcr_response(file, index = 0)
-  YAML.load(File.read("spec/fixtures/vcr_cassettes/#{file}.yml"))['http_interactions'][index]['response']['body']['string']
 end
 
 def t(*arguments)
