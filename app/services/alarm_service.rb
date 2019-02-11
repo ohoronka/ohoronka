@@ -66,7 +66,7 @@ class AlarmService
     # TODO caution! in case of crash on a large amount of devices, it can take a lot of time! So not all devices
     # can be marked as offline
     begin
-      devices = Device.where(status: :online).where('pinged_at < ?', 60.seconds.ago).includes(:sensors, :facility).limit(500).each do |device|
+      devices = Device.where(status: :online).where('pinged_at < ?', 3.minutes.ago).includes(:sensors, :facility).limit(500).each do |device|
         device.alarm_service.fire_alarm if device.sensors.to_a.any?
         device.offline_status!
         device.sensors.each(&:offline_status!)
